@@ -1,0 +1,68 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+#welcome-text-container{
+    color: rgba(236, 98, 98, 0.998);
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: aqua;
+    background-image: url('back\ ground\ image.jpg');
+    image-orientation: from-image;
+    background-size: cover;
+}
+img{
+    opacity: .5;
+}
+input{
+    text-align: center;
+    height: 30px;
+    width: 250px;
+    margin: 5px 0px 5px 0px;
+    border-radius: 10px;
+    border : none;
+}
+input:focus{
+    background-color: none;
+    width: 260px;
+    height: 35px;
+    transition: ease-in-out, width .35s ease-out;
+}
+.center-contents{
+    display: flex;
+    justify-content: center;
+}
+button{
+    height: 30px;
+    width: 100px;
+    border-radius: 15px;
+    margin: 5px 7px 0px 7px;
+    border: none;
+}
+button:hover{
+    width: 120px;
+    height: 33px;
+    transition: ease-in-out, with .25s ease-out;
+}
+span{
+    font-size: 10px;
+    color: red;
+}
+#sign-up-button:hover{
+    background-color: rgb(132, 251, 132);
+}
+#reset-button:hover{
+    background-color: rgb(244, 60, 60);
+}
+focus{
+    justify-content: center;
+}
+#password-status-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

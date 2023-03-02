@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-class Sample extends Component {
-    state = {  } 
-    render() { 
-        return (
-            <>
-                Sample
-            </>
-        );
-    }
+import React from 'react'
+
+function sample() {
+  return (
+    <div>sample</div>
+  )
 }
- 
-export default Sample;
+
+export default sample
