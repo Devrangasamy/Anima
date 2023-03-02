@@ -1,0 +1,46 @@
+.navcontainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 48px;
+    align-items: center;
+}
+
+.navs{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-items: center;
+    align-items: center;
+    column-gap: 18px;
+}
+
+.navlink:link,
+.navlink:visited{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2c003f;
+    cursor: pointer;
+}
+
+.navlink:hover,
+.navlink:active{
+    /* background-color: #2c003f;
+    color: #fff; */
+}
+
+.dropdownrelative{
+    display: relative;
+}
+
+.dropdownrelative::before{
+    
+}
+.dropdown{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+}
