@@ -1,10 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import Sample from './components/sample';
+import React, { Component } from 'react';
+
+
 function App() {
   return (
     <div>
-      <Sample/>
+      <SignUpPage/>
     </div>
   );
 }
