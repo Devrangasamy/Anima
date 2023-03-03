@@ -11,13 +11,11 @@
     align-items: center;
     height: 100vh;
     background-color: aqua;
-    background-image: url('back\ ground\ image.jpg');
+    background-image: url('../../Assets/backgroundimage.jpg');
     image-orientation: from-image;
     background-size: cover;
 }
-/* .img{
-    opacity: .5;
-} */
+
 .sigin {
     text-align: center;
     height: 30px;
