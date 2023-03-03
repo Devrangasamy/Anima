@@ -33,7 +33,7 @@ export const Navlink = () => {
         <NavLink to="/" className="navlink">Accessories</NavLink>
         <NavLink to="/" className="navlink">Medi-Care</NavLink>
         {!auth.user && <NavLink to="/signup" className="navlink">Sign-up</NavLink>}
-        {auth.user && <NavLink to="/profile" className="navlink">profile</NavLink>}
+        {auth.user && <NavLink to="/profile" className="navlink">Profile</NavLink>}
       </div>
     </div>
   );
