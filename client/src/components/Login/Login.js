@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Utilis/Authentication';
 import "../sign up page/signup.css"
+import { useLocation } from 'react-router-dom';
 
 const Login = () => {
     const navigate=useNavigate();
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
+    const location=useLocation()
+    const auth = useAuth()
     const submit=async (e)=>{
         e.preventDefault();
         const response = await fetch(
@@ -19,12 +23,10 @@ const Login = () => {
               }),
             });
             const json = await response.json();
-            console.log(json)
             if(json.status==="success")
             {
-                console.log(json.data)
-                alert(json);
-                navigate("/");
+                auth.login(json.data[0].username)
+                navigate(location.state?location.state.path:"/",{replace:true});
             }
             else
             {

@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+const AuthContext = React.createContext()
 
-export const Authentication = () => {
-    const [name,setName]=useState();
+export const Authentication = (props) => {
+  const[user, setUser] = useState("")
+  const login = (name) => {
+    setUser(name)
+  }
+  const logout = () => {
+    setUser('')
+  }
   return (
-    <div>
-        
-    </div>
+    <AuthContext.Provider value = {{user, login, logout}}>
+      {props.children}
+    </AuthContext.Provider>
   )
+}
+
+export const useAuth = () => {
+  return useContext(AuthContext)
 }
