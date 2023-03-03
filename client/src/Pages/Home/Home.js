@@ -1,9 +1,10 @@
 import React from 'react'
-import {Navlink} from './NavLink'
+import { NavLink } from 'react-router-dom'
+
 export const Home = () => {
   return (
     <div className="home">
-        <Navlink></Navlink>
+       <NavLink to="/signup">signup</NavLink>
     </div>  
   )
 }

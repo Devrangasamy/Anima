@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import UseFormInp from './use form input'
-import './sign up page.css'
+import './signup.css'
+import { useNavigate } from 'react-router-dom'
 
-function SignUpPage(event) {
+function Signup(event) {
     // Declaration for the variable data
+    const Navigate = useNavigate();
     const [name, name_attribute] = UseFormInp('')
     const [email_id, email_id_attribute] = UseFormInp('')
     const [phone_number, phone_number_attribute] = UseFormInp('')
@@ -22,17 +24,38 @@ function SignUpPage(event) {
     }
 
     //Will be called on button pressed as sign up 
-    const submitData = (event) => {
+    const submitData =  async  (event) => {
         if(pass !== confirm_pass)
             return(alert('Passwords donot match'))
-        console.log(name, pass, email_id, phone_number)
-        event.preventDefault()
+            console.log(name, pass, email_id, phone_number)
+            event.preventDefault()
+        const response = await fetch(
+            "http://localhost:8000/api/auth/register",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                username:name,
+                email: email_id,
+                newpassword:pass,
+                confirmpassword:confirm_pass,
+                contact:phone_number
+              }),
+            });
+            const json = await response.json();
+            console.log(json)
+            
+            if (json == "success") {
+                Navigate("/login");
+                alert(json)
+            }
+
     }
     return (
-        <div>
+        <div className='container'>
         <form onSubmit = {submitData}>
             <div className='center-contents'>
-                <h2 id='welcome-text-container'>SIGN UP TO ANIMIA</h2><br></br>
+                <h2 id='welcome-text-container'>SIGN UP</h2><br></br>
             </div>
             <input type = 'text' placeholder='Name'  {...name_attribute}></input><br></br>
             <input type = 'email' placeholder='Email ID'  {...email_id_attribute}></input><br></br>
@@ -53,4 +76,4 @@ function SignUpPage(event) {
   )
 }
 
-export default SignUpPage
+export default Signup

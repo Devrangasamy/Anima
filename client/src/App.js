@@ -1,10 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import Sample from './components/sample';
+// import logo from './logo.svg';
+
+import React from 'react';
+import Allroutes from './Allroutes';
+import Signup from './components/sign up page/signup';
+// import Sample from './components/sample';
 function App() {
   return (
     <div>
-      <Sample/>
+        <Allroutes/>
     </div>
   );
 }
