@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 import authRoute from "./routes/authRoute.js"
 import productRoute from "./routes/productRoute.js"
 dotenv.config();
@@ -14,6 +15,15 @@ const connect=async()=>{
         throw error;
       }
 }
+const corsOpts = {
+    origin: '*',
+  
+    methods: ['GET', 'POST', 'DELETE', 'PATCH'],
+  
+    allowedHeaders: ['Content-Type']
+  };
+  
+app.use(cors(corsOpts));
 mongoose.connection.on("disconnected",()=>{
     console.log("Mongodb disconnected!");
 })

@@ -5,7 +5,7 @@
 #welcome-text-container{
     color: rgba(236, 98, 98, 0.998);
 }
-body{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
