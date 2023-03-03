@@ -21,7 +21,7 @@ export const Navlink = () => {
         <NavLink to="/" className="navlink">
           Home
         </NavLink>
-        <NavLink to="/" className="dropdownrelative" onClick={isOpen}>
+        <NavLink className="dropdownrelative" onClick={isOpen}>
           Services
           {close && (
             <div className="dropdown">
@@ -30,10 +30,22 @@ export const Navlink = () => {
             </div>
           )}
         </NavLink>
-        <NavLink to="/" className="navlink">Accessories</NavLink>
-        <NavLink to="/" className="navlink">Medi-Care</NavLink>
-        {!auth.user && <NavLink to="/signup" className="navlink">Sign-up</NavLink>}
-        {auth.user && <NavLink to="/profile" className="navlink">Profile</NavLink>}
+        <NavLink to="/accessories" className="navlink">
+          Accessories
+        </NavLink>
+        <NavLink to="/" className="navlink">
+          Medi-Care
+        </NavLink>
+        {!auth.user && (
+          <NavLink to="/signup" className="navlink">
+            Sign-up
+          </NavLink>
+        )}
+        {auth.user && (
+          <NavLink to="/profile" className="navlink">
+            profile
+          </NavLink>
+        )}
       </div>
     </div>
   );

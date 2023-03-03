@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Utilis/Authentication';
 import "../sign up page/signup.css"
+import { useLocation } from 'react-router-dom';
 
 const Login = () => {
     const navigate=useNavigate();
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
+    const location=useLocation()
     const auth = useAuth()
     const submit=async (e)=>{
         e.preventDefault();
@@ -24,7 +26,7 @@ const Login = () => {
             if(json.status==="success")
             {
                 auth.login(json.data[0].username)
-                navigate("/");
+                navigate(location.state?location.state.path:"/",{replace:true});
             }
             else
             {
