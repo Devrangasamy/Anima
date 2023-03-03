@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Sample from './components/sample';
+import Allroutes from './Allroutes';
 function App() {
   return (
     <div>
-      <Sample/>
+      <Allroutes/>
     </div>
   );
 }

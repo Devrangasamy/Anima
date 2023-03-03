@@ -1,6 +1,6 @@
 import { Route, Routes} from 'react-router-dom';
 import { BrowserRouter as Router } from "react-router-dom";
-import { Home } from './Petcare/Home';
+import {Home} from './Pages/Home/Home'
 function Allroutes(){
     return (
       <Router>
