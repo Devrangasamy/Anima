@@ -1,13 +1,14 @@
 import { Route, Routes} from 'react-router-dom';
-import { BrowserRouter as Router } from "react-router-dom";
-import { Home } from './Petcare/Home';
+import {Home} from './Pages/Home/Home'
+import Login from "./components/Login/Login"
+import Signup from './components/sign up page/signup';
 function Allroutes(){
     return (
-      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login></Login>}/>
+          <Route path="/signup" element={<Signup></Signup>}/>
         </Routes>
-      </Router>
     );
 }
 export default Allroutes;
