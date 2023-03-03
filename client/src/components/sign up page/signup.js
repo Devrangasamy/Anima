@@ -25,6 +25,7 @@ function Signup(event) {
 
     //Will be called on button pressed as sign up 
     const submitData =  async  (event) => {
+        console.log(event.target.value)
         if(pass !== confirm_pass)
             return(alert('Passwords donot match'))
             console.log(name, pass, email_id, phone_number)
@@ -52,28 +53,65 @@ function Signup(event) {
 
     }
     return (
-        <div className='container'>
-        <form onSubmit = {submitData}>
-            <div className='center-contents'>
-                <h2 id='welcome-text-container'>SIGN UP</h2><br></br>
-            </div>
-            <input type = 'text' placeholder='Name'  {...name_attribute}></input><br></br>
-            <input type = 'email' placeholder='Email ID'  {...email_id_attribute}></input><br></br>
-            <div id='password-status-container'>
-                {err_pswrd && <span>Password must contain 8 letters</span>}
-            </div>
-            <input type = 'password' placeholder='PassWord' onChange = {(event) => validatePass(event)} required></input>
+      <div className="container img">
+        <form onSubmit={submitData}>
+          <div className="center-contents">
+            <h2 id="welcome-text-container">SIGN UP</h2>
             <br></br>
-            <input type = 'password' placeholder='Confirm PassWord' required onChange={(event) => SetConfirmPass(event.target.value)}></input><br></br>
-            {}
-            <input type = '' placeholder='Phone Number'  {...phone_number_attribute} required></input><br></br>
-            <div className = 'center-container'>
-                <button type = 'submit' id = 'sign-up-button'>Sign Up</button>
-                <button type = 'reset' id = 'reset-button'>Reset</button>
-            </div>
+          </div>
+          <input
+            type="text"
+            placeholder="Name"
+            className="sigin"
+            {...name_attribute}
+          ></input>
+          <br></br>
+          <input
+            type="email"
+            placeholder="Email ID"
+            className="sigin"
+            {...email_id_attribute}
+          ></input>
+          <br></br>
+          <div id="password-status-container">
+            {err_pswrd && <span className='signspan'>Password must contain 8 letters</span>}
+          </div>
+          <input
+            type="password"
+            placeholder="PassWord"
+            className="sigin"
+            onChange={(event) => validatePass(event)}
+            required
+          ></input>
+          <br></br>
+          <input
+            type="password"
+            className="sigin"
+            placeholder="Confirm PassWord"
+            required
+            onChange={(event) => SetConfirmPass(event.target.value)}
+          ></input>
+          <br></br>
+          {}
+          <input
+            type=""
+            className="sigin"
+            placeholder="Phone Number"
+            {...phone_number_attribute}
+            required
+          ></input>
+          <br></br>
+          <div className="center-container">
+            <button className="signupbutton" type="submit" id="sign-up-button">
+              Sign Up
+            </button>
+            <button className="signupbutton" type="reset" id="reset-button">
+              Reset
+            </button>
+          </div>
         </form>
-    </div>
-  )
+      </div>
+    );
 }
 
 export default Signup

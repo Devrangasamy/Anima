@@ -1,13 +1,13 @@
 import React from "react";
 import "./Home.css";
-import pet1 from "../Assets/pet1.jpg";
-import pet2 from "../Assets/pet2.jpg";
-import pet3 from "../Assets/pet3.jpg";
-import pet4 from "../Assets/pet4.jpg";
-import pet5 from "../Assets/pet5.jpg";
-import next from "../Assets/next.jpg";
-import slide2image from "../Assets/Slide2home.jpg";
-import { Navlink } from "./Navlink";
+import pet1 from "../../Assets/pet1.jpg";
+import pet2 from "../../Assets/pet2.jpg";
+import pet3 from "../../Assets/pet3.jpg";
+import pet4 from "../../Assets/pet4.jpg";
+import pet5 from "../../Assets/pet5.jpg";
+import next from "../../Assets/next.jpg";
+import slide2image from "../../Assets/Slide2home.jpg";
+import {Navlink} from '../../components/Navbar/NavLink'
 export const Home = () => {
   return (
     <div className="home">

@@ -2,7 +2,7 @@ import React from "react";
 import "./NavLink.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import logo from "../Assets/unnamed.png";
+import logo from "../../Assets/unnamed.png";
 export const Navlink = () => {
   const [close, Dropdown] = useState(false);
   const isOpen = () => {
@@ -34,7 +34,7 @@ export const Navlink = () => {
         <NavLink to="/" className="navlink">
           Medi-Care
         </NavLink>
-        <NavLink to="/" className="navlink">
+        <NavLink to="/signup" className="navlink">
           Sign-up
         </NavLink>
       </div>

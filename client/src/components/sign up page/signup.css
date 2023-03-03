@@ -15,10 +15,10 @@
     image-orientation: from-image;
     background-size: cover;
 }
-img{
+/* .img{
     opacity: .5;
-}
-input{
+} */
+.sigin {
     text-align: center;
     height: 30px;
     width: 250px;
@@ -26,7 +26,7 @@ input{
     border-radius: 10px;
     border : none;
 }
-input:focus{
+.signin:focus{
     background-color: none;
     width: 260px;
     height: 35px;
@@ -36,19 +36,19 @@ input:focus{
     display: flex;
     justify-content: center;
 }
-button{
+.signupbutton{
     height: 30px;
     width: 100px;
     border-radius: 15px;
     margin: 5px 7px 0px 7px;
     border: none;
 }
-button:hover{
+.signupbutton:hover{
     width: 120px;
     height: 33px;
     transition: ease-in-out, with .25s ease-out;
 }
-span{
+.signspan{
     font-size: 10px;
     color: red;
 }
