@@ -22,7 +22,8 @@ const Login = () => {
             console.log(json)
             if(json.status==="success")
             {
-                alert(json.status);
+                console.log(json.data)
+                alert(json);
                 navigate("/");
             }
             else
