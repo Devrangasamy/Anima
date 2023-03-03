@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Utilis/Authentication';
 import "../sign up page/signup.css"
 
 const Login = () => {
     const navigate=useNavigate();
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
+    const auth = useAuth()
     const submit=async (e)=>{
         e.preventDefault();
         const response = await fetch(
@@ -19,11 +21,9 @@ const Login = () => {
               }),
             });
             const json = await response.json();
-            console.log(json)
             if(json.status==="success")
             {
-                console.log(json.data)
-                alert(json);
+                auth.login(json.data[0].username)
                 navigate("/");
             }
             else

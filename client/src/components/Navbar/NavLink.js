@@ -3,8 +3,10 @@ import "./NavLink.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../Assets/unnamed.png";
+import { useAuth } from "../../Utilis/Authentication";
 export const Navlink = () => {
   const [close, Dropdown] = useState(false);
+  const auth = useAuth()
   const isOpen = () => {
     Dropdown(!close);
     console.log("Open");
@@ -28,15 +30,10 @@ export const Navlink = () => {
             </div>
           )}
         </NavLink>
-        <NavLink to="/" className="navlink">
-          Accessories
-        </NavLink>
-        <NavLink to="/" className="navlink">
-          Medi-Care
-        </NavLink>
-        <NavLink to="/signup" className="navlink">
-          Sign-up
-        </NavLink>
+        <NavLink to="/" className="navlink">Accessories</NavLink>
+        <NavLink to="/" className="navlink">Medi-Care</NavLink>
+        {!auth.user && <NavLink to="/signup" className="navlink">Sign-up</NavLink>}
+        {auth.user && <NavLink to="/profile" className="navlink">profile</NavLink>}
       </div>
     </div>
   );

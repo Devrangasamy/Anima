@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
 import Allroutes from './Allroutes';
+import { Authentication } from './Utilis/Authentication';
 function App() {
   return (
     <div>
-      <Allroutes/>
+      <Authentication>
+        <Allroutes/>
+      </Authentication>
     </div>
   );
 }
