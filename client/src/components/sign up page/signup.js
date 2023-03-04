@@ -19,7 +19,7 @@ function Signup(event) {
     console.log("Inside the pass validate");
     // if (pass.length < 8) setErrPswrd(true);
     // else setErrPswrd(false);
-    setErrPswrd(false)
+    setErrPswrd(false);
   };
 
   //Will be called on button pressed as sign up
@@ -27,10 +27,10 @@ function Signup(event) {
     if (pass !== confirm_pass) return alert("Passwords donot match");
     console.log(name, pass, email_id, phone_number);
     const response = await fetch("http://localhost:8000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-          username: name,
+        username: name,
         email: email_id,
         newpassword: pass,
         confirmpassword: confirm_pass,
@@ -39,7 +39,7 @@ function Signup(event) {
     });
     const json = await response.json();
     console.log(json);
-    
+
     if (json.status === "success") {
       alert(json.status);
       Navigate("/login");
@@ -106,9 +106,7 @@ function Signup(event) {
           </button>
         </div>
       </form>
-          <button onClick={()=>Navigate("/login")}>
-            Login
-          </button>
+      <button onClick={() => Navigate("/login")}>Login</button>
     </div>
   );
 }

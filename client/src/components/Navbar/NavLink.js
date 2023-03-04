@@ -18,9 +18,11 @@ export const Navlink = () => {
         <img className="logo" src={logo} alt="logo"></img>
       </div>
       <div className="navs">
+
         <NavLink to="/" className="navlink">
           Home
         </NavLink>
+        
         <NavLink className="dropdownrelative" onClick={isOpen}>
           Services
           {close && (

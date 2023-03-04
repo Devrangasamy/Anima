@@ -7,11 +7,11 @@ import pet4 from "../../Assets/pet4.jpg";
 import pet5 from "../../Assets/pet5.jpg";
 import next from "../../Assets/next.jpg";
 import slide2image from "../../Assets/Slide2home.jpg";
-import {Navlink} from '../../components/Navbar/NavLink'
+import Navbar from '../../components/Navbar/Navbar'
 export const Home = () => {
   return (
     <div className="home">
-      <Navlink></Navlink>
+      <Navbar></Navbar>
       <div className="slide ">
         <div className="slide1">
           <h1 className="quotes">Loving sitters take care of your pet</h1>

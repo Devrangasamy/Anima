@@ -6,12 +6,12 @@ export const register=async(req,res,next)=>{
         await newUser.save();
         res.status(200).json({ "status": "success", "data": newUser });
     }
-    
     catch(err)
     {
         next(err);
     }
 }
+
 export const login=async(req,res,next)=>{
     try{
         const user= await User.find({email:req.body.email ,newpassword:req.body.newpassword});
