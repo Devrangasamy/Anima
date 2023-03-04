@@ -10,7 +10,6 @@ export const register=async(req,res,next)=>{
         await newUser.save();
         res.status(200).json({ "status": "success", "data": newUser });
     }
-    
     catch(err)
     {
         next(err);
