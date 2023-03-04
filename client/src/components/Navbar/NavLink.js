@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../Assets/unnamed.png";
 import { useAuth } from "../../Utilis/Authentication";
-import Profile from "../Profile/Profile";
+import Profile from "../Profile/profile";
 export const Navlink = () => {
   const [close, Dropdown] = useState(false);
   const auth = useAuth()
