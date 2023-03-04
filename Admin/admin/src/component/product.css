@@ -1,0 +1,41 @@
+.header{
+    /* margin-top: 10px; */
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-size: 10px;
+    align-items: center;
+}
+.but{
+    color: white;
+    background-color: crimson;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+}
+.but:hover{
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size:15px;
+    transition: 1s;
+}
+.list-items{
+    display:grid;
+}
+.prodin:hover{
+    margin: 0px 450px;
+    padding: 16px;
+    border-radius: 13px;
+    transition: 1s;
+}
+.prodin{
+    margin: 0px 500px;
+    padding: 14px;
+    border-radius: 13px;
+}
+
+.items-entry{
+    background-color:#f8edeb;
+    height: 100vh;
+}

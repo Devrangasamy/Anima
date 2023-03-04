@@ -17,15 +17,8 @@ function Allroutes() {
   return (
     <Authentication>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/accessories"
-          element={
-            <RequiredAuth>
-              <Accessories />
-            </RequiredAuth>
-          }
-        />
+        <Route index path="/" element={<Home />} />
+        <Route path="/accessories" element={<RequiredAuth><Accessories/></RequiredAuth>}/>
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/profile" element={<Profile />} />
