@@ -39,7 +39,7 @@ export const Product = () => {
     }
 	//This function will invoke when the search button is pressed
 	const searchThisItem = () => {
-
+        console.log('Called the search bar')
 	}
     
     return (
