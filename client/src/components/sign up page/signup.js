@@ -26,6 +26,7 @@ function Signup(event) {
   const submitData = async (event) => {
     if (pass !== confirm_pass) return alert("Passwords donot match");
     console.log(name, pass, email_id, phone_number);
+    event.preventDefault();
     const response = await fetch("http://localhost:8000/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -44,26 +45,37 @@ function Signup(event) {
       alert(json.status);
       Navigate("/login");
     }
-    event.preventDefault();
+    else{
+      console.log("cvbn");
+    }
   };
   return (
-    <div className="container img">
-      <form onSubmit={submitData}>
+    <div className="signup-container img">
+      <form onSubmit={submitData} className="signup-form">
+        {/* <div className="center-contents">
+          <h2 id="welcome-text-container">Anima</h2>
+        </div> */}
         <div className="center-contents">
           <h2 id="welcome-text-container">SIGN UP</h2>
-          <br></br>
         </div>
+        <lable className="sign-label">
+          Full Name
+          <span className="required">*</span>
+        </lable>
         <input
           type="text"
           placeholder="Name"
-          className="sigin"
+          className="sigin-input"
           {...name_attribute}
         ></input>
         <br></br>
+        <lable className="sign-label">
+          Email<span className="required">*</span>
+        </lable>
         <input
           type="email"
           placeholder="Email ID"
-          className="sigin"
+          className="sigin-input"
           {...email_id_attribute}
         ></input>
         <br></br>
@@ -72,26 +84,34 @@ function Signup(event) {
             <span className="signspan">Password must contain 8 letters</span>
           )}
         </div>
+        <lable className="sign-label">
+          PassWord<span className="required">*</span>
+        </lable>
         <input
           type="password"
           placeholder="PassWord"
-          className="sigin"
+          className="sigin-input"
           onChange={(event) => validatePass(event)}
           required
         ></input>
         <br></br>
+        <lable className="sign-label">
+          Confrim-Password<span className="required">*</span>
+        </lable>
         <input
           type="password"
-          className="sigin"
+          className="sigin-input"
           placeholder="Confirm PassWord"
           required
           onChange={(event) => SetConfirmPass(event.target.value)}
         ></input>
         <br></br>
-        {}
+        <lable className="sign-label">
+          Mobile Number<span className="required">*</span>
+        </lable>
         <input
-          type=""
-          className="sigin"
+          type="number"
+          className="sigin-input"
           placeholder="Phone Number"
           {...phone_number_attribute}
           required
@@ -105,8 +125,17 @@ function Signup(event) {
             Reset
           </button>
         </div>
+        <hr className="Already-signup"></hr>
+        <div className="Already-signup-container">
+          <p className="Already-signup-para">Already have an Account?</p>
+          <button
+            className="Already-signup-button"
+            onClick={() => Navigate("/login")}
+          >
+            Login
+          </button>
+        </div>
       </form>
-      <button onClick={() => Navigate("/login")}>Login</button>
     </div>
   );
 }

@@ -4,8 +4,6 @@ export const register=async(req,res,next)=>{
     try{
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.confirmpassword, salt);
-        // req.body.newpassword=hash;
-        // req.body.confirmpassword=hash;
         const newUser = new User(req.body)
         await newUser.save();
         res.status(200).json({ "status": "success", "data": newUser });
@@ -23,7 +21,6 @@ export const login=async(req,res,next)=>{
         {
             console.log(user);
             res.status(200).json({"status":"success","data":user});
-
         }
         else
         {

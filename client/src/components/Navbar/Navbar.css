@@ -68,7 +68,7 @@
 .menu-icon {
   display: none;
 }
-
+/* 
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
@@ -146,8 +146,4 @@
     color: #1888ff;
     transition: 250ms;
   }
-
-  button {
-    display: none;
-  }
-}
+} */
