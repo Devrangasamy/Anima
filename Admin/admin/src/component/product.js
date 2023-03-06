@@ -2,15 +2,13 @@ import React from 'react';
 import './product.css'
 import Entry from './fileentry';
 const Product = () => {
-    const[product_name,setproductname]=Entry('')
-    const[animal,setanimal]=Entry('')
-    const[product_cost,setproductcost]=Entry('')
-    const[product_photo,setproductphoto]=Entry('')
-    const[product_description,setproductdescription]=Entry('')
+    const[product_name,setproductname, resetProductName]=Entry('')
+    const[animal,setanimal, resetAnimal]=Entry('')
+    const[product_cost,setproductcost, resetProductCost]=Entry('')
+    const[product_photo,setproductphoto, resetProductPhoto]=Entry('')
+    const[product_description,setproductdescription, resetProductDescription]=Entry('')
     const gotoproduct=()=>{
-
     }
-
   const publishnow = async (event) => {
     const response = await fetch("http://localhost:8000/api/product/", {
         method: "POST",
@@ -25,7 +23,11 @@ const Product = () => {
     });
     const json = await response.json();
     console.log(json);
-    
+    resetProductName()
+    resetAnimal()
+    resetProductCost()
+    resetProductPhoto()
+    resetProductDescription()
   };
     return (
         <div className='items-entry'>

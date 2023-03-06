@@ -6,7 +6,7 @@ const RequiredAuth = (props) => {
   const location = useLocation();
   const Auth = useAuth();
   if (!Auth.user) {
-    return <Navigate to="/login" state={{ path: location.pathname }} />;
+    return <Navigate to="/signup" state={{ path: location.pathname }} />;
   } else {
     return props.children;
   }
