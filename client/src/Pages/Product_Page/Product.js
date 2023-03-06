@@ -44,17 +44,16 @@ export const Product = () => {
     
     return (
         <div>
-
-            <div id='product-sorting-main-container'>
-                <div id='total-items-container'>
+            <div id='product-page-nav-container'>
+                <div id='product-page-nav-total-data-container'>
                     <span>Showing {dataList.length} items</span>
                 </div>
-                <div id='product-search-container'>
+                <div id='product-page-nav-serach-container'>
                     <span>Search</span>
                     <input onChange = {(event) => setSearchText(event.target.value)} value = {searchText}></input>
 					<button onClick = {() => searchThisItem()}>Search</button>
                 </div>
-                <div id='products-sorting-container'>
+                <div id='product-page-nav-sort-container'>
                 <span>Sort by :</span>
                     <select onChange={(event) => optionChange(event)}>
                         <option value={'alphabetical'}>Alphabetical</option>
