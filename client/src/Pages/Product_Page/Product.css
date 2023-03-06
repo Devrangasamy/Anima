@@ -1,0 +1,107 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+:root{
+    --width : 100px;
+    --height : 40px;
+}
+body{
+    background-color: none;
+}
+
+#grid-container{
+    display: grid;
+    gap: 7px;
+    grid-template-columns: auto auto auto auto;
+}
+
+.name-container{
+    display: flex;
+    justify-content: center;
+}
+.product-container{
+    border: solid 2px rgb(229, 214, 214);
+    border-radius: 20px;
+    text-align: center;
+}
+.product-container button{
+    height: var(--height);
+    width: var(--width);
+    border-radius: 10px;
+    border: none;
+    font-size: 17px;
+    margin: 0px 5px 10px 5px;
+}
+.product-container img{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.product-container button:hover{
+    background-color: rgb(164, 244, 164);
+}
+.product-container:hover{
+    box-shadow:   rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.convert-image{
+    width: calc(3.2 * var(--width));
+    height: calc(5.25 * var(--height));
+    object-fit: cover;
+}
+#product-page-data-container{
+    display: block;
+}
+#product-container-product-name{
+    font-weight: bold;
+    font-size: 20px;
+}
+#product-container-price-container{
+    font-family: sans-serif;
+    font-size: 17px;
+    margin-top: 10px;
+}
+#product-sorting-main-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#total-items-container{
+    margin: 10px 0px 10px 20px;
+}
+#total-items-container span{
+    font-size: 17px;
+    font-weight: 600;
+}
+#products-sorting-container{
+    border: solid 2px rgb(179, 179, 179);
+    width: 190px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 40px 10px 0px;
+}
+#products-sorting-container span{
+    font-weight: 600;
+}
+#products-sorting-container select{
+    border: none;
+    font-size: 15px;
+}
+#product-search-container{
+    margin: 10px 0px 10px 0px;
+}
+#product-search-container span{
+    font-weight: 600;
+    font-size: 17px;
+    margin: 0px 5px 0px 0px;
+}
+#product-search-container input{
+    height: 25px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 17px;
+    border: solid 2px rgb(165, 165, 165);
+}
