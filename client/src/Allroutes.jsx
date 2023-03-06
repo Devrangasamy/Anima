@@ -3,7 +3,7 @@ import { Authentication } from "./Utilis/Authentication";
 import { Home } from "./Pages/Home/Home";
 import Login from "./components/Login/Login";
 import Signup from "./components/sign up page/signup";
-import Profile from "./components/Profile/profile";
+import Profile from "./components/Profile/Profile";
 import RequiredAuth from "./Utilis/RequiredAuth";
 import  Accessories  from "./components/Accessories/Accessories";
 function Allroutes() {
