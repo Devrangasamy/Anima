@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-// import Button  from "./Button";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { useAuth } from "../../Utilis/Authentication";
-
+import Profile from "../Profile/profile";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const auth = useAuth();
+  const [buttonPopup, setButtonPopup] = useState(false);
+
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -78,14 +79,18 @@ function Navbar() {
           {auth.user && (
             <li className="nav-item">
               <Link
-                to="/profile"
                 className="nav-links"
-                onClick={closeMobileMenu}
+                // onClick={closeMobileMenu}
+                onClick={() => setButtonPopup(true)}
               >
                 Profile
               </Link>
             </li>
           )}
+          <Profile
+            trigger={buttonPopup}
+            setTrigger={setButtonPopup}
+          ></Profile>
           {!auth.user && (
             <li className="nav-item">
               <Link
