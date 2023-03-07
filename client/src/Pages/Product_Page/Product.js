@@ -18,7 +18,6 @@ export const Product = () => {
 		)
 	}
 	fetchData()
-	fetchData()
 	
     const addToCart = (event) => {
         const id = event.target.value
