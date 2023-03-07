@@ -19,12 +19,9 @@ const connect=async()=>{
 
 const corsOpts = {
     origin: '*',
-  
     methods: ['GET', 'POST', 'DELETE', 'PATCH'],
-
     allowedHeaders: ['Content-Type']
   };
-  
 app.use(cors(corsOpts));
 mongoose.connection.on("disconnected",()=>{
     console.log("Mongodb disconnected!");
