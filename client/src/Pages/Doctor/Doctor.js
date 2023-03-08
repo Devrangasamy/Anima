@@ -6,9 +6,18 @@ const Doctor = () => {
     const [location,setlocation]=useState([]);
     const [specilization,setspecilization]=useState([]);
     const [experience,setexperience]=useState(0);
+    const[DataList,setDataList]=useState([]);
     const search =()=>{
 
     }
+    const fetchData = () => {
+		return (
+			axios.get('http://localhost:8000/api/doctor')
+			.then((response) => {setDataList(response.data)})
+			.catch((error) => console.log(error))
+		)
+	}
+	fetchData()
     return (
         <div>
             <Navbar></Navbar>

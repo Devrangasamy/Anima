@@ -33,8 +33,18 @@ export const deleteDoctor=async(req,res,next)=>{
 }
 export const getDoctor=async(req,res,next)=>{
     try{
-        const  Doctor= await Doctor.find()
-        res.status(200).json(products);
+        const Doctor= await Doctor.findById(req.params.id)
+        res.status(200).json(Doctor);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+}
+export const getDoctors=async(req,res,next)=>{
+    try{
+        const  Doctors= await Doctor.find()
+        res.status(200).json(Doctors);
     }
     catch(err)
     {
