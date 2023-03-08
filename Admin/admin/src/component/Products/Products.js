@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios";
 import "./Product.css"
-var dispData 
 
 const Products = () => {
     const[List, setList] = useState([])
@@ -24,7 +23,6 @@ const Products = () => {
     
     // const a=List.map((x,index)=>{return <div key={index}><p>{x.photos}</p></div>})
   return (
-    dispData = 
     <div className='outside-container'>
          <div className= 'container-pro'>
             <div className='inner'>
