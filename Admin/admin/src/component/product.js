@@ -1,7 +1,7 @@
 import React from 'react';
 import './product.css'
 import Entry from './fileentry';
-const Product = () => {
+const AddProduct = () => {
     const[product_name,setproductname, resetProductName]=Entry('')
     const[animal,setanimal, resetAnimal]=Entry('')
     const[product_cost,setproductcost, resetProductCost]=Entry('')
@@ -30,9 +30,8 @@ const Product = () => {
     resetProductDescription()
   };
     return (
-        <div className='items-entry'>
-            <div className='header'>
-                <h1/>
+        <div className='items-entry'>     
+            <div className='header'> 
                 <div>
                 <button className='but' onClick={gotoproduct}>Go to products</button>
                 </div>
@@ -40,26 +39,25 @@ const Product = () => {
                 <div>
                 <button className='but' onClick={publishnow}>Publish Now</button>
                 </div>
-                <h1/>
             </div>
              <div className='container'>
                 <div className='list-items'>
-                    <h3>Product Name</h3>
-                    <input className='prodin' type={Text} placeholder="Enter product name"{...setproductname}/>
-                    <h3>Animal Name</h3>
-                    <input className='prodin' type={Text} placeholder="Enter animal name"{...setanimal}/>
-                    <h3>Product Cost</h3>
-                    <input className='prodin' type={Text} placeholder="Enter product cost"{...setproductcost}/>
-                    <h3>Product Photos Url</h3>
-                    <input className='prodin' type={Text} placeholder="Enter product photo url"{...setproductphoto}/>
-                    <h3>Product Description</h3>
-                    <textarea className='prodin' type={Text} placeholder="Enter product name"{...setproductdescription}/>
-                    <h3>Product Rating</h3>
-                    <input className='prodin' type={Text} placeholder="Enter product rating on a scale of 5"{...setproductdescription}/>
+                    <h4 className='label'>Product Name</h4>
+                    <input className='prodin' type="text" placeholder="Enter product name"{...setproductname}/>
+                    <h4 className='label'>Animal Name</h4>
+                    <input className='prodin' type="text" placeholder="Enter animal name"{...setanimal}/>
+                    <h4 className='label'>Product Cost</h4>
+                    <input className='prodin' type="text" placeholder="Enter product cost"{...setproductcost}/>
+                    <h4 className='label'>Product Photos Url</h4>
+                    <input className='prodin' type="text" placeholder="Enter product photo url"{...setproductphoto}/>
+                    <h4 className='label'>Product Description</h4>
+                    <textarea className='prodin' type="text" placeholder="Enter product name"{...setproductdescription}/>
+                    <h4 className='label'>Product Rating</h4>
+                    <input className='prodin' type="text" placeholder="Enter product rating on a scale of 5"{...setproductdescription}/>
                     </div>
                 </div>
         </div>
     );
 }
 
-export default Product;
+export default AddProduct;

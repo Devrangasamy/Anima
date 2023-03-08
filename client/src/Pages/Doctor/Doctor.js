@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import './Doctor.css';
-import { Doctorbody } from '../../components/Doctor/Doctorbody';
-import { Searchbar } from '../../components/Doctor/Searchbar';
-import { FaSearch} from "react-icons/fa";
+import React, { useState } from "react";
+import Navbar from "../../components/Navbar/Navbar";
+import { Searchbar } from "../../components/Doctor/Searchbar";
+import { Doctorbody } from "../../components/Doctor/Doctorbody";
 const Doctor = () => {
-    const [location,setlocation]=useState([]);
-    const [specilization,setspecilization]=useState([]);
-    const [experience,setexperience]=useState(0);
-    const search =()=>{
-
-    }
-    return (
-        <div>
-            <Navbar></Navbar>
-            <Doctorbody></Doctorbody>
-            <Searchbar></Searchbar>
-        </div>
-    );
-}
+  return (
+    <div>
+      <Navbar></Navbar>
+      <Searchbar></Searchbar>
+      <Doctorbody></Doctorbody>
+      <div className="doctor-body"></div>
+    </div>
+  );
+};
 
 export default Doctor;
