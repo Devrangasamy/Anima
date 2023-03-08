@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { useAuth } from "../../Utilis/Authentication";
-import Profile from "../Profile/profile";
+import Profile from "../Profile/Profile";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -34,7 +34,7 @@ function Navbar() {
       <nav className="navbar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           Anima
-          <i class="fab fa-firstdraft" />
+          <i className="fab fa-firstdraft" />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />

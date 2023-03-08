@@ -1,0 +1,56 @@
+.doctor-header{
+    display: flex;
+    background-color: #411a52;
+    border-radius: 10px;
+}
+.search{
+    background-color: #411a52;
+    margin: 5px;
+    padding: 1px;
+    font-size: 15px;
+} 
+.search select{
+    border: none;
+    background-color:  azure;
+    border-radius: 100px ;
+    padding: 10px;
+    font-size: 17px;
+}
+.search select option{
+
+    border: none;
+    background-color:  #411a52;
+    border-radius: 100px;
+    padding: 100px;
+    font-size: 17px;
+    text-align: left;
+     color: azure;
+}
+.search input{
+    border: none;
+    background-color: azure ;
+    border-radius: 100px;
+    padding: 10px;
+    font-size: 17px;
+     color: #411a52;
+}
+.search ::placeholder{
+    color: #411a52;
+}
+.search button{
+    border: none;
+    background-color:  azure;
+    border-radius: 100px;
+    padding: 9px;
+    font-size: 15px;
+    color: #411a52;
+    width: 120px;
+}
+.search button:hover{
+    border: none;
+    background-color:  #411a52;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    color: azure;
+}
