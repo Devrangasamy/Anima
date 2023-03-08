@@ -1,14 +1,16 @@
 /* NX = not expanded */
-
+/* *{
+	margin:0;
+} */
 .side-nav-container {
 	background-color: var(--dark);
 	width: 300px;
-	height: 110vh;
+	height: 100vh;
 	position: absolute;
 	color: var(--light);
     left:0;
     right:0;
-
+	z-index: 100;
 	transition: 0.4s;
     
 }
