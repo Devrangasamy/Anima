@@ -14,7 +14,7 @@ import Profile from "./components/Profile/Profile";
 import Accessories from "./components/Accessories/Accessories";
 import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
 import { Product } from "./Pages/Product_Page/Product";
-import Doctor from "./Pages/Doctor.js/Doctor";
+import Doctor from "./Pages/Doctor/Doctor";
 
 function Allroutes() {
   return (
