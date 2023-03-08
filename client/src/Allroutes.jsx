@@ -8,7 +8,7 @@ import Accessories from "./components/Accessories/Accessories";
 import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
 import { Product } from "./Pages/Product_Page/Product";
 import Doctor from "./Pages/Doctor.js/Doctor";
-
+import {RequiredAuth} from './Utilis/'
 function Allroutes() {
   return (
     <Authentication>
