@@ -9,7 +9,6 @@ export const Product = () => {
     const[sortingOption, setSortingOption] = useState('Alphabetical')
     const[dataList, setDataList] = useState([])
 	const[searchText, setSearchText] = useState('')
-
 	const fetchData = () => {
 		return (
 			axios.get('http://localhost:8000/api/product')
@@ -18,7 +17,6 @@ export const Product = () => {
 		)
 	}
 	fetchData()
-	
     const addToCart = (event) => {
         const id = event.target.value
         if(cartAuth.findOccur(id)){
@@ -71,7 +69,7 @@ export const Product = () => {
                             <div id='product-container-product-name'>{x.productname}</div>
                             <div id='product-container-price-container'>MRP₹-{x.cost}</div>
                         </div>
-                        <br></br><button value = {x._id} onClick = {(event) => addToCart(event)}>Add to Cart</button>
+                        <button value = {x._id} onClick = {(event) => addToCart(event)}>Add to Cart</button>
                         <button value = {x._id} onClick = {(event) => buyNow(event)}>Buy Now</button>
                     </div>
                 )}
