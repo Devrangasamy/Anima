@@ -13,7 +13,6 @@ export const register=async(req,res,next)=>{
         next(err);
     }
 }
-
 export const login=async(req,res,next)=>{
     try{
         const user= await User.find({email:req.body.email ,newpassword:req.body.newpassword});

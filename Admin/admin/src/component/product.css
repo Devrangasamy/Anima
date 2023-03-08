@@ -18,7 +18,7 @@
     border-radius: 10px;
     border: none;
     font-size:15px;
-    transition: 1s;
+    transition: 0.80s;
 }
 .list-items{
     display:grid;
@@ -27,7 +27,7 @@
     margin: 0px 450px;
     padding: 16px;
     border-radius: 13px;
-    transition: 1s;
+    transition: 0.80s;
 }
 .prodin{
     margin: 0px 500px;
