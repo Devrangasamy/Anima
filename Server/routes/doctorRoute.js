@@ -1,3 +1,4 @@
+
 import express from "express";
 import { createDoctor,updateDoctor,deleteDoctor,getDoctor, getDoctors } from "../controller/doctor.js";
 const router=express.Router();
