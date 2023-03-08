@@ -1,11 +1,15 @@
 .header{
     /* margin-top: 10px; */
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    font-size: 10px;
+    font-family: 'Lora', serif;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 13px;
     align-items: center;
+    padding-left: 295px;
+    margin-bottom: 15px;
 }
 .but{
+    font-family: 'Lora', serif;
     color: white;
     background-color: crimson;
     border-radius: 10px;
@@ -18,24 +22,35 @@
     border-radius: 10px;
     border: none;
     font-size:15px;
-    transition: 0.80s;
+    transition: 0.20s;
+    transform: matrix(1);
 }
 .list-items{
     display:grid;
 }
 .prodin:hover{
+    font-family: 'Lora', serif;
     margin: 0px 450px;
-    padding: 16px;
-    border-radius: 13px;
-    transition: 0.80s;
+    padding: 15px;
+    border-radius: 8px;
+    transition: 0.10s;
+    border:2.3px solid black;
+    align-items:center;
 }
 .prodin{
-    margin: 0px 500px;
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin: 0px 460px;
     padding: 14px;
-    border-radius: 13px;
+    border-radius: 7px;
+    border:1.6px solid black;
 }
 
 .items-entry{
     background-color:#f8edeb;
-    height: 100vh;
+    height: 110vh;
+    padding-top: 50px;
+}
+.label{
+    font-family: 'Lora', serif;
 }
