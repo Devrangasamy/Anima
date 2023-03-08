@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Searchbar } from "../../components/Doctor/Searchbar";
 import { Doctorbody } from "../../components/Doctor/Doctorbody";
