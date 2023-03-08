@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/sign up page/signup";
 import Profile from "./components/Profile/profile";
 import Accessories from "./components/Accessories/Accessories";
+import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
 
 function Allroutes() {
   return (
@@ -22,6 +23,7 @@ function Allroutes() {
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/forgetpassword" element={<Forgetpassword />} />
       </Routes>
     </Authentication>
   );

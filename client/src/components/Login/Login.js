@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
 import "../sign up page/signup.css";
 import { useLocation } from "react-router-dom";
@@ -64,6 +64,7 @@ const Login = () => {
           onChange={(e) => setpassword(e.target.value)}
         />
         <div className="center-container">
+          <Link to="/forgetpassword">forgetpassword?</Link>
           <button className="signupbutton" type="submit" id="sign-up-button">
             Login
           </button>
