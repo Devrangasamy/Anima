@@ -10,7 +10,7 @@
     padding: 5px;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     font-family: 'Lora', serif;
-    /* position: relative; */
+    position: relative;
     
 }
 .dashboard-container{
@@ -19,6 +19,12 @@
     min-height:100vh;
 }
 .dash-style{
-    margin-left: 40px;
-
+    margin-left: 100px;
+}
+.dashboard-icon{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    margin-right: 140px;
 }
