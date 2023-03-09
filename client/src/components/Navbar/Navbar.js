@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { useAuth } from "../../Utilis/Authentication";
-import Profile from "../Profile/Profile";
+import Profile from "../Profiletemp/Profile";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -87,10 +87,7 @@ function Navbar() {
               </Link>
             </li>
           )}
-          <Profile
-            trigger={buttonPopup}
-            setTrigger={setButtonPopup}
-          ></Profile>
+          <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile>
           {!auth.user && (
             <li className="nav-item">
               <Link
