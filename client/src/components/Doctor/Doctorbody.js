@@ -16,35 +16,54 @@ export const Doctorbody = () => {
   }, []);
   console.log(datalist);
   const lists = datalist.map((list) => (
-    <div>
-      <div className="doctor-container">
-        <h1>{list.name}</h1>
-        <p>{list.name}</p>
-        <p>Experience {list.years_of_experience}</p>
+    <div className="doctor-container">
+      <div className="doctor-details-container">
+        <div className="personaldetails-container">
+          <h1 className="doctor-name">{list.name}</h1>
+          <p className="doctor-speciailzation">{list.name}</p>
+        </div>
         <div>
-          Languages
+
+        <div className="personaldetails-container">
+          <div>
+          <p className="doctor-features">Experience</p>
+          <p>{list.years_of_experience}</p>
+
+          </div>
+          <div >
+
+          <p className="doctor-features">language</p>
+          <div>
           {list.languages_spoken.map((language) => (
-            <React.Fragment>
               <p>{language}</p>
-            </React.Fragment>
-          ))}
+              ))}
+              </div>
         </div>
         <div>
-          certifications
+          <p classNmae="doctor-features">certifications</p>
+          <div>
+
           {list.certifications.map((certification) => (
-            <React.Fragment>
-              <p>{certification}</p>
-            </React.Fragment>
-          ))}
+            
+            <p>{certification}</p>
+            
+            ))}
+            </div>
         </div>
         <div>
-          Services
+          <p className="heading">certifications</p>
+          <div>
+            
           {list.services_provided.map((services) => (
-            <React.Fragment>
-              <p>{services}</p>
-            </React.Fragment>
-          ))}
+            
+            <p>{services}</p>
+            
+            ))}
+            </div>
         </div>
+        </div>
+          </div>
+        <div className="personaldetails-container">
         <address>
           <div>
             <i class="fa-solid fa-house"></i>
@@ -58,8 +77,9 @@ export const Doctorbody = () => {
             <p>{list.email}</p>
           </div>
         </address>
+        </div>
       </div>
-      <div>
+      <div className="doctor-image-container">
         <img src={list.image} alt="doctor"></img>
       </div>
     </div>

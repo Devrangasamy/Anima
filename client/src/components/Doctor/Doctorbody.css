@@ -2,3 +2,33 @@
     display: grid;
     grid-template-columns: 1.5fr 1fr;
 }
+
+.personaldetails-container{
+    margin: 18px 0;
+}
+
+/*  */
+.doctor-details-container{
+    padding: 18px;
+    /* background-color: aqua;     */
+}
+
+.doctor-name{
+    color: #2c003f;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.doctor-speciailzation{
+    color: #999;
+}
+
+.doctor-experience{
+    
+}
+
+/*  */
+.doctor-image-container img{
+     width: 100%;
+     height: 80%;
+}
