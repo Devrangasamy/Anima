@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios";
 import "./Product.css"
-var dispData 
+import { Link } from 'react-router-dom';
 
 const Products = () => {
     const[List, setList] = useState([])
@@ -24,9 +24,11 @@ const Products = () => {
     
     // const a=List.map((x,index)=>{return <div key={index}><p>{x.photos}</p></div>})
   return (
-    dispData = 
+    
     <div className='outside-container'>
          <div className= 'container-pro'>
+         <input className='prodin1' type="text" placeholder="Search" />
+            <Link to="/addproduct" className='sub-but'>Add Products</Link>
             <div className='inner'>
                 {List.map((x, index) => 
                     <div key = {index} className='product-container'>

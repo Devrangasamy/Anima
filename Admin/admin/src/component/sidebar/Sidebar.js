@@ -8,7 +8,7 @@ const Sidebar = () => {
 		{
 			text: "Dashboard",
 			icon: "icons/grid.svg",
-      		path:"/"
+      		path:"/dashboard"
 		},
 		{
 			text: "Products",
