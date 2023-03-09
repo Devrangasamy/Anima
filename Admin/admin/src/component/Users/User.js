@@ -17,6 +17,7 @@ const User = () => {
           <h3 className='User_name'>{x.username}</h3>
           <img src = {require('../../icons/logo.jpg')} alt="img" className = 'user-icon'></img>
           <h5 className='user-cus'>Customer</h5>
+          <p className='user-email'>{x.email}</p>
         </div>
     })}
     </div>
