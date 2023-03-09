@@ -27,8 +27,9 @@ function Allroutes() {
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
-        <Route path="/products" element={<Product/>} />
-        <Route path="/doctor" element={<Doctor/>} />
+        <Route path="/products" element={<Product />} />
+        <Route path="/doctor" element={<Doctor />} />
+        <Route path="/doctor/:id" element={<Doctordetails />} />
       </Routes>
     </Authentication>
   );
