@@ -12,7 +12,7 @@ const Sidebar = () => {
 		},
 		{
 			text: "Products",
-			icon: "icons/user.svg",
+			icon: "icons/pie-chart.svg",
       		path:"/products"
 		},
 		{
@@ -21,8 +21,8 @@ const Sidebar = () => {
       path:"/addproduct"
 		},
 		{
-			text: "Analytics",
-			icon: "icons/pie-chart.svg",
+			text: "Users",
+			icon: "icons/user.svg",
       path:""
 		},
 		{
