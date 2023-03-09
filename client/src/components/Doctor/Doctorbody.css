@@ -1,18 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.grid-2{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
 .doctor-container{
     display: grid;
     grid-template-columns: 1.5fr 1fr;
+    margin: 18px 0;
+    /* background-color: red; */
+    border-radius: 9px;
+    
+    transition: all 0.3s ease-in;
+
+}
+.doctor-container:hover{
+    transform: scale(1.015);
+}
+/* 2container*/
+.doctor-details-container{
+    
+    padding: 18px 0 18px 18px;
+    background-color: rgb(224, 230, 230);    
 }
 
 .personaldetails-container{
-    margin: 18px 0;
+    margin-top: 24px;
 }
-
-/*  */
-.doctor-details-container{
-    padding: 18px;
-    /* background-color: aqua;     */
+.inside-personal{
+    margin:6px 0;
 }
-
 .doctor-name{
     color: #2c003f;
     font-size: 32px;
@@ -23,12 +44,28 @@
     color: #999;
 }
 
-.doctor-experience{
-    
+.doctor-features{
+    font-size: 20px;
+    color: #333;
+}
+.doc-address{
+    font-family: inherit;
+    font-weight: normal;
+    font-style: normal;
+    /* background-color: aqua; */
+}
+/*  2container*/
+.doctor-image-container{
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+}
+.doctor-image{
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
 }
 
-/*  */
-.doctor-image-container img{
-     width: 100%;
-     height: 80%;
+.doctor-image:hover{
+    transform: scale(1.1);
 }
