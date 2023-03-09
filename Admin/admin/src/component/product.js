@@ -1,6 +1,7 @@
 import React from 'react';
 import './product.css'
 import Entry from './fileentry';
+import { Link } from 'react-router-dom';
 const AddProduct = () => {
     const[product_name,setproductname, resetProductName]=Entry('')
     const[animal,setanimal, resetAnimal]=Entry('')
@@ -33,7 +34,7 @@ const AddProduct = () => {
         <div className='items-entry'>     
             <div className='header'> 
                 <div>
-                <button className='but' onClick={gotoproduct}>Go to products</button>
+                <Link to="/products" className='but' onClick={gotoproduct}>Go to products</Link>
                 </div>
                 <h1>Add Product</h1>
                 <div>

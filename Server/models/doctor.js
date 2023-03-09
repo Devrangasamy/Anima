@@ -10,8 +10,9 @@ const DoctorSchema = new Schema({
         type:String,
         required:true,
     },
-    specilization:{
+    specialization:{
         type:String,
+        required:true,
     },
     degree:{
         type:String,

@@ -5,17 +5,18 @@
 .outside-container{
     background-color: #f8edeb;
     width: 100vw;
-    height: 100vh;
+    min-height:100vh;
 }
 .container-pro{
     margin: 0;
+    position: relative;
     
 }
 .inner{
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap:20px;
-    padding-top: 40px;
+    padding-top: 100px;
     margin-left: 100px;
 }
 .convert-img{
@@ -64,4 +65,59 @@
     border:2px solid white;
     /* border-radius: 50px; */
 
+}
+.sub-but{
+    position: absolute;
+    right: 0;
+    padding: 8px;
+    margin: 20px;
+    margin-top: 30px;
+    background: linear-gradient(to bottom right, #EF4765, red);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+  
+.sub-but:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  }
+.sub-but:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  }
+  .prodin1:hover{
+    font-family: 'Lora', serif;
+    /* margin: 0px 450px; */
+    padding: 15px;
+    border-radius: 8px;
+    transition: 0.10s;
+    border:2.3px solid black;
+    align-items:center;
+}
+.prodin1{
+    position: absolute;
+    left: 0;
+    margin-top: 30px;
+    font-family: 'Lora', serif;
+    text-align: center;
+    padding: 14px;
+    border-radius: 7px;
+    border:1.6px solid black;
+    margin-left:150px;
+    width: 15%;
+    height: 12px;
 }
