@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-export const Userprofile = () => {
-  const [List, setList] = useState([]);
+
+export const Userprofile = (props) => {
+  const [lists, setList] = useState([]);
+  
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/auth")
@@ -11,6 +13,24 @@ export const Userprofile = () => {
       })
       .catch((error) => console.log(error));
   }, []);
-  console.log(List);
-  return <div>Hello</div>;
+  console.log(lists);
+  return (
+    <div>
+      {lists.map((list) => {
+          if (list.username !== props.name)
+          {console.log(list.username,props.name);}
+         
+        // return(
+        //   <div>
+        //     <h1>{list.username}</h1>
+        //     <p>{list.email}</p>
+        //     <p>{list.contact}</p>
+        //     {console.log("xcvbnm,")}
+        //     {console.log(list)}
+        //   </div>
+        //   )
+        
+      })}
+    </div>
+  );
 };
