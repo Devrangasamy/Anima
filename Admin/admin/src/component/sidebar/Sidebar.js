@@ -23,7 +23,7 @@ const Sidebar = () => {
 		{
 			text: "Users",
 			icon: "icons/user.svg",
-      path:""
+      		path:"/users"
 		},
 		{
 			text: "File Manager",
