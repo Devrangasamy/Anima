@@ -82,12 +82,13 @@ function Navbar() {
                 className="nav-links"
                 // onClick={closeMobileMenu}
                 onClick={() => setButtonPopup(true)}
+                to = "/profile"
               >
                 Profile
               </Link>
             </li>
           )}
-          <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile>
+          {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
           {!auth.user && (
             <li className="nav-item">
               <Link
