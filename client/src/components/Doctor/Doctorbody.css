@@ -27,7 +27,7 @@
 .doctor-details-container{
     
     padding: 18px 18px 0px;
-    background-color: rgb(224, 230, 230);  
+    background-color: #BFD7EA;;  
     border-radius: 15px 0px 0px 15px;  
 }
 
@@ -36,37 +36,37 @@
     
 }
 .personaldetails-container p{
-    color: #2c003f;
+    color: #0B3954;
 }
 
 .inside-personal{
     margin:6px 0;
 }
 .doctor-name{
-    color: #2c003f;
+    color: #0B3954;
     font-size: 32px;
     font-weight: bold;
 }
 
 .doctor-speciailzation{
-    color: #2c003f;
+    color: #0B3954;
 }
 
 .doctor-features{
     font-size: 20px;
-    color: #2c003f;
+    color: #0B3954;
 }
 .doc-address p{
-    color: rgb(224, 230, 230);
+    color: #0B3954;
     padding: 8px;
 }
 .doc-address{
     font-family: inherit;
     font-weight: normal;
     font-style: normal;
-    background-color: #2c003f;
+    background-color: aliceblue;
     padding: 12px;
-    /* border-radius: 50px; */
+    border-radius: 10px;
 }
 /*  2container*/
 .doctor-image-container{
