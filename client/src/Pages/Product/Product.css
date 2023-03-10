@@ -49,6 +49,9 @@ body{
     height: calc(5.25 * var(--height));
     object-fit: cover;
 }
+#product-page-nav-total-data-container{
+    background-color: none;
+}
 #product-page-data-container{
     display: block;
 }
@@ -70,6 +73,7 @@ body{
     font-weight: 600;
     margin: 10px 0px 10px 0px;
     font-family: sans-serif;
+    padding: 10px 0px;
 }
 
 #product-page-nav-serach-container input{
@@ -104,4 +108,7 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+}
+#product-page-all-container{
+    background-color: #f5ecfe;
 }

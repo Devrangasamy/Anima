@@ -9,12 +9,14 @@
 }
 
 .navbar-logo {
-  color: #411a52;
   justify-self: start;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   cursor: pointer;
-  text-decoration: none;
-  font-size: 2rem;
+}
+
+.navbar-logo img {
+  width: 55px;
+  height: 55px;
 }
 
 .fa-firstdraft {
@@ -28,7 +30,7 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 70vw;
+  width: 85vw;
   justify-content: end;
   margin-right: 2rem;
 }
@@ -41,7 +43,7 @@
 
 .nav-links {
   display: inline-block;
-  color: #411a52;
+  color: #0B3954;
   font-size: 18px;
   font-weight: 500;
   /* padding: 12px; */
@@ -50,15 +52,15 @@
 }
 
 .nav-links:hover {
-  background-color: #2c003f;
+  background-color: #0B3954;
   /* padding: 12px; */
-  color: #fff;
+  color: #BFD7EA;
   border-radius: 50px;
   transition: all 0.2s ease-out;
 }
 
 .fa-bars {
-  color: #411a52;
+  color: #0B3954;
 }
 
 .nav-links-mobile {

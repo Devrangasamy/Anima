@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useCartAuth } from './Cart'
 import './Product.css'
 import axios from 'axios'
+import Navbar from '../../components/Navbar/Navbar'
 var value = 0
 
 export const Product = () => {
@@ -103,30 +104,33 @@ export const Product = () => {
     
     return (
         <div>
-            <div id='product-page-nav-container'>
-                <div id='product-page-nav-total-data-container'>
-                    <span>Showing {dataList.length} items</span>
+            <div><Navbar></Navbar> </div>
+            <div id = 'product-page-all-container'>
+                <div id='product-page-nav-container'>
+                    <div id='product-page-nav-total-data-container'>
+                        <span>Showing {dataList.length} items</span>
+                    </div>
+                    <div id='product-page-nav-serach-container'>
+                        <span>Search</span>
+                        <input onChange = {(event) => {setSearchText(event.target.value); searchThisItem();}} value = {searchText}></input>
+                    </div>
+                    <div id='product-page-nav-sort-container'>
+                    <span>Sort by :</span>
+                        <select onChange={(event) => optionChange(event)}>
+                            <option value= {'none'}>None</option>
+                            <option value={'alphabetical'}>Alphabetical</option>
+                            <option value={'low to high'}>Low to High</option>
+                            <option value={'high to low'}>High to Low</option>
+                        </select>
+                    </div>
                 </div>
-                <div id='product-page-nav-serach-container'>
-                    <span>Search</span>
-                    <input onChange = {(event) => {setSearchText(event.target.value); searchThisItem();}} value = {searchText}></input>
+                <div id = 'grid-container'>
+                    {/* This is using the index as the keyprops and the value for the buttons */}
+                    {/* Need to check during the time of error */}
+                    {!searchText && displayAllData}
+                    {searchText && displaySearchedData}
+                    {sortFlag && displaySortedData}
                 </div>
-                <div id='product-page-nav-sort-container'>
-                <span>Sort by :</span>
-                    <select onChange={(event) => optionChange(event)}>
-                        <option value= {'none'}>None</option>
-                        <option value={'alphabetical'}>Alphabetical</option>
-                        <option value={'low to high'}>Low to High</option>
-                        <option value={'high to low'}>High to Low</option>
-                    </select>
-                </div>
-            </div>
-            <div id = 'grid-container'>
-                {/* This is using the index as the keyprops and the value for the buttons */}
-                {/* Need to check during the time of error */}
-                {!searchText && displayAllData}
-                {searchText && displaySearchedData}
-                {sortFlag && displaySortedData}
             </div>
         </div>
     )

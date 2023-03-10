@@ -3,19 +3,26 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { useAuth } from "../../Utilis/Authentication";
-import Profile from "../Profiletemp/Profile";
+import logo from '../../Assets/Logo.png'
+// import Profile from "../Profiletemp/Profile";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const auth = useAuth();
-  const [buttonPopup, setButtonPopup] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  const instyle= ({isActive})=>{
+    return ({
+      color:isActive?"#fff":"",
+      backgroundColor:isActive?"#411a52":"",
+    })
+  }
+
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
-      setDropdown(true);
+      setDropdown(false);
     } else {
       setDropdown(true);
     }
@@ -33,8 +40,8 @@ function Navbar() {
     <>
       <nav className="navbar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          Anima
-          <i className="fab fa-firstdraft" />
+          <img src={logo} alt="logo" />
+          {/* <i className="fab fa-firstdraft" /> */}
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -42,12 +49,18 @@ function Navbar() {
 
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+            <Link
+              // style={instyle}
+              to="/"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               Home
             </Link>
           </li>
 
           <li
+            // style={instyle}
             className="nav-item"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -55,7 +68,7 @@ function Navbar() {
             <Link
               to="/services"
               className="nav-links"
-              onClick={closeMobileMenu}
+              // onClick={closeMobileMenu}
             >
               Services <i className="fas fa-caret-down" />
             </Link>
@@ -66,7 +79,7 @@ function Navbar() {
             <Link
               to="/accessories"
               className="nav-links"
-              onClick={closeMobileMenu}
+              // onClick={closeMobileMenu}
             >
               Accessories
             </Link>
@@ -81,8 +94,8 @@ function Navbar() {
               <Link
                 className="nav-links"
                 // onClick={closeMobileMenu}
-                onClick={() => setButtonPopup(true)}
-                to = "/profile"
+                // onClick={() => setButtonPopup(true)}
+                to="/profile"
               >
                 Profile
               </Link>
@@ -94,7 +107,7 @@ function Navbar() {
               <Link
                 to="/signup"
                 className="nav-links"
-                onClick={closeMobileMenu}
+                // onClick={closeMobileMenu}
               >
                 Sign Up
               </Link>
