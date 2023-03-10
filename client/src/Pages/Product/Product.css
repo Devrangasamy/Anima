@@ -74,9 +74,11 @@ body{
 
 #product-page-nav-serach-container input{
     margin: 0px 10px 0px 10px;
-    height: 25px;
+    height: 40px;
+    font-size: 20px;
+    padding: 10px;
     width: 250px;
-    border: solid 1px rgb(169, 169, 169);
+    border: solid 1px rgb(158, 158, 158);
     border-radius: 10px;
 }
 #product-page-nav-serach-container button{
