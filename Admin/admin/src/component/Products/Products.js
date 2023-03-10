@@ -42,7 +42,7 @@ const Products = () => {
         <img className='convert-img' src = {x.photos} alt = {""}></img><br></br>
         <div id='product-page-data-container'>
             <div id='product-name'>{x.productname}</div>
-            <div id='price-container'>MRP₹-{x.cost}</div>
+            <h4 id='price-container'>MRP₹-{x.cost}</h4>
         </div>
     </div>
     )
