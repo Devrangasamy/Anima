@@ -5,15 +5,16 @@
   top: 70px;
   list-style: none;
   text-align: start;
+  border-radius: 100px;
 }
 
 .dropdown-menu li {
-  background: #1888ff;
+  background: #411a52;
   cursor: pointer;
 }
 
 .dropdown-menu li:hover {
-  /* background: #5cabff; */
+  background: #674875;
 }
 
 .dropdown-menu.clicked {
@@ -25,7 +26,7 @@
   height: 100%;
   width: 100%;
   text-decoration: none;
-  color: #411a52;
+  color: #fff;
   padding: 10px;
 }
 

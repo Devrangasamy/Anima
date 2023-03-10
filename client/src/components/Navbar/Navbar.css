@@ -9,12 +9,14 @@
 }
 
 .navbar-logo {
-  color: #411a52;
   justify-self: start;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   cursor: pointer;
-  text-decoration: none;
-  font-size: 2rem;
+}
+
+.navbar-logo img {
+  width: 55px;
+  height: 55px;
 }
 
 .fa-firstdraft {
@@ -28,7 +30,7 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 70vw;
+  width: 85vw;
   justify-content: end;
   margin-right: 2rem;
 }

@@ -30,6 +30,7 @@ app.use(express.json());
 app.use("/api/auth",authRoute);
 app.use('/api/product',productRoute);
 app.use('/api/doctor',doctorRoute );
+
 app.use((err,req,res,next)=>{
     const errorStatus=err.status||500;
     const errorMessage=err.message||"something went wrong";

@@ -1,29 +1,31 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.grid-2{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
-.doctor-container{
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    margin: 18px ;
-    border-radius: 100px;
-    cursor: pointer;
-    
-    /* background-color: red; */
-    
+.doctor-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  margin: 18px;
+  border-radius: 100px;
+  cursor: pointer;
 
+  /* background-color: red; */
 }
-.doctor-container:hover{
-    transform: scale(1.01);
-    transition: 1.2s;
+.doctor-container:hover {
+  transform: scale(1.01);
+  transition: 0.2s;
 }
 /* 2container*/
+.doctor-details-container {
+  padding: 18px 18px 0px;
+  background-color: rgb(224, 230, 230);
+  /* border-radius: 15px 0px 0px 15px; */
 .doctor-details-container{
     
     padding: 18px 18px 0px;
@@ -31,35 +33,51 @@
     border-radius: 15px 0px 0px 15px;  
 }
 
-.personaldetails-container{
-    margin-top: 24px;
-    
+.personaldetails-container {
+  margin-top: 24px;
 }
+.personaldetails-container p {
+  color: #2c003f;
 .personaldetails-container p{
     color: #0B3954;
 }
 
-.inside-personal{
-    margin:6px 0;
+.inside-personal {
+  padding: 4.5px 0;
 }
-.doctor-name{
-    color: #0B3954;
-    font-size: 32px;
-    font-weight: bold;
+.doctor-name {
+  color: #0B3954;
+  font-size: 32px;
+  font-weight: bold;
 }
 
+.doctor-speciailzation {
+  color: #2c003f;
 .doctor-speciailzation{
     color: #0B3954;
 }
 
+.doctor-features {
+  font-size: 20px;
+  color: #2c003f;
 .doctor-features{
     font-size: 20px;
     color: #0B3954;
 }
+.doc-address p {
+  color: rgb(224, 230, 230);
+  padding: 8px;
 .doc-address p{
     color: #0B3954;
     padding: 8px;
 }
+.doc-address {
+  font-family: inherit;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #2c003f;
+  padding: 12px;
+  /* border-radius: 50px; */
 .doc-address{
     font-family: inherit;
     font-weight: normal;
@@ -69,15 +87,17 @@
     border-radius: 10px;
 }
 /*  2container*/
-.doctor-image-container{
-     width: 400px;
-     height: auto;
-     overflow: hidden;
-     border-radius: 0px 15px 15px 0px;
-    }
-    .doctor-image{
-        width: 400px;
-        height: 450px;
-        overflow: hidden;
-        border-radius: 0px 15px 15px 0px;
+.doctor-image-container {
+    width: 400px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0px 15px 15px 0px;
+}
+.doctor-image {
+    /* width: 100%;
+    height: 100%; */
+  width: 400px;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 0px 15px 15px 0px;
 }
