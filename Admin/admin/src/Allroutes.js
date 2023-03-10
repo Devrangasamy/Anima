@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Not from "./component/Not";
+// import Not from "./component/Not";
 import AddProduct from "./component/product";
 import Sidebar from "./component/sidebar/Sidebar";
 import Products from "./component/Products/Products.js"

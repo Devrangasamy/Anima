@@ -20,7 +20,7 @@ const Dashboard = () => {
         </div>
         <div className='inner-dash'>
         <h4 className='dash-style'> Total Products - {List.length} </h4>
-        <img src = {require('../../icons/product.png')} className = 'dashboard-icon'></img>
+        <img src = {require('../../icons/product.png')} alt="img" className = 'dashboard-icon'></img>
         </div>
 
     </div>
