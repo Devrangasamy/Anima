@@ -1,6 +1,6 @@
 .navbar {
   /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
-  background-color: #fff;
+  background-color : #f5ecfe;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -33,6 +33,7 @@
   width: 85vw;
   justify-content: end;
   margin-right: 2rem;
+  background-color: #f5ecfe;
 }
 
 .nav-item {
