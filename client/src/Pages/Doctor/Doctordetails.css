@@ -1,0 +1,47 @@
+.container-doctor-profile
+{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    margin: 50px;
+    color:#2c003f;
+}
+.container-doctor-profile:hover
+{
+    transform: scale(1.015);
+    transition: 0.8s;
+}
+
+.container-doctor-profile-left
+{
+    border-radius: 20px 0px 0px 20px;
+    background-color: aliceblue;
+}
+.doctor-content-left
+{
+    margin: 15px;
+}
+.container-doctor-profile-right
+{
+    background-color: aliceblue;
+    text-align: center;
+    color: #2c003f;
+    border-radius: 0px 20px 20px 0px;
+}
+.img-container img{
+    height: 500px;
+    width: 600px;
+}
+.doctor-grid-1{
+    margin-top: 20px;
+    display: flex;
+}
+.grid-3{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    color:#2c003f;
+    margin: 10px;
+    gap: 20px;
+}
+.personaldetails-container1{
+    color :#2c003f;
+}
