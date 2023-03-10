@@ -33,16 +33,18 @@ const Doctordetails = () => {
       <div className="container-doctor-profile">
         <div className="container-doctor-profile-left">
           <div className="doctor-content-left">
+            <div className="clinic-name">
             <h1>{list.clinic_name}</h1>
+            </div>
             <br />
             <div className="personaldetails-container">
               <div className="grid-3 inside-personal1">
-                <h4 className="doctor-feature">Experience</h4>
+                <h4 className="doctor-feature">Experience   :</h4>
                 <h4>{list.years_of_experience}</h4>
               </div>
 
               <div className="grid-3 inside-personal1">
-                <h4 className="doctor-feature">Language</h4>
+                <h4 className="doctor-feature">Language   :</h4>
                 <div className="grid-3">
                   <h4>
                   {list.languages_spoken}
@@ -51,7 +53,7 @@ const Doctordetails = () => {
               </div>
 
               <div className="grid-3 inside-personal1">
-                <h4 className="doctor-feature">Certifications</h4>
+                <h4 className="doctor-feature">Certifications  :</h4>
                 <div className="grid-3">
                   <h4>
                   {list.certifications}
@@ -60,7 +62,7 @@ const Doctordetails = () => {
               </div>
 
               <div className="grid-3 inside-personal1">
-                <h4 className="doctor-feature">Services</h4>
+                <h4 className="doctor-feature">Services :</h4>
                 <div className="grid-3">
                   <h4>
                   {list.services_provided}
@@ -68,7 +70,7 @@ const Doctordetails = () => {
                 </div>
               </div>
               <div className="grid-3 inside-personal1">
-                <h4 className="doctor-feature">Address</h4>
+                <h4 className="doctor-feature">Address  :</h4>
                   <h4>{list.clinic_address}</h4>
                 </div>
             </div>
