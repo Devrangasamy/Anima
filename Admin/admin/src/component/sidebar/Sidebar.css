@@ -13,6 +13,7 @@
 	z-index: 100;
 	transition: 0.4s;
 	position: fixed;
+	
     
 }
 .side-nav-container-NX {
@@ -181,5 +182,11 @@
 }
 .navl{
 	text-decoration: none;
+	/* margin-left: 15px;
+	margin-top: 17px; */
+	margin: auto 0;
 	color:var(--light);
+}
+.nav-brand1{
+	margin:auto 0;
 }
