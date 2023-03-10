@@ -6,7 +6,7 @@
     font-size: 13px;
     align-items: center;
     padding-left: 295px;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 .but{
     font-family: 'Lora', serif;
@@ -36,12 +36,14 @@
 
 .list-items{
     display:grid;
+    /* margin: 100px; */
 }
 .prodin:hover{
     font-family: 'Lora', serif;
-    margin: 0px 450px;
+    /* margin: 0px 450px;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 8px; */
+    transform: scale(1.02);
     transition: 0.10s;
     border:2.3px solid black;
     align-items:center;
@@ -53,6 +55,7 @@
     padding: 14px;
     border-radius: 7px;
     border:1.6px solid black;
+    margin-bottom: 20px;
 }
 
 .items-entry{
@@ -62,4 +65,5 @@
 }
 .label{
     font-family: 'Lora', serif;
+    margin-bottom: 20px;
 }
