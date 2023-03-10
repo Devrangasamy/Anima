@@ -6,12 +6,14 @@ import Signup from "./components/sign up page/signup";
 import {Profile} from "./Pages/Profile/Profile";
 import Accessories from "./components/Accessories/Accessories";
 import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
-import { Product } from "./Pages/Product_Page/Product";
+import { Product } from "./Pages/Product/Product";
 import Doctor from "./Pages/Doctor/Doctor";
 import RequiredAuth from "./Utilis/RequiredAuth";
+import { Cart } from "./Pages/Product/Cart";
 function Allroutes() {
   return (
     <Authentication>
+      <Cart>
       <Routes>
         <Route index path="/" element={<Home />} />
         <Route
@@ -26,9 +28,11 @@ function Allroutes() {
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
+        
         <Route path="/products" element={<Product />} />
         <Route path="/doctor" element={<Doctor />} />
       </Routes>
+      </Cart>
     </Authentication>
   );
 }
