@@ -11,8 +11,6 @@ export const Product = () => {
     const[dataList, setDataList] = useState([])
 	const[searchText, setSearchText] = useState('')
     const[searchedData, setSearchedData] = useState([])
-    const[sortFlag, setSortFlag] = useState(false)  
-    const[sortedData, setSortedData] = useState([])
 	useEffect(() => {
         axios.get("http://localhost:8000/api/product")
         .then((response) => setDataList(response.data))
@@ -37,20 +35,17 @@ export const Product = () => {
         setSortingOption(event.target.value)
         switch(event.target.value){
             case 'alphabetical':
-                    let sorted = dataList.sort((a, b) => {
+                    dataList.sort((a, b) => {
                         if(a.productname < b.productname)   return -1
                         else if(a.productname > b.productname) return 1
                         return 0
                     })
-                    setSortedData(sorted)
                     break;
             case "low to high": 
-                    let sorted1 = dataList.sort((a, b) => a.cost - b.cost)
-                    setSortedData(sorted1)
+                    dataList.sort((a, b) => a.cost - b.cost)
                     break
             case "high to low":
-                    let sorted2 = dataList.sort((a, b) => b.cost - a.cost)
-                    setSortedData(sorted2)
+                    dataList.sort((a, b) => b.cost - a.cost)
                     break
             default:
             break
@@ -59,6 +54,7 @@ export const Product = () => {
     }
 	//This function will invoke when the search button is pressed
 	const searchThisItem = () => {
+        
         let search = searchText.toLowerCase()
         let lst = []
         for(let i = 0; i < dataList.length; i++){
@@ -66,19 +62,9 @@ export const Product = () => {
             if(val.indexOf(search) !== -1)
                 lst.push(dataList[i])
         }
-        setSearchedData(lst)
+        setDataList(lst)
 	}
-    const displaySortedData = sortedData.map((x, index) => 
-    <div key = {value ++} className='product-container'>
-        <img className='convert-image' src = {x.photos} alt = {""}></img><br></br>
-        <div id='product-page-data-container'>
-            <div id='product-container-product-name'>{x.productname}</div>
-            <div id='product-container-price-container'>MRP₹-{x.cost}</div>
-        </div>
-        <button value = {x._id} onClick = {(event) => addToCart(event)}>Add to Cart</button>
-        <button value = {x._id} onClick = {(event) => buyNow(event)}>Buy Now</button>
-    </div>
-    )
+    
     const displayAllData = dataList.map((x, index) => 
         <div key = {value++} className='product-container'>
             <img className='convert-image' src = {x.photos} alt = {""}></img><br></br>
@@ -127,9 +113,9 @@ export const Product = () => {
                 <div id = 'grid-container'>
                     {/* This is using the index as the keyprops and the value for the buttons */}
                     {/* Need to check during the time of error */}
-                    {!searchText && displayAllData}
-                    {searchText && displaySearchedData}
-                    {sortFlag && displaySortedData}
+                    {/* {!searchText && displayAllData} */}
+                    {displayAllData}
+                    {/* {searchText && displaySearchedData} */}
                 </div>
             </div>
         </div>

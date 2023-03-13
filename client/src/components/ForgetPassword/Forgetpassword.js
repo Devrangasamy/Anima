@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import "./Forgetpassword.css";
+import emailjs from 'emailjs-com'
 
 export const Forgetpassword = () => {
   const[mailId, setMailID] = useState('')
@@ -11,23 +12,17 @@ export const Forgetpassword = () => {
     .catch((error) => console.log(error)) 
   }
   fetchData()
-  const sendMail = () => {
+  const sendMail = (event) => {
     // Need to check for the mail id in the database 
     // If there is the mail id then send mail else ask them to sign up
-    let dataThereFlag = false
-    for(let i = 0; i < dataList.length; i++){
-      let val = dataList[i]
-      if(val.email === mailId){
-        dataThereFlag = true
-        break
-      }
-    }
+    event.preventDefault
+    emailjs.sendForm('service_h1yz6tr', 'template_8t5kr16', event.target,'template_8t5kr16' )
   }
   return (
     <div className = "forget-password-main-container">
       <label>Enter your email id</label>
       <input onChange = {(event) => setMailID(event.target.value)} type = 'email'></input>
-      <button onClick = {() => sendMail()}>Submit</button>
+      <button onClick = {(event) => sendMail(event)}>Submit</button>
     </div>
   );
 };
