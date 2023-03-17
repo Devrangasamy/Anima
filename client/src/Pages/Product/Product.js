@@ -3,6 +3,7 @@ import { useCartAuth } from './Cart'
 import './Product.css'
 import axios from 'axios'
 import Navbar from '../../components/Navbar/Navbar'
+var prev_size  = 0
 var value = 0
 
 export const Product = () => {
@@ -10,7 +11,6 @@ export const Product = () => {
     const[, setSortingOption] = useState('Alphabetical')
     const[dataList, setDataList] = useState([])
 	const[searchText, setSearchText] = useState('')
-    const[searchedData, setSearchedData] = useState([])
 	useEffect(() => {
         axios.get("http://localhost:8000/api/product")
         .then((response) => setDataList(response.data))
@@ -54,8 +54,13 @@ export const Product = () => {
     }
 	//This function will invoke when the search button is pressed
 	const searchThisItem = () => {
-        
         let search = searchText.toLowerCase()
+        if(prev_size > search.length){
+            axios.get('http://localhost:8000/api/product')
+            .then((response) => setDataList(response.data))
+            .catch((error) => console.log(error))
+        }
+        prev_size = search.length   
         let lst = []
         for(let i = 0; i < dataList.length; i++){
             let val = dataList[i].productname.toLowerCase()
@@ -75,17 +80,6 @@ export const Product = () => {
             <button value = {x._id} onClick = {(event) => addToCart(event)}>Add to Cart</button>
             <button value = {x._id} onClick = {(event) => buyNow(event)}>Buy Now</button>
         </div>
-    )
-    const displaySearchedData = searchedData.map((x, index) => 
-    <div key = {value++} className='product-container'>
-        <img className='convert-image' src = {x.photos} alt = {""}></img><br></br>
-        <div id='product-page-data-container'>
-            <div id='product-container-product-name'>{x.productname}</div>
-            <div id='product-container-price-container'>MRP₹-{x.cost}</div>
-        </div>
-        <button value = {x._id} onClick = {(event) => addToCart(event)}>Add to Cart</button>
-        <button value = {x._id} onClick = {(event) => buyNow(event)}>Buy Now</button>
-    </div>
     )
     
     return (
@@ -112,10 +106,7 @@ export const Product = () => {
                 </div>
                 <div id = 'grid-container'>
                     {/* This is using the index as the keyprops and the value for the buttons */}
-                    {/* Need to check during the time of error */}
-                    {/* {!searchText && displayAllData} */}
                     {displayAllData}
-                    {/* {searchText && displaySearchedData} */}
                 </div>
             </div>
         </div>

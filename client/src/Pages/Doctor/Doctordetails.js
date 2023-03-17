@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./../../components/Navbar/Navbar";
-import { FaAdjust} from "react-icons/fa";
+
 const Doctordetails = () => {
   const [list, setlist] = useState([]);
   const [datalist, setDatalist] = useState([]);

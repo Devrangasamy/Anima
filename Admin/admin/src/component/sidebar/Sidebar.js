@@ -28,7 +28,7 @@ const Sidebar = () => {
 		{
 			text: "File Manager",
 			icon: "icons/folder.svg",
-      path:""
+      		path:"/editproduct"
 		},
 		{
 			text: "Orders",
