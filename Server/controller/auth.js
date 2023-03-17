@@ -41,3 +41,13 @@ export const getusers=async(req,res,next)=>{
         next(err);
     }
 }
+export const updateusers=async(req,res,next)=>{
+    try{
+        const updatedusers= await Product.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
+        res.status(200).json(updatedusers);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+}
