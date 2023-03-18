@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
 import "../sign up page/signup.css";
 import { useLocation } from "react-router-dom";
@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setpassword] = useState("");
   const location = useLocation();
   const auth = useAuth();
+  const[noMatch, setNoMatch] = useState(false)
   const submit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:8000/api/auth/login", {
@@ -24,13 +25,18 @@ const Login = () => {
     if (json.status === "success") {
       auth.login(json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
-    } else {
-      alert("Wrong Password");
+      setpassword("");
+      setemail("");
+    }
+    else{
+      // alert("Wrong Password");
+      setNoMatch(true)
       navigate("/login");
     }
-    setpassword("");
-    setemail("");
   };
+  const forgotPassword = () => {
+    navigate('/forgetpassword')
+  }
 
   return (
     <div className="signup-container">
@@ -50,7 +56,7 @@ const Login = () => {
           placeholder="Enter email"
           className="sigin-input"
           value={email}
-          onChange={(e) => setemail(e.target.value)}
+          onChange={(e) => {setemail(e.target.value); setNoMatch(false)}}
         />
         <br></br>
         <lable className="sign-label">
@@ -61,13 +67,14 @@ const Login = () => {
           placeholder="Enter Password"
           className="sigin-input"
           value={password}
-          onChange={(e) => setpassword(e.target.value)}
+          onChange={(e) => {setpassword(e.target.value); setNoMatch(false)}}
         />
+        {noMatch && <> 
+          <div className = "login-page-mismatch-password center-container"><span>Mismatch in username and password</span></div>
+        </>}
         <div className="center-container">
-          <Link to="/forgetpassword">forgetpassword?</Link>
-          <button className="signupbutton" type="submit" id="sign-up-button">
-            Login
-          </button>
+          <button onClick = {() => forgotPassword()} className = 'signupbutton'>Forgot Password</button>
+          <button className="signupbutton" type="submit" id="sign-up-button">Login</button>
         </div>
       </form>
     </div>

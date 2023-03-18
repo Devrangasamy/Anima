@@ -8,7 +8,7 @@ function Signup(event) {
   const Navigate = useNavigate();
   const [name, name_attribute] = UseFormInp("");
   const [email_id, email_id_attribute] = UseFormInp("");
-  const [phone_number, phone_number_attribute] = UseFormInp("");
+  const [phone_number, button] = UseFormInp("");
 
   // Password variables and validation
   const [pass, setPass] = useState("");
@@ -42,7 +42,6 @@ function Signup(event) {
     console.log(json);
 
     if (json.status === "success") {
-      alert(json.status);
       Navigate("/login");
     }
     else{
@@ -113,7 +112,7 @@ function Signup(event) {
           type="number"
           className="sigin-input"
           placeholder="Phone Number"
-          {...phone_number_attribute}
+          {...button}
           required
         ></input>
         <br></br>
