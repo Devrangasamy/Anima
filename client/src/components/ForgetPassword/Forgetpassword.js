@@ -5,7 +5,7 @@ import emailjs from '@emailjs/browser'
 
 // To show up the icons in the page
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
 
 export const Forgetpassword = () => {
@@ -80,9 +80,6 @@ export const Forgetpassword = () => {
   
   const checkOtp = (event) => {
     event.preventDefault()
-    // axios.put('http://localhost:8000/api/auth/64145988666475239c45730f', {"password" : "b"})
-    // .then((response) => console.log(response))
-    // .catch((error) => console.log(error))
     if(generatedOTP === userOtp){
       setOtpFlag(false)
       setChangePassFlag(true)
@@ -163,11 +160,11 @@ export const Forgetpassword = () => {
               </div>
               <div className="password-container-div-border">
                 <input id = "forgot-password-input" type = {showPass ? "text" : "password"} onChange = {(event) => {setPass(event.target.value);setWrongPasswordFlag(false)}} className = "remove-border" placeholder="Password"></input>
-                <button onClick = {() => changeShowStatus()} className = 'remove-border password-visibility-button' id = 'forgot-password-button'><FontAwesomeIcon icon = {faEye}/></button>
+                <button onClick = {() => changeShowStatus()} className = 'remove-border password-visibility-button remove-hover' id = 'forgot-password-button'>{showPass ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon = {faEyeSlash}/>}</button>
               </div>
-              <div className="password-container-div-border">
+              <div className="password-container-div-border forgot-password-password-container">
                 <input type = {showPass ? "text" : "password"} onChange = {(event) => {setConfirmPass(event.target.value); setWrongPasswordFlag(false)}} placeholder="Re-enter the password"></input>
-                <button onClick = {() => changeShowStatus()} className = 'remove-border password-visibility-button' id = 'forgot-password-button'><FontAwesomeIcon icon = {faEye}/></button>
+                <button onClick = {() => changeShowStatus()} className = 'remove-border password-visibility-button remove-hover' id = 'forgot-password-button'>{showPass ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon = {faEyeSlash}/>}</button>
               </div>
               {wrongPasswordFlag && <>
                 <div className="center-contents">

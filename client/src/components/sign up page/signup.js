@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import UseFormInp from "./use form input";
 import "./signup.css";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 function Signup(event) {
   // Declaration for the variable data
@@ -14,6 +16,9 @@ function Signup(event) {
   const [pass, setPass] = useState("");
   const [confirm_pass, SetConfirmPass] = useState("");
   const [err_pswrd, setErrPswrd] = useState(false);
+
+  // Password visibility
+  const[showPass, setShowPass] = useState(true)
   const validatePass = (event) => {
     setPass(event.target.value);
     console.log("Inside the pass validate");
@@ -50,7 +55,7 @@ function Signup(event) {
   };
   return (
     <div className="signup-container img">
-      <form onSubmit={submitData} className="signup-form">
+      <div onSubmit={submitData} className="signup-form">
         {/* <div className="center-contents">
           <h2 id="welcome-text-container">Anima</h2>
         </div> */}
@@ -64,7 +69,7 @@ function Signup(event) {
         <input
           type="text"
           placeholder="Name"
-          className="sigin-input"
+          className="sigin-input-name"
           {...name_attribute}
         ></input>
         <br></br>
@@ -74,7 +79,7 @@ function Signup(event) {
         <input
           type="email"
           placeholder="Email ID"
-          className="sigin-input"
+          className="sigin-input-name"
           {...email_id_attribute}
         ></input>
         <br></br>
@@ -86,43 +91,24 @@ function Signup(event) {
         <lable className="sign-label">
           PassWord<span className="required">*</span>
         </lable>
-        <input
-          type="password"
-          placeholder="PassWord"
-          className="sigin-input"
-          onChange={(event) => validatePass(event)}
-          required
-        ></input>
-        <br></br>
-        <lable className="sign-label">
-          Confrim-Password<span className="required">*</span>
+        <div className="signin-input-password-div-container">
+          <input type={showPass ? "text" : 'password'} placeholder="PassWord" className="sigin-input-name" onChange={(event) => validatePass(event)} required ></input>
+          <button onClick = {() => {setShowPass(!showPass);}}>{showPass ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon = {faEyeSlash}/>}</button>
+        </div>
+        <lable className="sign-label">Confrim-Password<span className="required">*</span>
         </lable>
-        <input
-          type="password"
-          className="sigin-input"
-          placeholder="Confirm PassWord"
-          required
-          onChange={(event) => SetConfirmPass(event.target.value)}
-        ></input>
-        <br></br>
+        <div className="signin-input-password-div-container">
+          <input type={showPass ? "text" : 'password'} className="sigin-input-name" placeholder="Confirm PassWord" required onChange={(event) => SetConfirmPass(event.target.value)}></input>
+          <button onClick = {() => {setShowPass(!showPass);}}>{showPass ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon = {faEyeSlash}/>}</button>
+        </div>
         <lable className="sign-label">
           Mobile Number<span className="required">*</span>
         </lable>
-        <input
-          type="number"
-          className="sigin-input"
-          placeholder="Phone Number"
-          {...button}
-          required
-        ></input>
+        <input type="number" className="sigin-input-name" placeholder="Phone Number" {...button} required></input>
         <br></br>
         <div className="center-container">
-          <button className="signupbutton" type="submit" id="sign-up-button">
-            Sign Up
-          </button>
-          <button className="signupbutton" type="reset" id="reset-button">
-            Reset
-          </button>
+          <button className="signupbutton" type="submit" id="sign-up-button">Sign Up</button>
+          <button className="signupbutton" type="reset" id="reset-button">Reset</button>
         </div>
         <hr className="Already-signup"></hr>
         <div className="Already-signup-container">
@@ -134,7 +120,7 @@ function Signup(event) {
             Login
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
