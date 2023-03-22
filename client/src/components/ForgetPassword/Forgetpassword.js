@@ -105,8 +105,14 @@ export const Forgetpassword = () => {
     setShowPass(!showPass)
     console.log(showPass)
   }
+  const sampleUpdate = () => {
+    console.log("This is the sample")
+    const res = axios.put("http://localhost:8000/api/auth/6401928fd92c2d5b1d5a3a01", {username : "sel"})
+    console.log(res.data)
+  }
   return (
     <div className = "forget-password-container">
+      <button onClick = {sampleUpdate}>Sample button</button>
       <div className = 'forgot-password-main-container'>
         <div>
           {/* This is the mail id container */}
