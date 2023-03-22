@@ -4,7 +4,7 @@ import "../Users/user.css"
 const User = () => {
     const[List, setList] = useState([])
     useEffect(() => {
-            axios.get('http://localhost:8000/api/auth/')
+            axios.get('https://rich-gray-macaw-sock.cyclic.app/api/auth/')
             .then((response) => {setList(response.data)})
             .catch((error) => console.log(error))
         },[]
