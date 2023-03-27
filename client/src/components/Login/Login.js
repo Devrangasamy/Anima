@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
 import "../sign up page/signup.css";
-import { LoginUsingGoogle } from "./googleLogin";
 
 
 const Login = () => {
@@ -34,7 +33,6 @@ const Login = () => {
       setemail("");
     }
     else{
-      // alert("Wrong Password");
       setNoMatch(true)
       navigate("/login");
     }
@@ -68,11 +66,9 @@ const Login = () => {
           <button className="signupbutton" id="sign-up-button" onClick={(e) => submit(e)}>Login</button>
         </div>
       </div>
-      <div>
-        {/* <LoginUsingGoogle/> */}
-      </div>
     </div>
   );
 };
 
 export default Login;
+

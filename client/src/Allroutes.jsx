@@ -13,6 +13,7 @@ import { Cart } from "./Pages/Product/Cart";
 import Doctordetails from './Pages/Doctor/Doctordetails';
 function Allroutes() {
   return (
+    
     <Authentication>
       <Cart>
       <Routes>
@@ -25,7 +26,7 @@ function Allroutes() {
             </RequiredAuth>
           }
         />
-        <Route path="/login" element={<Login></Login>} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgetpassword" element={<Forgetpassword />} />
