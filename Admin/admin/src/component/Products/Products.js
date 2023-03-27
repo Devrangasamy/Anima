@@ -8,15 +8,15 @@ const Products = () => {
     const[serachedList, setSearchedList] = useState([])
     const[search, setSearch] = useState('')
     useEffect(() => {
-            axios.get('http://localhost:8000/api/product')
+            axios.get('https://rich-gray-macaw-sock.cyclic.app/api/product')
             .then((response) => {setList(response.data)})
             .catch((error) => console.log(error))    
         },[]
     )
     const deletepro=(e)=>{
         // console.log(e.currentTarget.value);
-        axios.delete( `http://localhost:8000/api/product/${e.currentTarget.value}`);
-        axios.get('http://localhost:8000/api/product')
+        axios.delete( `https://rich-gray-macaw-sock.cyclic.app/api/product/${e.currentTarget.value}`);
+        axios.get('https://rich-gray-macaw-sock.cyclic.app/api/product')
         .then((response) => {setList(response.data)})
         .catch((error) => {console.log(error)})
     }

@@ -11,7 +11,7 @@ const AddProduct = () => {
     const gotoproduct=()=>{
     }
   const publishnow = async (event) => {
-    const response = await fetch("http://localhost:8000/api/product/", {
+    const response = await fetch("https://rich-gray-macaw-sock.cyclic.app/api/product/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

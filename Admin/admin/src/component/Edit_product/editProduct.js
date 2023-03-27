@@ -13,7 +13,7 @@ export const EditProduct = () => {
   const[dataList, setDataList] = useState([])
   
   useEffect(() => {
-    axios.get('http://localhost:8000/api/product/')
+    axios.get('https://rich-gray-macaw-sock.cyclic.app/api/product/')
     .then((response) => console.log(response))
     .catch((error) => console.log(error))
   }, [])
