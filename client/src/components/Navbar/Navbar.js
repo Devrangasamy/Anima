@@ -40,7 +40,7 @@ function Navbar() {
     <>
       <nav className="navbar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          <img src={logo} alt="logo" />
+         <h3 className="logo-brand">Anima</h3>
           {/* <i className="fab fa-firstdraft" /> */}
         </Link>
         <div className="menu-icon" onClick={handleClick}>
@@ -101,6 +101,11 @@ function Navbar() {
               </Link>
             </li>
           )}
+          {!auth.user && 
+            <li className="nav-item">
+              <Link to = "/login" className="nav-links">Login</Link>
+            </li>
+          }
           {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
           {!localStorage.getItem("username") && (
             <li className="nav-item">

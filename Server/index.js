@@ -5,6 +5,10 @@ import cors from "cors";
 import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
+import authRoute from "./routes/authRoute.js"
+import productRoute from "./routes/productRoute.js"
+import doctorRoute from "./routes/doctorRoute.js"
+
 dotenv.config();
 const app = express();
 mongoose.set("strictQuery", false);

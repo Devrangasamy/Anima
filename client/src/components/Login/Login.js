@@ -1,8 +1,9 @@
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
 import "../sign up page/signup.css";
-import { useLocation } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ const Login = () => {
   const [password, setpassword] = useState("");
   const location = useLocation();
   const auth = useAuth();
+  const [noMatch, setNoMatch] = useState(false)
+  // This is for the password visibility
+  const [showPass, setShowPass] = useState(false)
   const submit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:8000/api/auth/login", {
@@ -25,54 +29,48 @@ const Login = () => {
       auth.login(json.data[0].username);
       localStorage.setItem("username", json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
-    } else {
-      alert("Wrong Password");
+      setpassword("");
+      setemail("");
+    }
+    else {
+      setNoMatch(true)
       navigate("/login");
     }
-    setpassword("");
-    setemail("");
   };
+  const forgotPassword = () => {
+    navigate('/forgetpassword')
+  }
 
   return (
-    <div className="signup-container">
-      <form onSubmit={submit} className="signup-form">
+    <form className="signup-container" onSubmit={(e) => submit(e)}>
+      <div className="signup-form">
         <div className="center-contents">
           <h2 id="welcome-text-container">Anima</h2>
         </div>
         <div className="center-contents">
           <h2 id="welcome-text-container">Login</h2>
         </div>
-        <lable className="sign-label">
-          UserName or Email
-          <span className="required">*</span>
-        </lable>
-        <input
-          type="email"
-          placeholder="Enter email"
-          className="sigin-input"
-          value={email}
-          onChange={(e) => setemail(e.target.value)}
-        />
+        <label className="sign-label">UserName or Email<span className="required">*</span></label>
+        <input type="email" placeholder="Enter email" className="sigin-input-name" value={email} onChange={(e) => { setemail(e.target.value); setNoMatch(false) }} />
         <br></br>
-        <lable className="sign-label">
-          PassWord<span className="required">*</span>
-        </lable>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          className="sigin-input"
-          value={password}
-          onChange={(e) => setpassword(e.target.value)}
-        />
-        <div className="center-container">
-          <Link to="/forgetpassword">forgetpassword?</Link>
-          <button className="signupbutton" type="submit" id="sign-up-button">
-            Login
-          </button>
+        <label className="sign-label">PassWord<span className="required">*</span></label>
+        {/* <input  value = {passwordLogin} onChange={(e) => {setpasswordLogin(e.target.value)}}></input> */}
+        <div className="signin-input-password-div-container">
+          <input className="sigin-input" value={password} onChange={(e) => { setpassword(e.target.value); setNoMatch(false) }} type = {showPass ? 'text' : 'password'} placeholder="Enter Password" autoComplete="off"></input>
+          <button type='button' onClick={() => { setShowPass(!showPass) }}>{showPass ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}</button>
         </div>
-      </form>
-    </div>
+        {noMatch && <>
+          <div className="login-page-mismatch-password center-container"><span>Mismatch in username and password</span></div>
+        </>}
+        {/* This is the code to use the google login in the page */}
+        <div className="center-container">
+          <button type='buttono' onClick={() => forgotPassword()} className='signupbutton'>Forgot Password</button>
+          <button className="signupbutton" id="sign-up-button" type = 'submit'>Login</button>
+        </div>
+      </div>
+    </form>
   );
 };
 
 export default Login;
+

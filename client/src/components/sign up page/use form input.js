@@ -2,11 +2,13 @@ import { useState } from 'react'
 
 function UseFormInp(init) {
     const[data, setData] = useState(init)
+    const reset = () => {
+        setData('')
+    }
     const inputAttribute = {
-        name : data,
         onChange : (event) => setData(event.target.value)
     }
-    return [data, inputAttribute]
+    return [data, inputAttribute, reset]
 }
 
 export default UseFormInp

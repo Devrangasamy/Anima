@@ -37,7 +37,7 @@
   color: red;
 }
 
-.sigin-input {
+.sigin-input-name {
   text-align: start;
   height: 25px;
   width: 100%;
@@ -47,7 +47,22 @@
   border: 1px solid #999;
   border-radius: 7px;
   padding-left: 5px;
-  margin: 5px 0 15px;
+  margin: 5px 0 5px;
+}
+.signin-input-password-div-container input{
+  width: 92%;
+  height: auto;
+  border: none;
+  padding-left: 7px;
+}
+.signin-input-password-div-container button{
+  background: none; 
+  border: none; 
+}
+.signin-input-password-div-container{
+  border: 1px solid #999;
+  height: 25px;
+  border-radius: 7px;
 }
 .signin:focus {
   background-color: none;
@@ -66,11 +81,13 @@
 }
 .signupbutton {
   height: 30px;
-  width: 100px;
+  width: auto;
+  padding: 0px 20px 0px 20px;
   border-radius: 15px;
   border: none;
   cursor: pointer;
   transition: all 0.1s ease;
+  margin: 10px 10px 10px 10px;
 }
 .signupbutton:hover {
   background: #411a52;
@@ -115,4 +132,9 @@ focus {
 .Already-signup-button:hover {
   background: #411a52;
   color: #fff;
+}
+.login-page-mismatch-password{
+  font-size :14px;
+  color: red;
+  margin: 5px 0px 5px 0px;
 }
