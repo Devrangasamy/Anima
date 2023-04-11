@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
 import "../sign up page/signup.css";
 import { useLocation } from "react-router-dom";
@@ -23,6 +23,7 @@ const Login = () => {
     const json = await response.json();
     if (json.status === "success") {
       auth.login(json.data[0].username);
+      localStorage.setItem("username", json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
     } else {
       alert("Wrong Password");

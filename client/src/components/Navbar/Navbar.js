@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { useAuth } from "../../Utilis/Authentication";
-import logo from '../../Assets/Logo.png'
+import logo from "../../Assets/Logo.png";
 // import Profile from "../Profiletemp/Profile";
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -13,12 +13,12 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const instyle= ({isActive})=>{
-    return ({
-      color:isActive?"#fff":"",
-      backgroundColor:isActive?"#411a52":"",
-    })
-  }
+  const instyle = ({ isActive }) => {
+    return {
+      color: isActive ? "#fff" : "",
+      backgroundColor: isActive ? "#411a52" : "",
+    };
+  };
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -89,7 +89,7 @@ function Navbar() {
               Medi-Care
             </Link>
           </li>
-          {auth.user && (
+          {localStorage.getItem("username") && (
             <li className="nav-item">
               <Link
                 className="nav-links"
@@ -102,7 +102,7 @@ function Navbar() {
             </li>
           )}
           {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
-          {!auth.user && (
+          {!localStorage.getItem("username") && (
             <li className="nav-item">
               <Link
                 to="/signup"
