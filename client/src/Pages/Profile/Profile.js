@@ -17,6 +17,7 @@ export const Profile = () => {
     return(
         <div className='profile-page-main-container'>
             <div className='profile-side-container'>
+                <h1>{auth.user}</h1>
                 <button onClick = {logout}>logout</button>
             </div>
             <div className='profile-main-container'></div>

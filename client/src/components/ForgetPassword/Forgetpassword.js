@@ -114,7 +114,7 @@ export const Forgetpassword = () => {
   }
   return (
     <div className = "forget-password-container">
-      <button onClick = {sampleUpdate}>Sample button</button>
+      {/* <button onClick = {sampleUpdate}>Sample button</button> */}
       <div className = 'forgot-password-main-container'>
         <div>
           {/* This is the mail id container */}
