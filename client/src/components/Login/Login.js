@@ -1,8 +1,8 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../sign up page/signup.css";
 
 const Login = () => {
@@ -27,6 +27,7 @@ const Login = () => {
     const json = await response.json();
     if (json.status === "success") {
       auth.login(json.data[0].username);
+      localStorage.setItem("username", json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
       setpassword("");
       setemail("");
