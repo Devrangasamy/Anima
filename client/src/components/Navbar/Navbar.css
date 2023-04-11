@@ -12,6 +12,7 @@
   justify-self: start;
   /* margin-left: 20px; */
   cursor: pointer;
+  text-decoration: none;
 }
 
 .navbar-logo img {
@@ -75,6 +76,9 @@
 .logo-brand{
   color:white;
   text-decoration: none;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  font-weight: 800;
 }
 /* 
 @media screen and (max-width: 960px) {
