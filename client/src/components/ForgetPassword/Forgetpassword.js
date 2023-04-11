@@ -38,16 +38,20 @@ export const Forgetpassword = () => {
     .then((response) => {setDataList(response.data)})
     .catch((error) => console.log(error))
   })
+
+  // This is the timer to refresh the page
   useEffect(() => {
     let interval = null
-    if(timerFlag){
-    interval = setInterval(() => {
-      setSeconds(seconds => seconds - 1)
-    },1000)
+    if(timerFlag === true){
+      interval = setInterval(() => {
+        setSeconds(seconds - 1)
+        console.log(seconds)
+      }, 1000)
     }
-    if(seconds <= 0){console.log('low'); window.location.reload(true)}
-    return () => clearInterval(interval)
+    return (() => clearInterval(interval))
   }, [seconds])
+  
+
   // This is to send the OTP Mail
   const sendMail = (event) => {
     event.preventDefault() 
@@ -58,16 +62,16 @@ export const Forgetpassword = () => {
         let digits = '0123456789';
         let OTP = '';
         for (let i = 0; i < 6; i++ ) {OTP += digits[Math.floor(Math.random() * 10)]}
-        setGeneratedOTP('123456')
-        // console.log(OTP)
+        setGeneratedOTP(OTP)
+        console.log(OTP)
         // This sends the OTP via the email
-        // emailjs.send("service_1k651y6","template_2gt9cx3",{
-        //   to_name: `${data.username}`,
-        //   message: `${OTP}`,
-        //   to_email: `${mailId}`,
-        //   }, "L5WeMsvekZj0yavpY")
-        //   .then((result) => console.log(result))
-        //   .catch((error) => console.log(error))
+        emailjs.send("service_1k651y6","template_2gt9cx3",{
+          to_name: `${data.username}`,
+          message: `${OTP}`,
+          to_email: `${mailId}`,
+          }, "L5WeMsvekZj0yavpY")
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error))
         setMailIdContainer(false)
         setOtpFlag(true)
         setTimerFlag(true)
@@ -107,8 +111,6 @@ export const Forgetpassword = () => {
   }
   const sampleUpdate = () => {
     console.log("This is the sample")
-    const res = axios.put("http://localhost:8000/api/auth/6401928fd92c2d5b1d5a3a01", {username : "sel"})
-    console.log(res.data)
   }
   return (
     <div className = "forget-password-container">
