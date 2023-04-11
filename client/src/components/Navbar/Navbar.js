@@ -101,6 +101,11 @@ function Navbar() {
               </Link>
             </li>
           )}
+          {!auth.user && 
+            <li className="nav-item">
+              <Link to = "/login" className="nav-links">Login</Link>
+            </li>
+          }
           {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
           {!auth.user && (
             <li className="nav-item">
