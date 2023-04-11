@@ -107,8 +107,11 @@ export const Forgetpassword = () => {
   }
   const sampleUpdate = () => {
     console.log("This is the sample")
-    const res = axios.put("http://localhost:8000/api/auth/6401928fd92c2d5b1d5a3a01", {username : "sel"})
-    console.log(res.data)
+    axios.get("http://localhost:8000/api/auth/6401928fd92c2d5b1d5a3a01")
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error))
+    axios.put("http://localhost:8000/api/auth/6401928fd92c2d5b1d5a3a01", {username : "selva"})
+
   }
   return (
     <div className = "forget-password-container">
