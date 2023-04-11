@@ -1,0 +1,61 @@
+.container-doctor-profile {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  margin: 50px;
+  color: #BFD7EA;
+}
+.container-doctor-profile:hover {
+  transform: scale(1.015);
+  transition: 0.8s;
+}
+
+.container-doctor-profile-left {
+  border-radius: 20px 0px 0px 20px;
+  background-color: aliceblue;
+}
+.clinic-name {
+  color: #0B3954;
+  background-color: #BFD7EA;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 12px;
+}
+.doctor-content-left {
+  margin: 15px;
+}
+.doctor-grid-1 {
+  margin-top: 20px;
+  display: flex;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  color: #0B3954;
+  margin: 10px;
+  gap: 20px;
+}
+.personaldetails-container1 {
+  color: #0B3954;
+}
+.container-doctor-profile-right {
+  background-color: aliceblue;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: #0B3954;
+  border-radius: 0px 20px 20px 0px;
+}
+.img-container > img {
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
+.doctor-details {
+  color: #0B3954;
+  border-radius: 10px;
+  /* width: 600px; */
+}

@@ -41,3 +41,23 @@ export const getusers=async(req,res,next)=>{
         next(err);
     }
 }
+export const updateusers=async(req,res,next)=>{
+    try{
+        const updatedusers= await User.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
+        res.status(200).json(updatedusers);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+}
+export const getuser=async(req,res,next)=>{
+    try{
+        const user= await User.findById(req.params.id)
+        res.status(200).json(user);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+}

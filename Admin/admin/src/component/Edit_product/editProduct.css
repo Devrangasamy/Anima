@@ -1,0 +1,33 @@
+.list-items{
+    display:grid;
+    /* margin: 100px; */
+}
+.prodin:hover{
+    font-family: 'Lora', serif;
+    /* margin: 0px 450px;
+    padding: 15px;
+    border-radius: 8px; */
+    transform: scale(1.02);
+    transition: 0.10s;
+    border:2.3px solid black;
+    align-items:center;
+}
+.prodin{
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin: 0px 460px;
+    padding: 14px;
+    border-radius: 7px;
+    border:1.6px solid black;
+    margin-bottom: 20px;
+}
+
+.items-entry{
+    background-color:#f8edeb;
+    height: 110vh;
+    padding-top: 50px;
+}
+.label{
+    font-family: 'Lora', serif;
+    margin-bottom: 20px;
+}

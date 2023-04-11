@@ -32,7 +32,8 @@ export const deleteDoctor=async(req,res,next)=>{
     }
 }
 export const getDoctor=async(req,res,next)=>{
-    try{
+    try
+    {
         const Doctor= await Doctor.findById(req.params.id)
         res.status(200).json(Doctor);
     }
@@ -42,7 +43,8 @@ export const getDoctor=async(req,res,next)=>{
     }
 }
 export const getDoctors=async(req,res,next)=>{
-    try{
+    try
+    {
         const  Doctors= await Doctor.find()
         res.status(200).json(Doctors);
     }

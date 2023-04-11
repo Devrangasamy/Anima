@@ -28,7 +28,7 @@ const Sidebar = () => {
 		{
 			text: "File Manager",
 			icon: "icons/folder.svg",
-      path:""
+      		path:"/editproduct"
 		},
 		{
 			text: "Orders",
@@ -59,7 +59,7 @@ const Sidebar = () => {
 					{isExpanded && (
 						<div className="nav-brand">
 							<img src="icons/Logo.svg" alt="" />
-							<h2>Admin</h2>
+							<h2 className="nav-brand1">Admin</h2>
 						</div>
 					)}
 					<button
