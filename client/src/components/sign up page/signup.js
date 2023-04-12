@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
 import UseFormInp from "./use form input";
+import { SignupUsingGoogle } from "./SignupUsingGoogle";
 
 function Signup(event) {
   // Declaration for the variable data
@@ -115,6 +116,7 @@ function Signup(event) {
         </label>
         <input type="number" className="sigin-input-name" placeholder="Phone Number"  value = {phone_number} {...button} required></input>
         <br></br>
+          
         <div className="center-container">
           <button className="signupbutton" onClick = {submitData} id="sign-up-button">Sign Up</button>
           <button className="signupbutton" onClick = {() => resetData()} id="reset-button">Reset</button>
