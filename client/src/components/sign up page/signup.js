@@ -116,10 +116,12 @@ function Signup(event) {
         </label>
         <input type="number" className="sigin-input-name" placeholder="Phone Number"  value = {phone_number} {...button} required></input>
         <br></br>
-          
         <div className="center-container">
           <button className="signupbutton" onClick = {submitData} id="sign-up-button">Sign Up</button>
           <button className="signupbutton" onClick = {() => resetData()} id="reset-button">Reset</button>
+        </div>
+        <div className="center-container">
+          <SignupUsingGoogle/>
         </div>
         <hr className="Already-signup"></hr>
         <div className="Already-signup-container">
