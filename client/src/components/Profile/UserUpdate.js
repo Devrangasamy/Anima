@@ -30,21 +30,34 @@ export const UserUpdate = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submit}>
-        <input type="text" value={updatename} onChange={setupdatename}></input>
-        <input
-          type="email"
-          value={updateemail}
-          onChange={setupdateemail}
-        ></input>
-        <input
-          type="number"
-          value={updatecontact}
-          onChange={setupdatecontact}
-        ></input>
-        <button type="submit">submit</button>
-      </form>
+    <div class="parent container d-flex justify-content-center align-items-center h-100">
+      <div>
+        <form action="/action_page.php" onSubmit={submit}>
+            <div class="mb-3 mt-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="text" class="form-control" value={updatename} onChange={setupdatename}></input>
+            </div>
+            <div class="mb-3">
+              <label for="pwd" class="form-label">Password:</label>
+              <input
+                type="email"
+                value={updateemail}
+                onChange={setupdateemail}
+                class="form-control"
+                ></input>
+            </div>
+            <div class="mb-3">
+              <label for="pwd" class="form-label">Password:</label>
+              <input
+                type="number"
+                value={updatecontact}
+                onChange={setupdatecontact}
+                class="form-control"
+                ></input>
+            </div>
+            <button type="submit" className="btn btn-success">submit</button>
+        </form>
+      </div>
     </div>
   );
 };
