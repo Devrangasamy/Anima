@@ -29,7 +29,7 @@ function Allroutes() {
             </RequiredAuth>
           }
         />
-        <Route path="/Contactus" element={<Contactus/>} />
+        <Route path="/contactus" element={<Contactus/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/profile" element={<Profile />} />

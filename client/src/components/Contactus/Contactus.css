@@ -94,5 +94,10 @@ form{
 }
 .input-box{
     height:40px;
-    
+    width:70%;
+    margin:30px 0;
+    position:relative;
+}
+.input{
+    width: 100%;
 }
