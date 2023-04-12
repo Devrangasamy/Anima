@@ -6,7 +6,6 @@ import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
 
-
 dotenv.config();
 const app = express();
 mongoose.set("strictQuery", false);
@@ -21,7 +20,7 @@ const connect = async () => {
 
 const corsOpts = {
   origin: "*",
-  methods: ["GET", "POST", "DELETE", "PATCH"],
+  methods: ["GET", "POST", "DELETE", "PUT"],
   allowedHeaders: ["Content-Type"],
 };
 app.use(cors(corsOpts));
