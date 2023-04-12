@@ -49,7 +49,7 @@ export const Forgetpassword = () => {
       }, 1000)
     }
     return (() => clearInterval(interval))
-  }, [seconds])
+  })
   
 
   // This is to send the OTP Mail
