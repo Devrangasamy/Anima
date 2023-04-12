@@ -31,8 +31,8 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  justify-content: end;
   width: 85vw;
+  justify-content: end;
   margin-right: 2rem;
   background-color: #012a4a;
 }

@@ -14,38 +14,34 @@ import { Cart } from "./Pages/Product/Cart";
 import Doctordetails from "./Pages/Doctor/Doctordetails";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
 import { GoogleAuthendication } from "./Utilis/GoogleAuthendication";
-import { Petregisteration } from "./components/Petregistration/petregisteration";
+import { UserUpdate } from "./components/Profile/UserUpdate.js";
 function Allroutes() {
   return (
     <Authentication>
-      <GoogleAuthendication>
-        <Cart>
-          <Routes>
-            <Route index path="/" element={<Home />} />
-            <Route
-              path="/accessories"
-              element={
-                <RequiredAuth>
-                  <Accessories />
-                </RequiredAuth>
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup></Signup>} />
-            <Route
-              path="/signup/getPassword"
-              element={<GetPasswordAndUpdate />}
-            />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/petregisteration" element={<Petregisteration />} />
-            <Route path="/forgetpassword" element={<Forgetpassword />} />
+      <Cart>
+        <Routes>
+          <Route index path="/" element={<Home />} />
+          <Route
+            path="/accessories"
+            element={
+              <RequiredAuth>
+                <Accessories />
+              </RequiredAuth>
+            }
+          />
+          <Route path="/contactus" element={<Contactus />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup></Signup>} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/userupdate" element={<UserUpdate />} />
 
-            <Route path="/products" element={<Product />} />
-            <Route path="/doctor" element={<Doctor />} />
-            <Route path="/doctor/:id" element={<Doctordetails />} />
-          </Routes>
-        </Cart>
-      </GoogleAuthendication>
+          <Route path="/forgetpassword" element={<Forgetpassword />} />
+
+          <Route path="/products" element={<Product />} />
+          <Route path="/doctor" element={<Doctor />} />
+          <Route path="/doctor/:id" element={<Doctordetails />} />
+        </Routes>
+      </Cart>
     </Authentication>
   );
 }
