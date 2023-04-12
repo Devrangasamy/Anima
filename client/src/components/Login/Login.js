@@ -1,8 +1,8 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { useAuth } from "../../Utilis/Authentication";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Utilis/Authentication";
 import "../sign up page/signup.css";
 import { LoginUsingGoogle } from "./login using google/LoginUsingGoogle";
 

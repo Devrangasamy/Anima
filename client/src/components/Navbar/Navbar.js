@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
+import { useAuth } from "../../Utilis/Authentication";
+//
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const auth = useAuth();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -81,9 +84,13 @@ function Navbar() {
               Accessories
             </Link>
           </li>
-          <li className="nav-items">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-              Medi-Care
+          <li className="nav-item">
+            <Link
+              to="/contactus"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
+              Contact Us
             </Link>
           </li>
           {localStorage.getItem("username") && (
