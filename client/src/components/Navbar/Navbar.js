@@ -84,8 +84,8 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-              Medi-Care
+            <Link to="/contactus" className="nav-links" onClick={closeMobileMenu}>
+              Contact Us
             </Link>
           </li>
           {localStorage.getItem("username") && (
