@@ -1,6 +1,6 @@
-.navbar {
+.navbars {
   /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
-  background-color : #012a4a;
+  background-color: #012a4a;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -15,17 +15,17 @@
   text-decoration: none;
 }
 
-.navbar-logo img {
+/* .navbar-logo img {
   width: 55px;
   height: 55px;
-}
+} */
 
 .fa-firstdraft {
   margin-left: 0.5rem;
   font-size: 1.6rem;
 }
 
-.nav-menu {
+.nav-menus {
   display: grid;
   grid-template-columns: repeat(6, auto);
   grid-gap: 10px;
@@ -35,10 +35,9 @@
   justify-content: end;
   margin-right: 2rem;
   background-color: #012a4a;
-  
 }
 
-.nav-item {
+.nav-items {
   display: flex;
   align-items: center;
   height: 80px;
@@ -55,15 +54,15 @@
 }
 
 .nav-links:hover {
-  background-color: #0B3954;
+  background-color: #0b3954;
   /* padding: 12px; */
-  color: #BFD7EA;
+  color: #bfd7ea;
   border-radius: 50px;
   transition: all 0.2s ease-out;
 }
 
 .fa-bars {
-  color: #0B3954;
+  color: #0b3954;
 }
 
 .nav-links-mobile {
@@ -73,10 +72,11 @@
 .menu-icon {
   display: none;
 }
-.logo-brand{
-  color:white;
+
+.logo-brand {
+  color: white;
   text-decoration: none;
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 2rem;
   font-weight: 1000;
   /* text-shadow: black 0.1em 0.1em 0.2em */

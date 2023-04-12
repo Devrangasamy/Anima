@@ -138,7 +138,14 @@ export const Userprofile = () => {
             your pet now.
           </p>
           <div className="registerbtn">
-            <button className="btn btn-primary ">Rgister</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                navigate("/Petregisteration");
+              }}
+            >
+              Rgister
+            </button>
           </div>
         </div>
       </div>
