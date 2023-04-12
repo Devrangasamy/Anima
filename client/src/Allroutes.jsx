@@ -11,7 +11,6 @@ import Doctor from "./Pages/Doctor/Doctor";
 import RequiredAuth from "./Utilis/RequiredAuth";
 import { Cart } from "./Pages/Product/Cart";
 import Doctordetails from './Pages/Doctor/Doctordetails';
-import { GoogleOAuthProvider } from "@react-oauth/google";
 function Allroutes() {
   return (
     

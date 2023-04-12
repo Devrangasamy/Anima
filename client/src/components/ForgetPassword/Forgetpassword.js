@@ -49,7 +49,7 @@ export const Forgetpassword = () => {
       }, 1000)
     }
     return (() => clearInterval(interval))
-  }, [seconds])
+  })
   
 
   // This is to send the OTP Mail
@@ -108,9 +108,6 @@ export const Forgetpassword = () => {
   const changeShowStatus = () => {
     setShowPass(!showPass)
     console.log(showPass)
-  }
-  const sampleUpdate = () => {
-    console.log("This is the sample")
   }
   return (
     <div className = "forget-password-container">

@@ -53,6 +53,7 @@
   width: 92%;
   height: auto;
   border: none;
+  background: none;
   padding-left: 7px;
 }
 .signin-input-password-div-container button{
