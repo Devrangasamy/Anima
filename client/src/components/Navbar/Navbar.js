@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
+import { useAuth } from "../../Utilis/Authentication";
 //
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const auth = useAuth();
+  const auth = useAuth()
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
