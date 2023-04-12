@@ -19,7 +19,16 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@emailjs/browser": "^3.10.0",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-oauth/google": "^0.9.0",
+    "email-js": "^2.0.2",
+    "emailjs-com": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

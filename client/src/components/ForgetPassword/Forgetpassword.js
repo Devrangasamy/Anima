@@ -109,6 +109,9 @@ export const Forgetpassword = () => {
     setShowPass(!showPass)
     console.log(showPass)
   }
+  const sampleUpdate = () => {
+    console.log("This is the sample")
+  }
   return (
     <div className = "forget-password-container">
       {/* <button onClick = {sampleUpdate}>Sample button</button> */}
