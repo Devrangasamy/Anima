@@ -1,0 +1,15 @@
+.petregistercontainer {
+  max-width: 600px;
+  margin: 0 auto 50px auto !important;
+}
+
+/* .registerbtn button {
+  width: 100px;
+} */
+
+.registerbtn {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+}
