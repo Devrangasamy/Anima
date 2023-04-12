@@ -5,6 +5,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/sign up page/signup";
 import { Profile } from "./Pages/Profile/Profile";
 import Accessories from "./components/Accessories/Accessories";
+import Contactus from "./components/Contactus/Conactus";
 import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
 import { Product } from "./Pages/Product/Product";
 import Doctor from "./Pages/Doctor/Doctor";
