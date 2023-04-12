@@ -60,7 +60,7 @@ export const Userprofile = () => {
             </div>
             <div className="row gap-3">
               <button
-                className="btn btn-secondary col-md-4 col-lg-2 gap"
+                className="btn btn-secondary col-md-4 col-lg-2"
                 onClick={() => {
                   localStorage.removeItem("username");
                   navigate("/");
