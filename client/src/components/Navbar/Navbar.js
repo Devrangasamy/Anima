@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
-import { useAuth } from "../../Utilis/Authentication";
-// import logo from "../../Assets/Logo.png";
-// import Profile from "../Profiletemp/Profile";
+//
+
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);

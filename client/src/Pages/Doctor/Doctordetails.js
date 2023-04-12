@@ -79,7 +79,7 @@ const Doctordetails = () => {
         </div>
         <div className="container-doctor-profile-right">
           <div className="img-container">
-            <img src={list.image}></img>
+            <img src={list.image} alt = ""></img>
           </div>
           <div className="doctor-details">
             <h1>{list.name}</h1>
