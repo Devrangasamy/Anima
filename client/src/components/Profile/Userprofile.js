@@ -11,9 +11,6 @@ import {
   faPhone,
   faEnvelope,
   faSignature,
-  // faHouse,
-  // faCakeCandles,
-  // faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 export const Userprofile = () => {
   const [userdata, setUserdata] = useState(false);
@@ -23,7 +20,11 @@ export const Userprofile = () => {
   const [profileupdatealert, setprofileupdatealert] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/auth/${localStorage.getItem("username")}`)
+      .get(
+        `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
+          "username"
+        )}`
+      )
       .then((data) => {
         setUserdata(data.data[0]);
       })
@@ -40,7 +41,11 @@ export const Userprofile = () => {
   const update = () => {
     setprofileupdatealert(true);
     axios
-      .get(`http://127.0.0.1:8000/api/auth/${localStorage.getItem("username")}`)
+      .get(
+        `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
+          "username"
+        )}`
+      )
       .then((data) => {
         setTimeout(() => {
           setUserdata(data.data[0]);
@@ -70,7 +75,7 @@ export const Userprofile = () => {
     <div className="my-3 p-4 profile-container container">
       {profileupdatealert && (
         <div class="alert alert-success profileupdatealert" role="alert">
-          This is a primary alert—check it out!
+          Data is updating please wait!!!
         </div>
       )}
       {profileEditflag && showprofileEditPage}
