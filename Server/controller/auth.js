@@ -1,5 +1,5 @@
-import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import User from "../models/User.js";
 export const register = async (req, res, next) => {
   try {
     const salt = bcrypt.genSaltSync(10);
@@ -48,10 +48,28 @@ export const updateusers = async (req, res, next) => {
     next(err);
   }
 };
+export const findMailId = async (req, res, next) => {
+  try {
+    const email = req.params.emailID.slice(1);
+    const user = await User.find({ email: email });
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+};
 export const getuser = async (req, res, next) => {
   try {
     const user = await User.find({ username: req.params.username });
     res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteEmailID = async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json("deleted the user");
   } catch (err) {
     next(err);
   }
