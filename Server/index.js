@@ -5,6 +5,7 @@ import cors from "cors";
 import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
+import feedbackRoute from "./routes/feedbackroute.js";
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/doctor", doctorRoute);
+app.use("/api/feedback", feedbackRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
