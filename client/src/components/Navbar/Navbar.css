@@ -1,6 +1,6 @@
-.navbar {
+.navbars {
   /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
-  background-color : #012a4a;
+  background-color: #012a4a;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -15,30 +15,29 @@
   text-decoration: none;
 }
 
-.navbar-logo img {
+/* .navbar-logo img {
   width: 55px;
   height: 55px;
-}
+} */
 
 .fa-firstdraft {
   margin-left: 0.5rem;
   font-size: 1.6rem;
 }
 
-.nav-menu {
+.nav-menus {
   display: grid;
   grid-template-columns: repeat(6, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  justify-content: end;
   width: 85vw;
+  justify-content: end;
   margin-right: 2rem;
   background-color: #012a4a;
-  
 }
 
-.nav-item {
+.nav-items {
   display: flex;
   align-items: center;
   height: 60px;
@@ -55,15 +54,15 @@
 }
 
 .nav-links:hover {
-  background-color: #0B3954;
+  background-color: #0b3954;
   /* padding: 12px; */
-  color: #BFD7EA;
+  color: #bfd7ea;
   border-radius: 50px;
   transition: all 0.2s ease-out;
 }
 
 .fa-bars {
-  color: #0B3954;
+  color: #0b3954;
 }
 
 .nav-links-mobile {
@@ -73,90 +72,12 @@
 .menu-icon {
   display: none;
 }
-.logo-brand{
-  color:white;
+
+.logo-brand {
+  color: white;
   text-decoration: none;
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 2rem;
   font-weight: 1000;
   /* text-shadow: black 0.1em 0.1em 0.2em */
 }
-/* 
-@media screen and (max-width: 960px) {
-  .NavbarItems {
-    position: relative;
-  }
-
-  .nav-menu {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 90vh;
-    position: absolute;
-    top: 80px;
-    left: -100%;
-    opacity: 1;
-    transition: all 0.5s ease;
-  }
-
-  .nav-menu.active {
-    background: #242222;
-    left: 0;
-    opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 1;
-  }
-
-  .nav-links {
-    text-align: center;
-    padding: 2rem;
-    width: 100%;
-    display: table;
-  }
-
-  .nav-links:hover {
-    background-color: #1888ff;
-    border-radius: 0;
-  }
-
-  .navbar-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(25%, 50%);
-  }
-
-  .menu-icon {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-
-  .fa-times {
-    color: #fff;
-    font-size: 2rem;
-  }
-
-  .nav-links-mobile {
-    display: block;
-    text-align: center;
-    padding: 1.5rem;
-    margin: 2rem auto;
-    border-radius: 4px;
-    width: 80%;
-    background: #1888ff;
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.5rem;
-  }
-
-  .nav-links-mobile:hover {
-    background: #fff;
-    color: #1888ff;
-    transition: 250ms;
-  }
-} */
