@@ -26,6 +26,7 @@ export const Userprofile = () => {
         )}`
       )
       .then((data) => {
+        console.log(data + "data")
         setUserdata(data.data[0]);
       })
       .catch((error) => {
@@ -60,6 +61,7 @@ export const Userprofile = () => {
 
   const showprofileEdit = () => {
     console.log(userdata.username);
+    console.log(userdata)
     setprofileEditPage(
       <ProfileEditPage
         username={userdata.username}

@@ -54,7 +54,7 @@ ul li{
     font-size: 24px;
     margin-top: 10px;
 }
- i {
+i {
     background-color: #012a4a;
     padding: 5px;
     padding-left: 100px;
@@ -87,7 +87,7 @@ i{
     padding-top: 10px;
     color: #ffffff;
 }
-form{
+.form{
     padding: 0 50px;
     height: 100%;
     width: 100%;
@@ -140,7 +140,7 @@ textarea.input{
     min-height: 150px;
     overflow: auto;
 }
-.btn{
+.contact-button{
     position:relative;
     top: 100px;
     background:#fff;

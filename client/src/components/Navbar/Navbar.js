@@ -84,7 +84,7 @@ function Navbar() {
               Accessories
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-items">
             <Link
               to="/contactus"
               className="nav-links"
@@ -114,7 +114,7 @@ function Navbar() {
           )}
           {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
           {!localStorage.getItem("username") && (
-            <li className="nav-item">
+            <li className="nav-items">
               <Link
                 to="/signup"
                 className="nav-links"
