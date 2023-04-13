@@ -13,12 +13,12 @@ export default function Conactus() {
     <div className='contactus-container'>
         <div className='contactus-item'>
             <div className='contactus-contact'>
-                <div className='first-text'>
+                <div className='first-text text'>
                     Let's Get In Touch
                 </div>
                 <img src={conatct}className='contactus-image' />
                 <div className='socil-links'>
-                    <span className='second-text'>Connect with us:</span>
+                    <span className='second-text text'>Connect with us:</span>
                     <ul className='social-media'>
                         <li><a href='#'><FaFacebookF/></a></li>
                         <li><a href='#'><FaTwitter/></a></li>
@@ -28,29 +28,26 @@ export default function Conactus() {
                 </div>
             </div>
             <div className='contactus-submit-form'>
-                <h4 className='third-text'>Contact Us</h4>
+                <h4 className='third-text text'>Contact Us</h4>
                 <form action=''>
                     <div className='input-box'>
-                        <input type='text' className='input'/>
-                        <label for="">Name</label>
+                        <input type='text' className='input' required></input>
+                        <label>Name</label>
                     </div>
                     <div className='input-box'>
-                        <input type='email' className='input'/>
-                        <label for="">Email</label>
+                        <input type='email' className='input' required></input>
+                        <label>Email</label>
                     </div>
                     <div className='input-box'>
-                        <input type='tel' className='input'/>
-                        <label for="">Phone</label>
+                        <input type='number' className='input' required></input>
+                        <label>Phone</label>
                     </div>
+
                     <div className='input-box'>
-                        <input type='text' className='input'/>
-                        <label for=""></label>
+                        <textarea name='' id='message' type='text' className='input' required></textarea>
+                        <label>Message</label>
                     </div>
-                    <div className='input-box'>
-                        <textarea name="" id="message" type='text' className='input'/>
-                        <label for="">Name</label>
-                    </div>
-                    <input type='submit' value="Submit">Submit</input>
+                    <input type='submit' className='btn' value='Submit'></input>
                 </form>
             </div>
         </div>
