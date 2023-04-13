@@ -42,45 +42,15 @@ export default function Conactus() {
                         <input type='number' className='input' required></input>
                         <label>Phone</label>
                     </div>
-
                     <div className='input-box'>
                         <textarea name='' id='message' type='text' className='input' required></textarea>
-                        <label>Message</label>
+                        <label>Name</label>
                     </div>
-                    <input type='submit' className='btn' value='Submit'></input>
+                    <input className="btn" type='submit' value='Submit'></input>
                 </form>
+              </div>
             </div>
-          </div>
-          <div className="contactus-submit-form">
-            <h4 className="third-text">Contact Us</h4>
-            <form action="">
-              <div className="input-box">
-                <input type="text" className="input" />
-                <label for="">Name</label>
-              </div>
-              <div className="input-box">
-                <input type="email" className="input" />
-                <label for="">Email</label>
-              </div>
-              <div className="input-box">
-                <input type="tel" className="input" />
-                <label for="">Phone</label>
-              </div>
-              <div className="input-box">
-                <input type="text" className="input" />
-                <label for=""></label>
-              </div>
-              <div className="input-box">
-                <textarea name="" id="message" type="text" className="input" />
-                <label for="">Name</label>
-              </div>
-              <input type="submit" value="Submit">
-                Submit
-              </input>
-            </form>
-          </div>
         </div>
-      </div>
-    </>
+      </>
   );
 }
