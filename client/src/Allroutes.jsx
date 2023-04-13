@@ -17,30 +17,6 @@ import { GoogleAuthendication } from "./Utilis/GoogleAuthendication";
 function Allroutes() {
   return (
     <Authentication>
-<<<<<<< HEAD
-      <Cart>
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route
-          path="/accessories"
-          element={
-            <RequiredAuth>
-              <Accessories />
-            </RequiredAuth>
-          }
-        />
-        <Route path="/Contactus" element={<Contactus/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup></Signup>} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/forgetpassword" element={<Forgetpassword />} />
-        
-        <Route path="/products" element={<Product />} />
-        <Route path="/doctor" element={<Doctor />} />
-        <Route path="/doctor/:id" element={<Doctordetails />} />
-      </Routes>
-      </Cart>
-=======
       <GoogleAuthendication>
         <Cart>
           <Routes>
@@ -65,7 +41,6 @@ function Allroutes() {
           </Routes>
         </Cart>
       </GoogleAuthendication>
->>>>>>> e28ae2d09d9cfbbf87d51bd4a10089c1d971c3f7
     </Authentication>
   );
 }
