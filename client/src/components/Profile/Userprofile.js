@@ -2,20 +2,25 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import userprofile from "../../Assets/userprofile.jpg";
-import { useNavigate } from "react-router-dom";
+import userprofilebanner from "../../Assets/profile_banner.jpg";
+// import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Userprofile.css";
+import { ProfileEditPage } from "./ProfileEditPage";
 import {
   faPhone,
   faEnvelope,
   faSignature,
-  faHouse,
-  faCakeCandles,
-  faPerson,
+  // faHouse,
+  // faCakeCandles,
+  // faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 export const Userprofile = () => {
-  const [userdata, setUserdata] = useState([]);
-  const navigate = useNavigate();
+  const [userdata, setUserdata] = useState(false);
+  const [profileEditflag, setprofileEditflag] = useState(false);
+  const [showprofileEditPage, setprofileEditPage] = useState([]);
+
+  const [profileupdatealert, setprofileupdatealert] = useState(false);
   useEffect(() => {
     axios
       .get(`http://127.0.0.1:8000/api/auth/${localStorage.getItem("username")}`)
@@ -25,11 +30,112 @@ export const Userprofile = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [showprofileEditPage]);
   console.log(userdata);
+
+  const close = () => {
+    setprofileEditflag(false);
+  };
+
+  const update = () => {
+    setprofileupdatealert(true);
+    axios
+      .get(`http://127.0.0.1:8000/api/auth/${localStorage.getItem("username")}`)
+      .then((data) => {
+        setTimeout(() => {
+          setUserdata(data.data[0]);
+          setprofileupdatealert(false);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setprofileEditflag(false);
+  };
+
+  const showprofileEdit = () => {
+    console.log(userdata.username);
+    setprofileEditPage(
+      <ProfileEditPage
+        username={userdata.username}
+        useremail={userdata.email}
+        usercontact={userdata.contact}
+        close={close}
+        update={update}
+      ></ProfileEditPage>
+    );
+    setprofileEditflag(true);
+  };
   return (
-    <div className="container mt-5">
-      <div class="row mb-5">
+    <div className="my-3 p-4 profile-container container">
+      {profileupdatealert && (
+        <div class="alert alert-success profileupdatealert" role="alert">
+          This is a primary alert—check it out!
+        </div>
+      )}
+      {profileEditflag && showprofileEditPage}
+      <div className="user-profile-inner-container">
+        <img
+          src={userprofilebanner}
+          className="user-profile-banner rounded img-fluid"
+          alt="Profile banner"
+        />
+        <div className="usercard-conatainer card">
+          <img src={userprofile} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <div className="d-flex justify-content-between mb-2">
+              <h1 className="card-title card-body-title">
+                Profile Information
+              </h1>
+              <Link onClick={showprofileEdit}>Edit</Link>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faSignature} />
+              </p>
+              <p className="fw-normal col mx-1 card-text">
+                {userdata.username}
+              </p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faPhone} />
+              </p>
+              <p className="fw-normal col mx-1 card-text">{userdata.contact}</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </p>
+              <p className="fw-normal col mx-1 card-text">{userdata.email}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="additional-details-conatiner my-5">
+        <div>
+          <button className="btn btn-light">Addtionl details</button>
+        </div>
+        <div className="additional-details my-4 p-3 rounded">
+          <div className="row">
+            <p className="col-6">Birthday</p>
+            <p className="fw-normal col-6">Birthday</p>
+          </div>
+          <div className="row">
+            <p className="col-6">Gender</p>
+            <p className="fw-normal col-6">Gender</p>
+          </div>
+          <div className="row">
+            <p className="col-6">Address</p>
+            <p className="fw-normal col-6">Address</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+/* <div className="container mt-5">
+      <div class="row mb-5 gap-5">
         <div className="col-sm-6 col-lg-5">
           <img
             src={userprofile}
@@ -37,7 +143,7 @@ export const Userprofile = () => {
             alt="userprofile"
           />
         </div>
-        <div className="col-sm-6 col-lg-7 px-sm-5 mt-5 m-sm-0">
+        <div className="col-sm-6 col-lg-7 px-sm-5 mt-5 m-sm-0 userprofile">
           <h1 className="text-success mb-4">PROFILE</h1>
           <div>
             <div className="row">
@@ -58,9 +164,9 @@ export const Userprofile = () => {
               </p>
               <p className="fw-normal col mx-1">{userdata.email}</p>
             </div>
-            <div className="row gap-3">
+            <div className="row gap-5 mt-4">
               <button
-                className="btn btn-secondary col-md-4 col-lg-2"
+                className="btn btn-secondary  col-md-4 col-lg-3"
                 onClick={() => {
                   localStorage.removeItem("username");
                   navigate("/");
@@ -69,7 +175,7 @@ export const Userprofile = () => {
                 Logout
               </button>
               <Link
-                className="btn btn-secondary col-md-4 col-lg-2"
+                className="btn btn-secondary col-md-4 col-lg-3"
                 to="/userupdate"
                 state={{
                   name: userdata.username,
@@ -81,7 +187,7 @@ export const Userprofile = () => {
               </Link>
             </div>
           </div>
-          {/* <button class="btn btn-success register">Rgister</button> */}
+         
         </div>
       </div>
       <div class="row mb-5">
@@ -141,7 +247,7 @@ export const Userprofile = () => {
             <button
               className="btn btn-primary"
               onClick={() => {
-                navigate("/Petregisteration");
+                navigate("/petregisteration");
               }}
             >
               Rgister
@@ -149,6 +255,4 @@ export const Userprofile = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    </div> */
