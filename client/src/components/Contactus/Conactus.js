@@ -76,7 +76,7 @@ export default function Conactus() {
                         <textarea name='' id='message' type='text' className='input' onChange={(e)=>setmessage(e.target.value)}required></textarea>
                         <label>MESSAGE</label>
                     </div>
-                    <input className="btn" type='submit' value='Submit'></input>
+                    <input className="contact-button" type='submit' value='Submit'></input>
                 </form>
               </div>
             </div>
