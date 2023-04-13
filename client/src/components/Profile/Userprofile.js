@@ -25,6 +25,7 @@ export const Userprofile = () => {
     axios
       .get(`http://127.0.0.1:8000/api/auth/${localStorage.getItem("username")}`)
       .then((data) => {
+        console.log(data + "data")
         setUserdata(data.data[0]);
       })
       .catch((error) => {
@@ -55,6 +56,7 @@ export const Userprofile = () => {
 
   const showprofileEdit = () => {
     console.log(userdata.username);
+    console.log(userdata)
     setprofileEditPage(
       <ProfileEditPage
         username={userdata.username}
