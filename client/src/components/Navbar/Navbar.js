@@ -8,7 +8,7 @@ import { useAuth } from "../../Utilis/Authentication";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const auth = useAuth()
+  const auth = useAuth();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbars">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           <h3 className="logo-brand">Anima</h3>
           {/* <i className="fab fa-firstdraft" /> */}
@@ -47,8 +47,8 @@ function Navbar() {
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
 
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
+        <ul className={click ? "nav-menus active" : "nav-menus"}>
+          <li className="nav-items">
             <Link
               // style={instyle}
               to="/"
@@ -61,7 +61,7 @@ function Navbar() {
 
           <li
             // style={instyle}
-            className="nav-item"
+            className="nav-items"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
@@ -75,7 +75,7 @@ function Navbar() {
             {dropdown && <Dropdown />}
           </li>
 
-          <li className="nav-item">
+          <li className="nav-items">
             <Link
               to="/accessories"
               className="nav-links"
@@ -85,12 +85,16 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/contactus" className="nav-links" onClick={closeMobileMenu}>
+            <Link
+              to="/contactus"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               Contact Us
             </Link>
           </li>
           {localStorage.getItem("username") && (
-            <li className="nav-item">
+            <li className="nav-items">
               <Link
                 className="nav-links"
                 // onClick={closeMobileMenu}
@@ -102,7 +106,7 @@ function Navbar() {
             </li>
           )}
           {!localStorage.getItem("username") && (
-            <li className="nav-item">
+            <li className="nav-items">
               <Link to="/login" className="nav-links">
                 Login
               </Link>
