@@ -10,7 +10,7 @@ export const GoogleAuthendication = (props) => {
         setCredential('')
     }
     return(
-        <googleContext.Provider value = {{credential, setCredential, resetCrential}}>
+        <googleContext.Provider value = {{credential, updateCredential, resetCrential}}>
             {props.children}
         </googleContext.Provider>
     )

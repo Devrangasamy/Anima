@@ -2,9 +2,9 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SignupUsingGoogle } from "./SignupUsingGoogle";
 import "./signup.css";
 import UseFormInp from "./use form input";
-import { SignupUsingGoogle } from "./SignupUsingGoogle";
 
 function Signup(event) {
   // Declaration for the variable data
@@ -19,7 +19,7 @@ function Signup(event) {
   const [err_pswrd, setErrPswrd] = useState(false);
 
   // Password visibility
-  const[showPass, setShowPass] = useState(false)
+  const [showPass, setShowPass] = useState(false);
 
   const validatePass = (event) => {
     setPass(event.target.value);
@@ -28,12 +28,12 @@ function Signup(event) {
     setErrPswrd(false);
   };
   const resetData = () => {
-    resetName()
-    resetEmailID()
-    setPass('')
-    SetConfirmPass('')
-    resetPhoneNumber()
-  }
+    resetName();
+    resetEmailID();
+    setPass("");
+    SetConfirmPass("");
+    resetPhoneNumber();
+  };
 
   //Will be called on button pressed as sign up
   const submitData = async (event) => {
@@ -55,11 +55,10 @@ function Signup(event) {
 
     if (json.status === "success") {
       Navigate("/login");
-    }
-    else{
+    } else {
       console.log("Could not connnect to the database");
     }
-    resetData()
+    resetData();
   };
   return (
     <div className="signup-container img">
@@ -78,7 +77,7 @@ function Signup(event) {
           type="text"
           placeholder="Name"
           className="sigin-input-name"
-          value = {name}
+          value={name}
           {...name_attribute}
         ></input>
         <br></br>
@@ -88,7 +87,7 @@ function Signup(event) {
         <input
           type="email"
           placeholder="Email ID"
-          value = {email_id}
+          value={email_id}
           className="sigin-input-name"
           {...email_id_attribute}
         ></input>
@@ -102,26 +101,78 @@ function Signup(event) {
           PassWord<span className="required">*</span>
         </label>
         <div className="signin-input-password-div-container">
-          <input type={showPass ? "text" : 'password'} placeholder="PassWord" className="sigin-input-name" onChange={(event) => validatePass(event)} required ></input>
-          <button onClick = {() => {setShowPass(!showPass);}}>{showPass ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon = {faEyeSlash}/>}</button>
+          <input
+            type={showPass ? "text" : "password"}
+            placeholder="PassWord"
+            className="sigin-input-name"
+            onChange={(event) => validatePass(event)}
+            required
+          ></input>
+          <button
+            onClick={() => {
+              setShowPass(!showPass);
+            }}
+          >
+            {showPass ? (
+              <FontAwesomeIcon icon={faEye} />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            )}
+          </button>
         </div>
-        <label className="sign-label">Confrim-Password<span className="required">*</span>
+        <label className="sign-label">
+          Confrim-Password<span className="required">*</span>
         </label>
         <div className="signin-input-password-div-container">
-          <input type={showPass ? "text" : 'password'} className="sigin-input-name" placeholder="Confirm PassWord" required onChange={(event) => SetConfirmPass(event.target.value)}></input>
-          <button onClick = {() => {setShowPass(!showPass);}}>{showPass ? <FontAwesomeIcon icon={faEye}/> : <FontAwesomeIcon icon = {faEyeSlash}/>}</button>
+          <input
+            type={showPass ? "text" : "password"}
+            className="sigin-input-name"
+            placeholder="Confirm PassWord"
+            required
+            onChange={(event) => SetConfirmPass(event.target.value)}
+          ></input>
+          <button
+            onClick={() => {
+              setShowPass(!showPass);
+            }}
+          >
+            {showPass ? (
+              <FontAwesomeIcon icon={faEye} />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            )}
+          </button>
         </div>
         <label className="sign-label">
           Mobile Number<span className="required">*</span>
         </label>
-        <input type="number" className="sigin-input-name" placeholder="Phone Number"  value = {phone_number} {...button} required></input>
+        <input
+          type="number"
+          className="sigin-input-name"
+          placeholder="Phone Number"
+          value={phone_number}
+          {...button}
+          required
+        ></input>
         <br></br>
         <div className="center-container">
-          <button className="signupbutton" onClick = {submitData} id="sign-up-button">Sign Up</button>
-          <button className="signupbutton" onClick = {() => resetData()} id="reset-button">Reset</button>
+          <button
+            className="signupbutton"
+            onClick={submitData}
+            id="sign-up-button"
+          >
+            Sign Up
+          </button>
+          <button
+            className="signupbutton"
+            onClick={() => resetData()}
+            id="reset-button"
+          >
+            Reset
+          </button>
         </div>
         <div className="center-container">
-          <SignupUsingGoogle/>
+          <SignupUsingGoogle />
         </div>
         <hr className="Already-signup"></hr>
         <div className="Already-signup-container">

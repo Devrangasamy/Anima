@@ -24,7 +24,7 @@ export const GetPasswordAndUpdate = () => {
 
   // Data to redirect
   const [alreadyUser, setAlreadyUser] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(5);
 
   useEffect(() => {
     let responseFromAxios;
@@ -33,16 +33,32 @@ export const GetPasswordAndUpdate = () => {
       .get(`http://localhost:8000/api/auth/:${dataa.email}`)
       .then((response) => {
         setData(response);
-        responseFromAxios = response;
+        if (response.data.length > 0) {
+          setAlreadyUser(true);
+        }
       })
       .catch((error) => console.log(error));
     console.log(responseFromAxios);
   }, []);
+
   useEffect(() => {
     if (data.length > 0) {
-      setAlreadyUser(false);
+      setAlreadyUser(true);
     }
   });
+
+  const timer = () => {
+    setCount((prev) => prev - 1);
+  };
+
+  useEffect(() => {
+    if (alreadyUser === true) {
+      const interval = setInterval(timer, 1000);
+      if (count < 1) navigate("/login");
+      return () => clearInterval(interval);
+    }
+  }, [alreadyUser, count]);
+
   const submitAndValidate = (e) => {
     e.preventDefault();
     // This part needs to be completed for the password correction
@@ -74,18 +90,19 @@ export const GetPasswordAndUpdate = () => {
   };
   // Timer to navigate the page to login page
   // update the timer function here
-
   const alreadyUserCss = { color: "red", fontSize: 14 };
   return (
     <div className="center-contents getPasswordMainContainer">
       <div className="getPassFieldsContainer">
         {alreadyUser ? (
           <>
-            <h5>It seems you are already a user</h5>
+            <h5>It seems that, you are already a user</h5>
             <span className="centerContents" style={alreadyUserCss}>
               Redirecting you to login page in
             </span>
-            <span style = {alreadyUserCss} className="centerContents">{count}</span>
+            <span style={alreadyUserCss} className="centerContents">
+              {count}
+            </span>
           </>
         ) : (
           <>
