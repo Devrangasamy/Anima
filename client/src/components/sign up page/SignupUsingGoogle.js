@@ -1,7 +1,6 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Utilis/Authentication";
 import { useGoogleContext } from "../../Utilis/GoogleAuthendication";
 
 export const SignupUsingGoogle = () => {

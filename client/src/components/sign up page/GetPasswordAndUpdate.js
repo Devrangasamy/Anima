@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import React, { useEffect, useState } from "react";
-import { redirect, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useGoogleContext } from "../../Utilis/GoogleAuthendication";
 import "./GetPasswordAndUpdate.css";
 
@@ -39,7 +39,7 @@ export const GetPasswordAndUpdate = () => {
       })
       .catch((error) => console.log(error));
     console.log(responseFromAxios);
-  }, []);
+  }, [googleAuth.credential]);
 
   useEffect(() => {
     if (data.length > 0) {
