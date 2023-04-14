@@ -1,27 +1,31 @@
 .profile-container {
   background-color: #e0fbfc;
-  position: relative;
-}
-
-.profileupdatealert {
-  position: absolute;
-  right: 20px;
-  top: 20px;
 }
 
 .user-profile-inner-container {
   position: relative;
 }
+
+.profileupdatealert {
+  content: "";
+  position: absolute !important;
+  right: 20px;
+  top: 20px;
+  width: 200px;
+  z-index: 1;
+  background-color: rgb(9, 155, 9) !important;
+}
+
+.usercard-conatainer {
+  max-width: 300px !important;
+  content: "";
+  position: absolute !important;
+  top: 80px;
+  left: 25px;
+}
 .user-profile-banner {
   max-height: 200px !important;
   width: 100vw;
-}
-.usercard-conatainer {
-  max-width: 300px !important;
-  position: absolute;
-  content: "";
-  top: 80px;
-  left: 25px;
 }
 .card-body-title {
   font-size: 20px;
