@@ -14,8 +14,7 @@ import { Cart } from "./Pages/Product/Cart";
 import Doctordetails from "./Pages/Doctor/Doctordetails";
 import { Petregisteration } from "./components/Petregistration/petregisteration";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
-import { GoogleAuthendication } from "./Utilis/GoogleAuthendication";
-import { UserUpdate } from "./components/Profile/UserUpdate.js";
+
 
 function Allroutes() {
   return (
@@ -35,9 +34,7 @@ function Allroutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup></Signup>} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/userupdate" element={<UserUpdate />} />
           <Route path="/petregisteration" element={<Petregisteration />} />
-
           <Route path="/forgetpassword" element={<Forgetpassword />} />
 
           <Route path="/products" element={<Product />} />
