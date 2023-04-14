@@ -48,7 +48,7 @@ const ProfileInformationEditPopup = (props) => {
     <div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Form Title</Modal.Title>
+          <Modal.Title>Profile Information</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>

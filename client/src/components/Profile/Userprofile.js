@@ -52,7 +52,7 @@ export const Userprofile = () => {
           setprofileupdatealert={setprofileupdatealert}
         ></ProfileInformation>
       </div>
-      <AdditionalInfo userdata={userdata} />
+      <AdditionalInfo userdata={userdata} setUserdata={setUserdata} />
     </div>
   );
 };
