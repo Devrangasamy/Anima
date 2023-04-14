@@ -19,7 +19,7 @@ export const login = async (req, res, next) => {
     });
     if (user.length >= 1) {
       console.log(user);
-      res.status(200).json({ status: "success", data: user });
+      res.status(200).json({ status: "Success", data: user });
     } else {
       res.status(400).json(user);
     }
@@ -27,6 +27,23 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+// This is to login using the google
+export const loginUsingGoogle = async (req, res, next) => {
+  try {
+    const user = await User.find({
+      email: req.body.email,
+    });
+    console.log(user);
+    if (user.length >= 1) {
+      res.status(200).json({ status: "Sucess", data: user });
+    } else {
+      res.status(400).json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const getusers = async (req, res, next) => {
   try {
     const users = await User.find();
