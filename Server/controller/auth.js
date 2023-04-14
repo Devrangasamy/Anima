@@ -91,3 +91,21 @@ export const deleteEmailID = async (req, res, next) => {
     next(err);
   }
 };
+
+// This is to update the password
+export const updatepassword = async (req, res, next) => {
+  const filter = { email: req.body.email };
+  try {
+    const user = await User.find(filter);
+    console.log(user[0]._id);
+    const updation = await User.findOneAndUpdate(
+      filter,
+      { $set: req.body },
+      { new: true }
+    );
+    console.log(updation);
+    res.status(200).json({ status: "sucess", response: updation });
+  } catch (error) {
+    res.status(400).json({ status: "Fail", response: updation });
+  }
+};

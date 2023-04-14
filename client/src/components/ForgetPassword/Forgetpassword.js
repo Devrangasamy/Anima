@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Forgetpassword.css";
 import emailjs from "@emailjs/browser";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "./Forgetpassword.css";
 
 // To show up the icons in the page
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
 export const Forgetpassword = () => {
@@ -28,10 +28,15 @@ export const Forgetpassword = () => {
   const [showPass, setShowPass] = useState(false);
   const [wrongPasswordFlag, setWrongPasswordFlag] = useState(false);
 
-  const navigate = useNavigate();
   // This is for the timer
   const [seconds, setSeconds] = useState(60);
   const [timerFlag, setTimerFlag] = useState(false);
+  const [reloadFlag, setReloadFlag] = useState(true);
+
+  // for the sucessfull updation of the password
+  const [updationSucessfull, setUpdationSucessfull] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -43,16 +48,17 @@ export const Forgetpassword = () => {
   });
 
   // This is the timer to refresh the page
+  const updateTimer = () => {
+    setSeconds((prev) => prev - 1);
+  };
   useEffect(() => {
-    let interval = null;
     if (timerFlag === true) {
-      interval = setInterval(() => {
-        setSeconds(seconds - 1);
-        console.log(seconds);
-      }, 1000);
+      const interval = setInterval(updateTimer, 1000);
+      if (seconds < 1 && reloadFlag) window.location.reload(false);
+      if (seconds < 1 && reloadFlag === false) navigate("/login");
+      return () => clearInterval(interval);
     }
-    return () => clearInterval(interval);
-  });
+  }, [timerFlag, seconds]);
 
   // This is to send the OTP Mail
   const sendMail = (event) => {
@@ -67,20 +73,13 @@ export const Forgetpassword = () => {
           OTP += digits[Math.floor(Math.random() * 10)];
         }
         setGeneratedOTP(OTP);
-        console.log(OTP);
         // This sends the OTP via the email
-        emailjs
-          .send(
-            "service_1k651y6",
-            "template_2gt9cx3",
-            {
-              to_name: `${data.username}`,
-              message: `${OTP}`,
-              to_email: `${mailId}`,
-            },
-            "L5WeMsvekZj0yavpY"
-          )
-          .then((result) => console.log(result))
+        axios
+          .post("http://localhost:8000/sendMail", {
+            to_address: mailId,
+            subject: "Anima Password reset",
+            message: `The otp to change your password is ${OTP}`,
+          })
           .catch((error) => console.log(error));
         setMailIdContainer(false);
         setOtpFlag(true);
@@ -97,29 +96,41 @@ export const Forgetpassword = () => {
     if (generatedOTP === userOtp) {
       setOtpFlag(false);
       setChangePassFlag(true);
+      setTimerFlag(false);
       setGeneratedOTP("");
     } else {
+      console.log(generatedOTP);
       console.log("The OTP is incorrect Enter it again");
       setWrongOTPFlag(true);
     }
     setUserOtp("");
   };
-  const updatePassword = () => {
+  const updatePassword = async () => {
     if (pass === confirmPass) {
-      console.log("There password is updated sucessfully");
-      navigate("/login");
+      await axios
+        .post("http://localhost:8000/api/auth/updatePassword", {
+          email: mailId,
+          newpassword: pass,
+          confirmpassword: confirmPass,
+        })
+        .then(() => {
+          setUpdationSucessfull(true);
+          setChangePassFlag(false);
+          setTimerFlag(true);
+          setSeconds(5);
+          setReloadFlag(false);
+        })
+        .catch((error) => console.log(error));
     } else {
+      console.log(generatedOTP);
       console.log("The password dont match correctly ;( kindly re-enter it");
       setWrongPasswordFlag(true);
     }
   };
   const changeShowStatus = () => {
     setShowPass(!showPass);
-    console.log(showPass);
   };
-  // const sampleUpdate = () => {
-  //   console.log("This is the sample")
-  // }
+
   return (
     <div className="forget-password-container">
       {/* <button onClick = {sampleUpdate}>Sample button</button> */}
@@ -273,6 +284,22 @@ export const Forgetpassword = () => {
                     Update Password
                   </button>
                 </div>
+              </div>
+            </>
+          )}
+          {updationSucessfull && (
+            <>
+              <div
+                className="center-contents"
+                style={{ fontSize: 20, fontWeight: 550 }}
+              >
+                Password updation sucessfull
+              </div>
+              <div className="center-contents forgot-password-auto-reload">
+                <span>Redirecting to Login page in</span>
+              </div>
+              <div className="center-contents forgot-password-auto-reload">
+                <span>{seconds}</span>
               </div>
             </>
           )}
