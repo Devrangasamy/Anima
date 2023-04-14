@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+// Components
+import CustomHooksForm from "./CustomHooksForm";
 import { Button, Modal } from "react-bootstrap";
 
-// components
+const AdditionalInfoEditpopoup = (props) => {
+  const { birthday, address, gender, handleShow, update, close } = props;
 
-import CustomHooksForm from "./CustomHooksForm";
+  const [updatebirthday, setbirthday] = CustomHooksForm(birthday);
+  const [updategender, setgender] = CustomHooksForm(gender);
+  const [updateaddress, setaddress] = CustomHooksForm(address);
 
-const ProfileInformationEditPopup = (props) => {
   const [show, setShow] = useState(false);
-
-  const { username, useremail, usercontact, handleShow, update, close } = props;
-
-  const [updatename, setupdatename] = CustomHooksForm(username);
-  const [updateemail, setupdateemail] = CustomHooksForm(useremail);
-  const [updatecontact, setupdatecontact] = CustomHooksForm(usercontact);
 
   React.useEffect(() => {
     if (handleShow) {
@@ -32,10 +30,13 @@ const ProfileInformationEditPopup = (props) => {
     axios
       .put(
         `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
-        { username: updatename, email: updateemail, contact: updatecontact }
+        {
+          birthday: String(updatebirthday),
+          gender: updategender,
+          address: updateaddress,
+        }
       )
       .then((data) => {
-        localStorage.setItem("username", updatename);
         console.log("data upadted successfully");
         update();
       })
@@ -48,36 +49,40 @@ const ProfileInformationEditPopup = (props) => {
     <div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Profile Information</Modal.Title>
+          <Modal.Title>Additional Information</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>
             <div className="mb-3 mt-3">
-              <label className="form-label">Username</label>
+              <label className="form-label">Birthday</label>
               <input
-                type="text"
+                type="date"
                 className="form-control"
-                value={updatename}
-                onChange={setupdatename}
+                value={updatebirthday}
+                onChange={setbirthday}
               ></input>
             </div>
             <div className="mb-3">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                value={updateemail}
-                onChange={setupdateemail}
+              <label className="form-label">Gender</label>
+              <select
+                value={updategender}
+                onChange={setgender}
                 className="form-control"
-              ></input>
+                required
+              >
+                <option value="">select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+              </select>
             </div>
             <div className="mb-3">
               <label className="form-label">Contact</label>
-              <input
-                type="number"
-                value={updatecontact}
-                onChange={setupdatecontact}
+              <textarea
+                value={updateaddress}
+                onChange={setaddress}
                 className="form-control"
-              ></input>
+              ></textarea>
             </div>
           </form>
         </Modal.Body>
@@ -94,4 +99,4 @@ const ProfileInformationEditPopup = (props) => {
   );
 };
 
-export default ProfileInformationEditPopup;
+export default AdditionalInfoEditpopoup;

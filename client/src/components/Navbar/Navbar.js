@@ -2,23 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
-import { useAuth } from "../../Utilis/Authentication";
-//
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const auth = useAuth();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
-  // const instyle = ({ isActive }) => {
-  //   return {
-  //     color: isActive ? "#fff" : "",
-  //     backgroundColor: isActive ? "#411a52" : "",
-  //   };
-  // };
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -32,16 +22,15 @@ function Navbar() {
     if (window.innerWidth < 960) {
       setDropdown(false);
     } else {
-      setDropdown(false);
+      setDropdown(true);
     }
   };
-
+  console.log(dropdown);
   return (
     <>
       <nav className="navbars">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           <h3 className="logo-brand">Anima</h3>
-          {/* <i className="fab fa-firstdraft" /> */}
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -49,38 +38,24 @@ function Navbar() {
 
         <ul className={click ? "nav-menus active" : "nav-menus"}>
           <li className="nav-items">
-            <Link
-              // style={instyle}
-              to="/"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
+            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
               Home
             </Link>
           </li>
 
           <li
-            // style={instyle}
             className="nav-items"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <Link
-              to="/services"
-              className="nav-links"
-              // onClick={closeMobileMenu}
-            >
-              Services <i className="fas fa-caret-down" />
+            <Link to="/services" className="nav-links">
+              Services
             </Link>
-            {dropdown && <Dropdown />}
+            {<Dropdown /> && console.log(dropdown) && console.log(<Dropdown />)}
           </li>
 
           <li className="nav-items">
-            <Link
-              to="/accessories"
-              className="nav-links"
-              // onClick={closeMobileMenu}
-            >
+            <Link to="/accessories" className="nav-links">
               Accessories
             </Link>
           </li>
@@ -97,7 +72,6 @@ function Navbar() {
             <li className="nav-items">
               <Link
                 className="nav-links"
-                // onClick={closeMobileMenu}
                 // onClick={() => setButtonPopup(true)}
                 to="/profile"
               >
@@ -115,11 +89,7 @@ function Navbar() {
           {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
           {!localStorage.getItem("username") && (
             <li className="nav-items">
-              <Link
-                to="/signup"
-                className="nav-links"
-                // onClick={closeMobileMenu}
-              >
+              <Link to="/signup" className="nav-links">
                 Sign Up
               </Link>
             </li>

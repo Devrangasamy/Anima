@@ -16,7 +16,6 @@ import {
 
 export const ProfileInformation = (props) => {
   const { userdata, setUserdata, setprofileupdatealert } = props;
-
   const [showFormflag, setShowFormflag] = useState(false);
 
   const close = () => {
