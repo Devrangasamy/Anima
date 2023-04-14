@@ -7,8 +7,8 @@ router.post("/register", register);
 router.post("/login", login);
 router.post('/loginUsingGoogle', loginUsingGoogle)
 router.get("/", getusers);
-router.get('/:emailID', findMailId)
-router.delete('/:id', deleteEmailID)
+router.get("/:emailID", findMailId);
+router.delete("/:id", deleteEmailID);
 router.put("/:username", updateusers);
-router.get("/:username", getuser);
+router.get("/name/:username", getuser);
 export default router;

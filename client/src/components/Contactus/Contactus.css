@@ -140,7 +140,7 @@ textarea.input{
     min-height: 150px;
     overflow: auto;
 }
-.btn{
+.contact-button{
     position:relative;
     top: 100px;
     background:#fff;
