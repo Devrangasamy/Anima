@@ -34,7 +34,14 @@ function Allroutes() {
             <Route path="/contactus" element={<Contactus />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup></Signup>} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <RequiredAuth>
+                  <Profile />
+                </RequiredAuth>
+              }
+            />
             <Route path="/petregisteration" element={<Petregisteration />} />
             <Route path="/forgetpassword" element={<Forgetpassword />} />
             <Route
