@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 export const Sample = () => {
   const [count, setCount] = useState(0);
-  const [seconds, setSeconds] = useState(0);
   const timer = () => {
     setCount((prev) => prev + 1);
   };
@@ -13,9 +12,6 @@ export const Sample = () => {
     };
   }, []);
 
-  const secondTimer = () => {
-  }
-  
   return (
     <div>
       {count}
