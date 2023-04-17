@@ -81,3 +81,24 @@
   font-weight: 1000;
   /* text-shadow: black 0.1em 0.1em 0.2em */
 }
+.popup-profile{
+  background-color: red;
+  color:black;
+  width: 12%;
+  height:15%;
+  /* display: flex; */
+  right: 35px;
+  position:absolute;
+  top: 60px;
+  z-index: 1;
+}
+.popup-content{
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid black;
+  text-align: center;
+  text-decoration: none;
+  color: #bfd7ea;
+  padding: 10px;
+  
+}
