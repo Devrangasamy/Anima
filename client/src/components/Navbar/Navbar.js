@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 
+
 function Navbar() {
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -17,7 +21,14 @@ function Navbar() {
       setDropdown(true);
     }
   };
-
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+  const logoutuser=()=>{
+    localStorage.removeItem("username");
+    setIsOpen(!isOpen);
+    navigate("/");
+  }
   const onMouseLeave = () => {
     if (window.innerWidth < 960) {
       setDropdown(false);
@@ -72,13 +83,14 @@ function Navbar() {
             <li className="nav-items">
               <Link
                 className="nav-links"
-                // onClick={() => setButtonPopup(true)}
-                to="/profile"
+                onClick={togglePopup}
+                // to="/profile"
               >
                 Profile
               </Link>
             </li>
           )}
+           
           {!localStorage.getItem("username") && (
             <li className="nav-items">
               <Link to="/login" className="nav-links">
@@ -97,6 +109,14 @@ function Navbar() {
         </ul>
         {/* <Button /> */}
       </nav>
+      {isOpen && (
+              <div className="popup-profile">
+                <div className="popup-content">
+                  <Link  to="/profile" style={{padding:"20px"}}> Profile</Link>
+                  <button onClick={logoutuser}>Logout</button>
+                </div>
+              </div>
+            )}
     </>
   );
 }
