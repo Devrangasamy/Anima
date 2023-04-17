@@ -47,7 +47,11 @@ export const ProfileInformation = (props) => {
   };
   return (
     <div className="usercard-conatainer card">
-      <img src={userprofile} className="card-img-top" alt="..." />
+      {userdata.image === "" || userdata.image == null ? (
+        <img src={userprofile} className="card-img-top" alt="..." />
+      ) : (
+        <img src={userdata.image} className="card-img-top" alt="..." />
+      )}
       <div className="card-body">
         <div className="d-flex justify-content-between mb-2">
           <h1 className="card-title card-body-title">Profile Information</h1>

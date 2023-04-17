@@ -56,28 +56,19 @@ export const getusers = async (req, res, next) => {
     next(err);
   }
 };
-export const updateusers =
-  (upload.single("avatar"),
-  async (req, res, next) => {
-    const filter = { username: req.params.username };
-    try {
-      const img = req.file.buffer;
-      const encode_image = img.toString("base64");
-      const finalImg = {
-        contentType: req.file.mimetype,
-        image: new Buffer.from(encode_image, "base64"),
-      };
-      console.log(finalImg);
-      const updatedusers = await User.findOneAndUpdate(
-        filter,
-        { $set: { ...req.body, avatar: finalImg } },
-        { new: true }
-      );
-      res.status(200).json(updatedusers);
-    } catch (err) {
-      next(err);
-    }
-  });
+export const updateusers = async (req, res, next) => {
+  const filter = { username: req.params.username };
+  try {
+    const updatedusers = await User.findOneAndUpdate(
+      filter,
+      { $set: req.body },
+      { new: true }
+    );
+    res.status(200).json(updatedusers);
+  } catch (err) {
+    next(err);
+  }
+};
 export const findMailId = async (req, res, next) => {
   try {
     const email = req.params.emailID.slice(1);
