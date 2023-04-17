@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 
-
 function Navbar() {
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
@@ -24,11 +23,11 @@ function Navbar() {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
-  const logoutuser=()=>{
+  const logoutuser = () => {
     localStorage.removeItem("username");
     setIsOpen(!isOpen);
     navigate("/");
-  }
+  };
   const onMouseLeave = () => {
     if (window.innerWidth < 960) {
       setDropdown(false);
@@ -90,7 +89,7 @@ function Navbar() {
               </Link>
             </li>
           )}
-           
+
           {!localStorage.getItem("username") && (
             <li className="nav-items">
               <Link to="/login" className="nav-links">
@@ -110,13 +109,23 @@ function Navbar() {
         {/* <Button /> */}
       </nav>
       {isOpen && (
-              <div className="popup-profile">
-                <div className="popup-content">
-                  <Link  to="/profile" style={{padding:"20px"}}> Profile</Link>
-                  <button onClick={logoutuser}>Logout</button>
-                </div>
-              </div>
-            )}
+        <div className="popup-profile rounded">
+          <div className="popup-content d-grid">
+            <Link
+              to="/profile"
+              className="text-decoration-none text-center border-bottom p-3"
+            >
+              Profile
+            </Link>
+            <Link
+              onClick={logoutuser}
+              className="text-decoration-none text-center p-3"
+            >
+              Logout
+            </Link>
+          </div>
+        </div>
+      )}
     </>
   );
 }
