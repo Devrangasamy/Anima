@@ -73,7 +73,7 @@ function Navbar() {
               <Link
                 className="nav-links"
                 // onClick={() => setButtonPopup(true)}
-                // to="/profile"
+                to="/profile"
               >
                 Profile
               </Link>

@@ -14,7 +14,7 @@ const ProfileInformationEditPopup = (props) => {
   const [updatename, setupdatename] = CustomHooksForm(username);
   const [updateemail, setupdateemail] = CustomHooksForm(useremail);
   const [updatecontact, setupdatecontact] = CustomHooksForm(usercontact);
-  // const [updateimg, setupdateimg] = CustomHooksForm("");
+  const [updateimg, setupdateimg] = useState([]);
 
   React.useEffect(() => {
     if (handleShow) {
@@ -27,6 +27,18 @@ const ProfileInformationEditPopup = (props) => {
     close();
   };
 
+  function convertToBase64(e) {
+    console.log(e);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      setupdateimg(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
+  }
   const submit = (e) => {
     e.preventDefault();
     handleClose();
@@ -38,6 +50,7 @@ const ProfileInformationEditPopup = (props) => {
           username: updatename,
           email: updateemail,
           contact: updatecontact,
+          image: updateimg,
         }
       )
       .then((data) => {
@@ -59,14 +72,15 @@ const ProfileInformationEditPopup = (props) => {
         <Modal.Body>
           <form>
             <div className="mb-3 mt-3">
-              {/* <div className="mb-3">
+              <div className="mb-3">
                 <label className="form-label">Profile Image</label>
                 <input
+                  accepts="image/*"
                   type="file"
-                  onChange={setupdateimg}
+                  onChange={convertToBase64}
                   className="form-control"
                 ></input>
-              </div> */}
+              </div>
               <label className="form-label">Username</label>
               <input
                 type="text"
