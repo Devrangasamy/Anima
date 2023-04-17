@@ -14,6 +14,7 @@ const ProfileInformationEditPopup = (props) => {
   const [updatename, setupdatename] = CustomHooksForm(username);
   const [updateemail, setupdateemail] = CustomHooksForm(useremail);
   const [updatecontact, setupdatecontact] = CustomHooksForm(usercontact);
+  // const [updateimg, setupdateimg] = CustomHooksForm("");
 
   React.useEffect(() => {
     if (handleShow) {
@@ -29,10 +30,15 @@ const ProfileInformationEditPopup = (props) => {
   const submit = (e) => {
     e.preventDefault();
     handleClose();
+    // console.log(updateimg);
     axios
       .put(
         `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
-        { username: updatename, email: updateemail, contact: updatecontact }
+        {
+          username: updatename,
+          email: updateemail,
+          contact: updatecontact,
+        }
       )
       .then((data) => {
         localStorage.setItem("username", updatename);
@@ -53,6 +59,14 @@ const ProfileInformationEditPopup = (props) => {
         <Modal.Body>
           <form>
             <div className="mb-3 mt-3">
+              {/* <div className="mb-3">
+                <label className="form-label">Profile Image</label>
+                <input
+                  type="file"
+                  onChange={setupdateimg}
+                  className="form-control"
+                ></input>
+              </div> */}
               <label className="form-label">Username</label>
               <input
                 type="text"
