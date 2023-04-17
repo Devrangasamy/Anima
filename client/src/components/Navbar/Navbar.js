@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 import { useAuth } from "../../Utilis/Authentication";
-//
+import { Profile } from "../../Pages/Profile/Profile";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -99,7 +99,7 @@ function Navbar() {
                 className="nav-links"
                 // onClick={closeMobileMenu}
                 // onClick={() => setButtonPopup(true)}
-                to="/profile"
+                // to="/profile"
               >
                 Profile
               </Link>
