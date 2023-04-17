@@ -1,27 +1,27 @@
-.dropdown-menu {
-  background: #0B3954;
+.dropdown-menus {
+  background: #0b3954;
   width: 150px;
   position: absolute;
+  z-index: 100;
   top: 70px;
   list-style: none;
   text-align: start;
   border-radius: 100px;
 }
 
-.dropdown-menu li {
-  background:#0B3954;
+.dropdown-menus li {
+  background: #0b3954;
   cursor: pointer;
 }
 
-.dropdown-menu li:hover {
-  background: #0B3954;
+.dropdown-menus li:hover {
+  background: #0b3954;
 }
 
-.dropdown-menu.clicked {
-  display: none;
-}
+/* .dropdown-menus.clicked {
+} */
 
-.dropdown-link {
+.dropdown-links {
   display: block;
   height: 100%;
   width: 100%;

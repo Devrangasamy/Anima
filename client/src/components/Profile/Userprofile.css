@@ -1,15 +1,43 @@
-.petregistercontainer {
-  max-width: 600px;
-  margin: 0 auto 50px auto !important;
+.profile-container {
+  background-color: #e0fbfc;
 }
 
-/* .registerbtn button {
-  width: 100px;
-} */
+.user-profile-inner-container {
+  position: relative;
+}
 
-.registerbtn {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  align-items: center;
+.profileupdatealert {
+  content: "";
+  position: absolute !important;
+  right: 20px;
+  top: 20px;
+  width: 200px;
+  z-index: 1;
+  background-color: rgb(9, 155, 9) !important;
+}
+
+.usercard-conatainer {
+  max-width: 300px !important;
+  content: "";
+  position: absolute !important;
+  top: 80px;
+  left: 25px;
+}
+.user-profile-banner {
+  max-height: 200px !important;
+  width: 100vw;
+}
+.card-body-title {
+  font-size: 20px;
+  color: #333;
+}
+
+.additional-details-conatiner {
+  margin-left: 350px;
+}
+
+.additional-details {
+  box-shadow: 0px 10px 30px -3px rgba(0, 0, 0, 0.1),
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }

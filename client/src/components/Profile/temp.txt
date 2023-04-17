@@ -1,0 +1,339 @@
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import userprofile from "../../Assets/userprofile.jpg";
+import userprofilebanner from "../../Assets/profile_banner.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Userprofile.css";
+// import { ProfileEditPage } from "./ProfileEditPage";
+import {
+  faPhone,
+  faEnvelope,
+  faSignature,
+} from "@fortawesome/free-solid-svg-icons";
+
+// show edit page
+// import { Button, Modal } from "react-bootstrap";
+// import { Singlechange } from "./Singlechange";
+
+export const Userprofile = () => {
+  const [userdata, setUserdata] = useState(false);
+
+  // const [showprofileEditPage, setprofileEditPage] = useState([]);
+
+  // const [profileupdatealert, setprofileupdatealert] = useState(false);
+
+  // const [show, setShow] = useState(false);
+
+  // const [updatename, setupdatename] = Singlechange(userdata.username);
+  // const [updateemail, setupdateemail] = Singlechange(userdata.email);
+  // const [updatecontact, setupdatecontact] = Singlechange(userdata.contact);
+
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
+          "username"
+        )}`
+      )
+      .then((data) => {
+        console.log(data + "data");
+        setUserdata(data.data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  console.log(userdata);
+
+  // const update = () => {
+  //   setShow(false);
+  //   axios
+  //     .get(
+  //       `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
+  //         "username"
+  //       )}`
+  //     )
+  //     .then((data) => {
+  //       setTimeout(() => {
+  //         setUserdata(data.data[0]);
+  //         // setprofileupdatealert(false);
+  //       }, 2000);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // const submit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .put(
+  //       `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
+  //       { username: updatename, email: updateemail, contact: updatecontact }
+  //     )
+  //     .then((data) => {
+  //       console.log("data upadted successfully");
+  //       update();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // const showprofileEdit = () => {
+
+  //   setprofileEditPage(
+  //     <ProfileEditPage
+  //       username={userdata.username}
+  //       useremail={userdata.email}
+  //       usercontact={userdata.contact}
+  //       update={update}
+  //     ></ProfileEditPage>
+  //   );
+
+  // };
+  return (
+    <div className="my-3 p-4 profile-container container">
+      {/* {profileupdatealert && (
+          <div class="alert alert-success profileupdatealert" role="alert">
+            Data is updating please wait!!!
+          </div>
+        )} */}
+
+      <div className="user-profile-inner-container">
+        <img
+          src={userprofilebanner}
+          className="user-profile-banner rounded img-fluid"
+          alt="Profile banner"
+        />
+        <div className="usercard-conatainer card">
+          <img src={userprofile} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <div className="d-flex justify-content-between mb-2">
+              <h1 className="card-title card-body-title">
+                Profile Information
+              </h1>
+              {/* <Link onClick={handleShow}>Edit</Link> */}
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faSignature} />
+              </p>
+
+              <p className="fw-normal col mx-1 card-text">
+                {userdata.username}
+              </p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faPhone} />
+              </p>
+              <p className="fw-normal col mx-1 card-text">{userdata.contact}</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </p>
+              <p className="fw-normal col mx-1 card-text">{userdata.email}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="additional-details-conatiner my-5">
+        <div>
+          <button className="btn btn-light">Addtionl details</button>
+        </div>
+        <div className="additional-details my-4 p-3 rounded">
+          <div className="row">
+            <p className="col-6">Birthday</p>
+            <p className="fw-normal col-6">Birthday</p>
+          </div>
+          <div className="row">
+            <p className="col-6">Gender</p>
+            <p className="fw-normal col-6">Gender</p>
+          </div>
+          <div className="row">
+            <p className="col-6">Address</p>
+            <p className="fw-normal col-6">Address</p>
+          </div>
+        </div>
+      </div>
+
+      {/* <div>
+        <Button variant="primary" onClick={handleShow}>
+          Show Form
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Form Title</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <div className="mb-3 mt-3">
+                <label className="form-label">Email:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={updatename}
+                  onChange={setupdatename}
+                ></input>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">email:</label>
+                <input
+                  type="email"
+                  value={updateemail}
+                  onChange={setupdateemail}
+                  className="form-control"
+                ></input>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">contact:</label>
+                <input
+                  type="number"
+                  value={updatecontact}
+                  onChange={setupdatecontact}
+                  className="form-control"
+                ></input>
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={submit}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>*/}
+    </div>
+  );
+};
+/* <div className="container mt-5">
+      <div class="row mb-5 gap-5">
+        <div className="col-sm-6 col-lg-5">
+          <img
+            src={userprofile}
+            className="rounded img-fluid"
+            alt="userprofile"
+            />
+        </div>
+        <div className="col-sm-6 col-lg-7 px-sm-5 mt-5 m-sm-0 userprofile">
+          <h1 className="text-success mb-4">PROFILE</h1>
+          <div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faSignature} />
+              </p>
+              <p className="fw-normal col mx-1">{userdata.username}</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faPhone} />
+              </p>
+              <p className="fw-normal col mx-1">{userdata.contact}</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </p>
+              <p className="fw-normal col mx-1">{userdata.email}</p>
+            </div>
+            <div className="row gap-5 mt-4">
+              <button
+                className="btn btn-secondary  col-md-4 col-lg-3"
+                onClick={() => {
+                  localStorage.removeItem("username");
+                  navigate("/");
+                }}
+              >
+                Logout
+              </button>
+              <Link
+                className="btn btn-secondary col-md-4 col-lg-3"
+                to="/userupdate"
+                state={{
+                  name: userdata.username,
+                  email: userdata.email,
+                  contact: userdata.contact,
+                }}
+              >
+                Edit
+              </Link>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div className="col-sm-6">
+          <h1 className="text-success mb-4">CONTACT</h1>
+          <div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faPhone} />
+              </p>
+              <p className="fw-normal col">{userdata.contact}</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </p>
+              <p className="fw-normal col">{userdata.email}</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faHouse} />
+              </p>
+              <p className="fw-normal col">Address</p>
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-6">
+          <h1 className="text-success mb-4">BASIC DETAILS</h1>
+          <div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faCakeCandles} />
+              </p>
+              <p className="fw-normal col">Birthday</p>
+            </div>
+            <div className="row">
+              <p className="col-1">
+                <FontAwesomeIcon icon={faPerson} />
+              </p>
+              <p className="fw-normal col">Gender</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-success p-5 petregistercontainer rounded">
+        <div>
+          <p className="text-light">
+            Welcome to our pet store website, where you can find everything you
+            need for your furry friends!
+          </p>
+          <p className="text-light pb-3">
+            From food and toys to grooming and veterinary services, our website
+            has everything you need to keep your pet happy and healthy Register
+            your pet now.
+          </p>
+          <div className="registerbtn">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                navigate("/petregisteration");
+              }}
+            >
+              Rgister
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> */

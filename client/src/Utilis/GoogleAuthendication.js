@@ -1,21 +1,23 @@
-import React, { useContext, useState } from 'react'
-const googleContext = React.createContext()
+import React, { useContext, useState } from "react";
+const GoogleContext = React.createContext();
 
 export const GoogleAuthendication = (props) => {
-    const [credential, setCredential] = useState('')
-    const updateCredential = (name) => {
-        setCredential(name)
-    }
-    const resetCrential = () => {
-        setCredential('')
-    }
-    return(
-        <googleContext.Provider value = {{credential, setCredential, resetCrential}}>
-            {props.children}
-        </googleContext.Provider>
-    )
-}
+  const [credential, setCredential] = useState("");
+  const updateCredential = (name) => {
+    setCredential(name);
+  };
+  const resetCrential = () => {
+    setCredential("");
+  };
+  return (
+    <GoogleContext.Provider
+      value={{ credential, updateCredential, resetCrential }}
+    >
+      {props.children}
+    </GoogleContext.Provider>
+  );
+};
 
 export const useGoogleContext = () => {
-    return useContext(googleContext)
-}
+  return useContext(GoogleContext);
+};

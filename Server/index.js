@@ -1,10 +1,12 @@
-import express from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
 import authRoute from "./routes/authRoute.js";
-import productRoute from "./routes/productRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
+import feedbackRoute from "./routes/feedbackroute.js";
+import productRoute from "./routes/productRoute.js";
+import { sendMailUsingNodemailer } from "./node mailer/nodemailer.js";
 
 dotenv.config();
 const app = express();
@@ -31,6 +33,8 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/doctor", doctorRoute);
+app.use("/api/feedback", feedbackRoute);
+app.post("/sendMail", sendMailUsingNodemailer);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
