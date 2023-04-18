@@ -71,3 +71,43 @@
     margin-right: 0; 
 }
 
+.kind-service{
+    color: #333;
+    padding: 24px 0;
+    font-size: 40px;
+    line-height: 1;
+    font-weight: bold;
+
+}
+.main-first{
+    display:grid !important;
+    grid-template-columns:60px auto;
+}
+.icon-first{
+    position:absolute;
+    top:10px;
+    font-size:25px;
+}
+.head-first{
+    position:absolute;
+    top:15px;
+    left:55%;
+    font-size:25px;
+    font-weight:bold;
+}
+.head-firsts{
+    position:absolute;
+    top:15px;
+    left:30%;
+    font-size:25px;
+    font-weight:bold;
+}
+.para-first{
+    position:absolute;
+    top:65px;
+    width:270px;
+}
+.container-first{
+    height:200px;
+    position:relative;
+}
