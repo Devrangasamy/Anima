@@ -1,0 +1,158 @@
+.container-form {
+  height: 100vh;
+  width: 100vw;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  width: 100vw;
+  background-color: #ccffff;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../../Assets/signup.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  background-repeat: no-repeat;
+}
+
+
+.signup-form {
+  background-color: #fff;
+  border-radius: 11px;
+  padding: 32px 32px;
+}
+
+#welcome-text-container {
+  color: #444;
+  font-size: 18px;
+  margin: 10px 0 18px 0;
+}
+
+.sign-label {
+  color: #555;
+}
+
+.required {
+  color: red;
+}
+
+.sigin-input-name {
+  text-align: start;
+  height: 25px;
+  width: 100%;
+  font-size: 14px;
+  color: #777;
+  border: none;
+  border: 1px solid #999;
+  border-radius: 7px;
+  padding-left: 5px;
+  margin: 5px 0 5px;
+}
+
+.signin-input-password-div-container input {
+  width: 92%;
+  height: auto;
+  border: none;
+  background: none;
+  padding-left: 7px;
+}
+
+.signin-input-password-div-container button {
+  background: none;
+  border: none;
+}
+
+.signin-input-password-div-container {
+  border: 1px solid #999;
+  height: 25px;
+  border-radius: 7px;
+}
+
+.signin:focus {
+  background-color: none;
+  width: 260px;
+  height: 35px;
+  transition: ease-in-out, width 0.35s ease-out;
+}
+
+.center-contents {
+  display: flex;
+  justify-content: center;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.signupbutton {
+  height: 30px;
+  width: auto;
+  padding: 0px 20px 0px 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin: 10px 10px 10px 10px;
+}
+
+.signupbutton:hover {
+  background: #411a52;
+  color: #fff;
+}
+
+.signupbutton .signspan {
+  font-size: 10px;
+  color: red;
+}
+
+#reset-button:hover {
+  background-color: rgb(244, 60, 60);
+}
+
+focus {
+  justify-content: center;
+}
+
+#password-status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Already-signup {
+  margin: 20px 0px 0px 0px;
+}
+
+.Already-signup-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.Already-signup-para {
+  color: #777;
+}
+
+.Already-signup-button {
+  height: 30px;
+  width: 100px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.Already-signup-button:hover {
+  background: #411a52;
+  color: #fff;
+}
+
+.login-page-mismatch-password {
+  font-size: 14px;
+  color: red;
+  margin: 5px 0px 5px 0px;
+}

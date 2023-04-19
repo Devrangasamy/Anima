@@ -1,41 +1,39 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "./Navbar.css";
 import Dropdown from "./Dropdown";
+import "./Navbar.css";
 
 function Navbar() {
-  const navigate = useNavigate();
+  const navigates = useNavigate();
   const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+  const [drop, setdrop] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
   const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
+    if (window.innerWidth < 100) {
+      setdrop(false);
     } else {
-      setDropdown(true);
+      setdrop(true);
     }
-  };
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
   };
   const logoutuser = () => {
     localStorage.removeItem("username");
+    navigates("/");
     setIsOpen(!isOpen);
-    navigate("/");
   };
   const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
+    if (window.innerWidth < 100) {
+      setdrop(true);
     } else {
-      setDropdown(true);
+      setdrop(false);
     }
   };
-  console.log(dropdown);
+  const [showProfileDrop, setShowProfileDrop] = useState(false);
   return (
     <>
       <nav className="navbars">
@@ -58,10 +56,14 @@ function Navbar() {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <Link to="/services" className="nav-links">
+            <Link
+              to="/services"
+              className="nav-links"
+              style={{ paddingLeft: 30 }}
+            >
               Services
             </Link>
-            {<Dropdown /> && console.log(dropdown) && console.log(<Dropdown />)}
+            {drop && <Dropdown className="navbar-services-popup" />}
           </li>
 
           <li className="nav-items">
@@ -79,14 +81,47 @@ function Navbar() {
             </Link>
           </li>
           {localStorage.getItem("username") && (
-            <li className="nav-items">
+            <li
+              className="nav-items"
+              onMouseEnter={() => {
+                setShowProfileDrop(true);
+                console.log(showProfileDrop);
+              }}
+              onMouseLeave={() => {
+                setShowProfileDrop(false);
+                console.log(showProfileDrop);
+              }}
+            >
               <Link
                 className="nav-links"
-                onClick={togglePopup}
                 // to="/profile"
               >
                 Profile
               </Link>
+              {showProfileDrop && (
+                <div
+                  className="popup-profile rounded"
+                  style={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
+                  }}
+                >
+                  <div className="popup-content d-grid">
+                    <Link
+                      to="/profile"
+                      className="text-decoration-none text-center border-bottom p-3 te1"
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      onClick={logoutuser}
+                      className="text-decoration-none text-center p-3 te1"
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                </div>
+              )}
             </li>
           )}
 
@@ -108,24 +143,6 @@ function Navbar() {
         </ul>
         {/* <Button /> */}
       </nav>
-      {isOpen && (
-        <div className="popup-profile rounded">
-          <div className="popup-content d-grid">
-            <Link
-              to="/profile"
-              className="text-decoration-none text-center border-bottom p-3"
-            >
-              Profile
-            </Link>
-            <Link
-              onClick={logoutuser}
-              className="text-decoration-none text-center p-3"
-            >
-              Logout
-            </Link>
-          </div>
-        </div>
-      )}
     </>
   );
 }

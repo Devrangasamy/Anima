@@ -1,192 +1,222 @@
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 import { SignupUsingGoogle } from "./SignupUsingGoogle";
 import "./signup.css";
 import UseFormInp from "./use form input";
 
-function Signup(event) {
-  // Declaration for the variable data
-  const Navigate = useNavigate();
-  const [name, name_attribute, resetName] = UseFormInp("");
-  const [email_id, email_id_attribute, resetEmailID] = UseFormInp("");
-  const [phone_number, button, resetPhoneNumber] = UseFormInp("");
+export const Signup = () => {
+  // Declaring the required variables
+  const [username, usernameAttr, resetUsername] = UseFormInp("");
+  const [email, emailAttr, resetEmail] = UseFormInp("");
+  const [number, setNumber] = useState("");
 
-  // Password variables and validation
-  const [pass, setPass] = useState("");
-  const [confirm_pass, SetConfirmPass] = useState("");
-  const [err_pswrd, setErrPswrd] = useState(false);
+  // Declaring for the passwords
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
 
-  // Password visibility
-  const [showPass, setShowPass] = useState(false);
+  // To show the password in the container
+  const [showpass, setShowpass] = useState(false);
 
-  const validatePass = (event) => {
-    setPass(event.target.value);
-    // if (pass.length < 8) setErrPswrd(true);
-    // else setErrPswrd(false);
-    setErrPswrd(false);
-  };
-  const resetData = () => {
-    resetName();
-    resetEmailID();
-    setPass("");
-    SetConfirmPass("");
-    resetPhoneNumber();
+  // to navigate the page
+  const navigate = useNavigate();
+
+  // count to navigate to main page
+  const [count, setCount] = useState(5);
+
+  // CSS to remove the margin
+  const removeMargin = {
+    marginBottom: 0,
   };
 
-  //Will be called on button pressed as sign up
-  const submitData = async (event) => {
-    if (pass !== confirm_pass) return alert("Passwords donot match");
-    event.preventDefault();
-    const response = await fetch("http://localhost:8000/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: name,
-        email: email_id,
-        newpassword: pass,
-        confirmpassword: confirm_pass,
-        contact: phone_number,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
+  // Email already with us
+  const [mailIdWithus, setMailIdWithus] = useState(false);
 
-    if (json.status === "success") {
-      Navigate("/login");
-    } else {
-      console.log("Could not connnect to the database");
+  // timer function for the counter
+  const timer = () => {
+    setCount((prev) => prev - 1);
+  };
+  useEffect(() => {
+    if (mailIdWithus === true) {
+      const interval = setInterval(timer, 1000);
+      if (count < 1) navigate("/login");
+      return () => clearInterval(interval);
     }
-    resetData();
+  }, [mailIdWithus, count]);
+
+  // onsubmit of the form data
+  const submitData = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) setPasswordMismatch(true);
+    else {
+      // post method
+      const response = await fetch("http://localhost:8000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          newpassword: password,
+          confirmpassword: confirmPassword,
+          contact: number,
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
+
+      if (json.status === "success") {
+        navigate("/login");
+      } else {
+        console.log("email already exists");
+        setMailIdWithus(true);
+      }
+    }
   };
+
+  // to reset all the data in the form
+  const resetData = () => {
+    resetUsername();
+    resetEmail();
+    setPassword("");
+    setConfirmPassword("");
+    setNumber("");
+  };
+
   return (
-    <div className="signup-container img">
-      <div onSubmit={submitData} className="signup-form">
-        {/* <div className="center-contents">
-          <h2 id="welcome-text-container">Anima</h2>
-        </div> */}
-        <div className="center-contents">
-          <h2 id="welcome-text-container">SIGN UP</h2>
-        </div>
-        <label className="sign-label">
-          Full Name
-          <span className="required">*</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Name"
-          className="sigin-input-name"
-          value={name}
-          {...name_attribute}
-        ></input>
-        <br></br>
-        <label className="sign-label">
-          Email<span className="required">*</span>
-        </label>
-        <input
-          type="email"
-          placeholder="Email ID"
-          value={email_id}
-          className="sigin-input-name"
-          {...email_id_attribute}
-        ></input>
-        <br></br>
-        <div id="password-status-container">
-          {err_pswrd && (
-            <span className="signspan">Password must contain 8 letters</span>
+    <>
+      <Navbar />
+      <div className="signUpMainContainer">
+        <div className="signUpFormContainer">
+          {mailIdWithus ? (
+            <>
+              <div className="centerContents">
+                <h5>It seems you are already a user</h5>
+              </div>
+              <div className="centerContents">
+                <span style={{ color: "red" }}>
+                  Redirecting to login page in
+                </span>
+              </div>
+              <div className="centerContents">
+                <span style={{ color: "red" }}>{count}</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <Form onSubmit={submitData}>
+                <div className="centerContents">
+                  <Form.Label style={{ fontSize: 20, fontWeight: 700 }}>
+                    SIGN UP
+                  </Form.Label>
+                </div>
+                <Form.Group controlId="formUsername" className="mb-2">
+                  <Form.Label style={removeMargin}>Full Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Name"
+                    value={username}
+                    {...usernameAttr}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formEmail" className="mb-2">
+                  <Form.Label style={removeMargin}>Email </Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    {...emailAttr}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formPassword" className="mb-2">
+                  <Form.Label style={removeMargin}>Password</Form.Label>
+                  <Form.Control
+                    type={showpass ? "text" : "password"}
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPasswordMismatch(false);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group controlId="form-group-id">
+                  <Form.Label style={removeMargin}>Confirm Password</Form.Label>
+                  <Form.Control
+                    style={removeMargin}
+                    type={showpass ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => {
+                      setConfirmPassword(e.target.value);
+                      setPasswordMismatch(false);
+                    }}
+                  />
+                  {passwordMismatch && (
+                    <div className="centerContents">
+                      <Form.Text
+                        style={(removeMargin, { marginTop: 0 })}
+                        className="signupFormWrongPassword"
+                      >
+                        Passwords doesnot match
+                      </Form.Text>
+                    </div>
+                  )}
+                </Form.Group>
+                <Form.Group controlId="formBasicCheckbox" className="mb-2">
+                  <Form.Check
+                    style={removeMargin}
+                    type="checkbox"
+                    label="Show password"
+                    onClick={(e) => {
+                      setShowpass(!showpass);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formMobilenumber" className="mb-3">
+                  <Form.Label style={removeMargin}>Mobile Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Mobile Number"
+                    onChange={(e) => setNumber(e.target.value)}
+                  />
+                </Form.Group>
+                <div className="signupFormButtonContainer mb-3">
+                  <Button
+                    className="signupFormButton"
+                    variant="outline-primary"
+                    type="submit"
+                  >
+                    SIGNUP
+                  </Button>
+                  <Button
+                    className="signupFormButton"
+                    variant="outline-danger"
+                    type="reset"
+                    onClick={resetData}
+                  >
+                    RESET
+                  </Button>
+                </div>
+                <div className="centerContents">
+                  <SignupUsingGoogle />
+                </div>
+              </Form>
+              <hr></hr>
+              <div className="d-grid gap-2">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => navigate("/login")}
+                >
+                  Already have an account
+                </Button>
+              </div>
+            </>
           )}
         </div>
-        <label className="sign-label">
-          PassWord<span className="required">*</span>
-        </label>
-        <div className="signin-input-password-div-container">
-          <input
-            type={showPass ? "text" : "password"}
-            placeholder="PassWord"
-            className="sigin-input-name"
-            onChange={(event) => validatePass(event)}
-            required
-          ></input>
-          <button
-            onClick={() => {
-              setShowPass(!showPass);
-            }}
-          >
-            {showPass ? (
-              <FontAwesomeIcon icon={faEye} />
-            ) : (
-              <FontAwesomeIcon icon={faEyeSlash} />
-            )}
-          </button>
-        </div>
-        <label className="sign-label">
-          Confrim-Password<span className="required">*</span>
-        </label>
-        <div className="signin-input-password-div-container">
-          <input
-            type={showPass ? "text" : "password"}
-            className="sigin-input-name"
-            placeholder="Confirm PassWord"
-            required
-            onChange={(event) => SetConfirmPass(event.target.value)}
-          ></input>
-          <button
-            onClick={() => {
-              setShowPass(!showPass);
-            }}
-          >
-            {showPass ? (
-              <FontAwesomeIcon icon={faEye} />
-            ) : (
-              <FontAwesomeIcon icon={faEyeSlash} />
-            )}
-          </button>
-        </div>
-        <label className="sign-label">
-          Mobile Number<span className="required">*</span>
-        </label>
-        <input
-          type="number"
-          className="sigin-input-name"
-          placeholder="Phone Number"
-          value={phone_number}
-          {...button}
-          required
-        ></input>
-        <br></br>
-        <div className="center-container">
-          <button
-            className="signupbutton"
-            onClick={submitData}
-            id="sign-up-button"
-          >
-            Sign Up
-          </button>
-          <button
-            className="signupbutton"
-            onClick={() => resetData()}
-            id="reset-button"
-          >
-            Reset
-          </button>
-        </div>
-        <div className="center-container">
-          <SignupUsingGoogle />
-        </div>
-        <hr className="Already-signup"></hr>
-        <div className="Already-signup-container">
-          <p className="Already-signup-para">Already have an Account?</p>
-          <button
-            className="Already-signup-button"
-            onClick={() => Navigate("/login")}
-          >
-            Login
-          </button>
-        </div>
       </div>
-    </div>
+    </>
   );
-}
-
-export default Signup;
+};

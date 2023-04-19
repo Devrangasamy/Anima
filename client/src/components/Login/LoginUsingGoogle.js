@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../../Utilis/Authentication";
+import './login.css'
 
 export const LoginUsingGoogle = () => {
   const auth = useAuth();
@@ -39,7 +40,7 @@ export const LoginUsingGoogle = () => {
           console.log("Login Failed");
           console.log(error);
         }}
-        useOneTap
+        size="large"
       />
     </GoogleOAuthProvider>
   );

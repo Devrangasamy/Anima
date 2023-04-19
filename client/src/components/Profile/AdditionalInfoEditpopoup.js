@@ -77,7 +77,7 @@ const AdditionalInfoEditpopoup = (props) => {
               </select>
             </div>
             <div className="mb-3">
-              <label className="form-label">Contact</label>
+              <label className="form-label">Address</label>
               <textarea
                 value={updateaddress}
                 onChange={setaddress}
