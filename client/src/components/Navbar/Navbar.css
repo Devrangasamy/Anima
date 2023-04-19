@@ -19,6 +19,10 @@
   width: 55px;
   height: 55px;
 } */
+.navbar-services-popup{
+  position: absolute;
+  right: 10px;
+}
 
 .fa-firstdraft {
   margin-left: 0.5rem;
