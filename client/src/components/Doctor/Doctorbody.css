@@ -11,11 +11,9 @@
 .doctor-container {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  margin: 18px;
+  margin: 10px;
   border-radius: 100px;
   cursor: pointer;
-
-  /* background-color: red; */
 }
 .doctor-container:hover {
   transform: scale(1.01);
@@ -23,48 +21,46 @@
 }
 /* 2container*/
 .doctor-details-container {
-  padding: 18px 18px 0px;
+  padding: 1px 11px 0px;
   background-color: rgb(224, 230, 230);
   border-radius: 15px 0px 0px 0px;
 }
-
-
 .personaldetails-container {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 .personaldetails-container p {
   color: #2c003f;
 }
 .inside-personal {
-  padding: 4.5px 0;
+  padding: 0px 0;
 }
 .doctor-name {
   color: #0B3954;
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 38px;
+  /* font-weight: bod; */
 }
 
 .doctor-speciailzation {
   color: #2c003f;
-
 }
 
 .doctor-features {
-  font-size: 20px;
+  font-size: 21px;
   color: #2c003f;
-
+  
 }
 .doc-address p {
   color: rgb(224, 230, 230);
-  padding: 8px;
-
+  padding: 0px 10px 6px 10px;
+  /* margin-top: 10px; */
 }
 .doc-address {
   font-family: inherit;
   font-weight: normal;
   font-style: normal;
   background-color:#0B3954;
-  padding: 12px;
+  padding-left: 1px;
+  padding-top: 2px;
   border-radius: 0px 0px 0px 15px;
 }
 /*  2container*/
