@@ -21,9 +21,6 @@ function Navbar() {
       setdrop(true);
     }
   };
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
   const logoutuser = () => {
     localStorage.removeItem("username");
     navigates("/");

@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import "./Dropdown.css";
 import { MenuItems } from "./MenuItems";
 const Dropdown = () => {
-  const [click, setClick] = useState(false);
-  const handleClick = () => {
-    setClick(!click);
-  };
   return (
     <>
       <ul className="dropdownTotalContents">
