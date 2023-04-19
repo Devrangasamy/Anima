@@ -5,17 +5,17 @@ import { Home } from "./Pages/Home/Home";
 import { Cart } from "./Pages/Product/Cart";
 import { Product } from "./Pages/Product/Product";
 import { Profile } from "./Pages/Profile/Profile";
+import { Sample } from "./Pages/sample/sample";
 import { Authentication } from "./Utilis/Authentication";
 import { GoogleAuthendication } from "./Utilis/GoogleAuthendication";
 import RequiredAuth from "./Utilis/RequiredAuth";
 import Accessories from "./components/Accessories/Accessories";
 import Contactus from "./components/Contactus/Conactus";
 import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
+import { Login } from "./components/Login/Login";
 import { Petregisteration } from "./components/Petregistration/petregisteration";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
-import {Signup} from "./components/sign up page/signup";
-import { Login } from "./components/Login/Login";
-import { Sample } from "./Pages/sample/sample";
+import { Signup } from "./components/sign up page/signup";
 
 function Allroutes() {
   return (
@@ -50,7 +50,7 @@ function Allroutes() {
               element={<GetPasswordAndUpdate />}
             />
             <Route path="/products" element={<Product />} />
-            <Route path="/sample" element = {<Sample/>}/>
+            <Route path="/sample" element={<Sample />} />
             <Route path="/doctor" element={<Doctor />} />
             <Route path="/doctor/:id" element={<Doctordetails />} />
           </Routes>
