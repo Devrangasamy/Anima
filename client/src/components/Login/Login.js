@@ -1,20 +1,28 @@
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
-import "../sign up page/signup.css";
+import Navbar from "../Navbar/Navbar";
 import { LoginUsingGoogle } from "./LoginUsingGoogle";
 
-const Login = () => {
-  const navigate = useNavigate();
+export const Login = () => {
+  // To store the form contents
   const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const location = useLocation();
-  const auth = useAuth();
+  const [password, setPassword] = useState("");
+
+  // To show the pass
+  const [showpass, setShowpass] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
-  // This is for the password visibility
-  const [showPass, setShowPass] = useState(false);
+
+  //to use the authendication and the other
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const removeMargin = {
+    marginBottom: 0,
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:8000/api/auth/login", {
@@ -31,7 +39,7 @@ const Login = () => {
       auth.login(json.data[0].username);
       localStorage.setItem("username", json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
-      setpassword("");
+      setPassword("");
       setemail("");
     } else {
       setNoMatch(true);
@@ -41,87 +49,71 @@ const Login = () => {
   const forgotPassword = () => {
     navigate("/forgetpassword");
   };
-
   return (
-    <div>
-      <form className="signup-container" onSubmit={(e) => submit(e)}>
-        <div className="signup-form">
-          <div className="center-contents">
-            <h2 id="welcome-text-container">Anima</h2>
-          </div>
-          <div className="center-contents">
-            <h2 id="welcome-text-container">Login</h2>
-          </div>
-          <label className="sign-label">
-            UserName or Email<span className="required">*</span>
-          </label>
-          <input
-            type="email"
-            placeholder="Enter email"
-            className="sigin-input-name"
-            value={email}
-            onChange={(e) => {
-              setemail(e.target.value);
-              setNoMatch(false);
-            }}
-          />
-          <br></br>
-          <label className="sign-label">
-            PassWord<span className="required">*</span>
-          </label>
-          {/* <input  value = {passwordLogin} onChange={(e) => {setpasswordLogin(e.target.value)}}></input> */}
-          <div className="signin-input-password-div-container">
-            <input
-              className="sigin-input"
-              value={password}
-              onChange={(e) => {
-                setpassword(e.target.value);
-                setNoMatch(false);
-              }}
-              type={showPass ? "text" : "password"}
-              placeholder="Enter Password"
-              autoComplete="off"
-            ></input>
-            <button
-              type="button"
-              onClick={() => {
-                setShowPass(!showPass);
-              }}
-            >
-              {showPass ? (
-                <FontAwesomeIcon icon={faEye} />
-              ) : (
-                <FontAwesomeIcon icon={faEyeSlash} />
+    <>
+      <Navbar />
+      <div className="loginMainContainter">
+        <div className="loginFormContainer">
+          <h5 style={{ textAlign: "center", marginBottom: 10 }}>Anima login</h5>
+          <Form onSubmit={submit}>
+            <Form.Group controlId="login-form-name" className="mb-3">
+              <Form.Label style={removeMargin}>Username or email</Form.Label>
+              <Form.Control
+                type="text"
+                value={email}
+                onChange={(e) => {
+                  setemail(e.target.value);
+                  setNoMatch(false);
+                }}
+                autoComplete="off"
+                placeholder="Username or Email"
+              />
+            </Form.Group>
+            <Form.Group controlId="login-form-password">
+              <Form.Label style={removeMargin}>Password</Form.Label>
+              <Form.Control
+                type={showpass ? "text" : "password"}
+                value={password}
+                autoComplete="off"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setNoMatch(false);
+                }}
+                placeholder="Password"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check
+                type="checkbox"
+                label="Show password"
+                onChange={() => setShowpass(!showpass)}
+              />
+              {noMatch && (
+                <div className="centerContents">
+                  <Form.Text style={{ color: "red" }}>
+                    username and password mismatches
+                  </Form.Text>
+                </div>
               )}
-            </button>
-          </div>
-          {noMatch && (
-            <>
-              <div className="login-page-mismatch-password center-container">
-                <span>Mismatch in username and password</span>
-              </div>
-            </>
-          )}
-          {/* This is the code to use the google login in the page */}
-          <div className="center-container">
-            <button
-              type="buttono"
-              onClick={() => forgotPassword()}
-              className="signupbutton"
-            >
-              Forgot Password
-            </button>
-            <button className="signupbutton" id="sign-up-button" type="submit">
-              Login
-            </button>
-          </div>
-          <div className="center-container">
-            <LoginUsingGoogle />
-          </div>
+            </Form.Group>
+            <div className="centerContents mb-3">
+              <LoginUsingGoogle />
+            </div>
+            <div className="loginButtonContainer">
+              <Button
+                variant="outline-primary"
+                type="button"
+                onClick={() => forgotPassword()}
+              >
+                Forgot password
+              </Button>
+              <Button variant="outline-primary" type="submit">
+                Login
+              </Button>
+            </div>
+          </Form>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
-
-export default Login;

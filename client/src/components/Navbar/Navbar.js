@@ -37,7 +37,7 @@ function Navbar() {
       setDropdown(true);
     }
   };
-  console.log(dropdown);
+  // console.log(dropdown);
   return (
     <>
       <nav className="navbars">
@@ -63,7 +63,7 @@ function Navbar() {
             <Link to="/services" className="nav-links">
               Services
             </Link>
-            {<Dropdown /> && console.log(dropdown) && console.log(<Dropdown />)}
+            {/* {<Dropdown />} */}
           </li>
 
           <li className="nav-items">

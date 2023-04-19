@@ -28,7 +28,6 @@ export const Doctorbody = () => {
               <h1 className="doctor-name">{list.name}</h1>
               <p className="doctor-speciailzation">{list.specialization}</p>
             </div>
-
             <div className="personaldetails-container">
               <div className="grid-2 inside-personal">
                 <p className="doctor-features">Experience</p>

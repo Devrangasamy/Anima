@@ -1,309 +1,280 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import Otpinput from "react-otp-input";
+import { useNavigate } from "react-router-dom";
 import "./Forgetpassword.css";
 
-// To show up the icons in the page
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-
 export const Forgetpassword = () => {
-  // To store the mail ID
-  const [mailId, setMailID] = useState("");
-  const [dataList, setDataList] = useState("");
-  const [mailIDWrongFlag, setMailIDWrongFlag] = useState(false);
-  const [mailIdContainer, setMailIdContainer] = useState(true);
+  // To get the data from the user
+  const [email, setEmail] = useState("");
 
-  // To store the OPT Data
-  const [otpFlag, setOtpFlag] = useState(false);
-  const [userOtp, setUserOtp] = useState("");
-  const [generatedOTP, setGeneratedOTP] = useState("");
+  // Flags for error and showing and hiding
+  const [invalidemail, setInvalidemail] = useState(false);
+  const [emailContainer, setEmailContainer] = useState(true);
+  const [timerStart, setTimerStart] = useState(false);
+  const [otpContainer, setOtpContainer] = useState(false);
   const [wrongOTPFlag, setWrongOTPFlag] = useState(false);
+  const [enternewPass, setEnternewPass] = useState(false);
+  const [passMismatch, setPassMismatch] = useState(false);
+  const [showpass, setShowpass] = useState(false);
+  const [navigateToLogin, setNavigateToLogin] = useState(false);
 
-  // To store the new password
-  const [changePassFlag, setChangePassFlag] = useState(false);
-  const [pass, setPass] = useState("");
+  // To store the otp
+  const [generatedOTP, setGeneratedOTP] = useState("");
+  const [otp, setOtp] = useState("");
+
+  // Timers
+  const [count, setCount] = useState(0);
+  const [place, setPlace] = useState("");
+
+  // password
+  const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const [showPass, setShowPass] = useState(false);
-  const [wrongPasswordFlag, setWrongPasswordFlag] = useState(false);
 
-  // This is for the timer
-  const [seconds, setSeconds] = useState(60);
-  const [timerFlag, setTimerFlag] = useState(false);
-  const [reloadFlag, setReloadFlag] = useState(true);
-
-  // for the sucessfull updation of the password
-  const [updationSucessfull, setUpdationSucessfull] = useState(false);
-
+  // To navigate the page
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const removeMargin = {
+    marginBottom: 0,
+  };
+
+  // To find wheather the mail id is in the database or not
+  const isEmailinDatabase = (e) => {
+    e.preventDefault();
+    console.log("Submitted the data");
     axios
-      .get("http://localhost:8000/api/auth")
-      .then((response) => {
-        setDataList(response.data);
-      })
-      .catch((error) => console.log(error));
-  });
-
-  // This is the timer to refresh the page
-  const updateTimer = () => {
-    setSeconds((prev) => prev - 1);
-  };
-  useEffect(() => {
-    if (timerFlag === true) {
-      const interval = setInterval(updateTimer, 1000);
-      if (seconds < 1 && reloadFlag) window.location.reload(false);
-      if (seconds < 1 && reloadFlag === false) navigate("/login");
-      return () => clearInterval(interval);
-    }
-  }, [timerFlag, seconds]);
-
-  // This is to send the OTP Mail
-  const sendMail = (event) => {
-    event.preventDefault();
-    for (let i = 0; i < dataList.length; i++) {
-      let data = dataList[i];
-      if (data.email === mailId) {
-        // This generates the 6 digit OTP
-        let digits = "0123456789";
-        let OTP = "";
-        for (let i = 0; i < 6; i++) {
-          OTP += digits[Math.floor(Math.random() * 10)];
+      .get(`http://localhost:8000/api/auth/:${email}`)
+      .then((res) => {
+        if (res.data.length < 1) {
+          setInvalidemail(true);
+          return;
         }
-        setGeneratedOTP(OTP);
-        // This sends the OTP via the email
-        axios
-          .post("http://localhost:8000/sendMail", {
-            to_address: mailId,
-            subject: "Anima Password reset",
-            message: `The otp to change your password is ${OTP}`,
-          })
-          .catch((error) => console.log(error));
-        setMailIdContainer(false);
-        setOtpFlag(true);
-        setTimerFlag(true);
-        return;
-      }
-    }
-    setMailIDWrongFlag(true);
-    setMailID("");
+      })
+      .catch((err) => console.log(err));
+    sendMail();
   };
 
-  const checkOtp = (event) => {
-    event.preventDefault();
-    if (generatedOTP === userOtp) {
-      setOtpFlag(false);
-      setChangePassFlag(true);
-      setTimerFlag(false);
-      setGeneratedOTP("");
+  //This will send the mail using the nodemailer
+  const sendMail = () => {
+    // This generates the 6 digit OTP
+    setEmailContainer(false);
+    setOtpContainer(true);
+    redirect("newForgotPassword", 60);
+    let digits = "0123456789";
+    let OTP = "";
+    for (let i = 0; i < 6; i++) {
+      OTP += digits[Math.floor(Math.random() * 10)];
+    }
+    setGeneratedOTP(OTP);
+    // This sends the OTP via the email
+    axios
+      .post("http://localhost:8000/sendMail", {
+        to_address: email,
+        subject: "Anima Password reset",
+        message: `The otp to change your password is ${OTP}`,
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return;
+  };
+
+  // This is to check the OTP
+  const checkOtp = (e) => {
+    e.preventDefault();
+    if (otp === generatedOTP) {
+      setOtpContainer(false);
+      setTimerStart(false);
+      setEnternewPass(true);
+      setCount(0);
     } else {
       console.log(generatedOTP);
-      console.log("The OTP is incorrect Enter it again");
       setWrongOTPFlag(true);
     }
-    setUserOtp("");
   };
-  const updatePassword = async () => {
-    if (pass === confirmPass) {
-      await axios
-        .post("http://localhost:8000/api/auth/updatePassword", {
-          email: mailId,
-          newpassword: pass,
-          confirmpassword: confirmPass,
-        })
-        .then(() => {
-          setUpdationSucessfull(true);
-          setChangePassFlag(false);
-          setTimerFlag(true);
-          setSeconds(5);
-          setReloadFlag(false);
-        })
-        .catch((error) => console.log(error));
+
+  // Timer and the function to redirect
+  useEffect(() => {
+    if (timerStart === true) {
+      const interval = setInterval(() => setCount((prev) => prev - 1), 1000);
+      if (count < 1) {
+        navigate(`/${place}`);
+        window.location.reload(false);
+      }
+      return () => clearInterval(interval);
+    }
+  }, [count]);
+  // Function to start timer and navigate to the required page
+  const redirect = (toplace, seconds) => {
+    setPlace(toplace);
+    setCount(seconds);
+    setTimerStart(true);
+  };
+
+  const validatePassword = (e) => {
+    e.preventDefault();
+    if (password === confirmPass) {
+      updatePassword();
     } else {
-      console.log(generatedOTP);
-      console.log("The password dont match correctly ;( kindly re-enter it");
-      setWrongPasswordFlag(true);
     }
   };
-  const changeShowStatus = () => {
-    setShowPass(!showPass);
+
+  const updatePassword = async () => {
+    if (password === confirmPass) {
+      redirect("login", 5);
+      setNavigateToLogin(true);
+      setEnternewPass(false);
+      await axios
+        .post("http://localhost:8000/api/auth/updatePassword", {
+          email: email,
+          newpassword: password,
+          confirmpassword: confirmPass,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
-    <div className="forget-password-container">
-      {/* <button onClick = {sampleUpdate}>Sample button</button> */}
-      <div className="forgot-password-main-container">
-        <div>
-          {/* This is the mail id container */}
-          {mailIdContainer && (
-            <>
-              <div className="forgot-password-mail-container">
-                <div className="center-contents forgot-password-spacing">
-                  <h3>Forgot Password</h3>
-                </div>
-                <label>Enter your Registered Mail ID</label>
-                <br></br>
-                <input
-                  type="email"
-                  value={mailId}
-                  onChange={(event) => {
-                    setMailID(event.target.value);
-                    setMailIDWrongFlag(false);
-                  }}
-                  placeholder="Enter your registered mail id"
-                ></input>
-                <br></br>
-                {/* This is to show the erorr message when the mail id is wrong */}
-                {mailIDWrongFlag && (
-                  <>
-                    <span className="forget-password-mail-id-error-message">
-                      Entered Mail ID doesn't match with our records
-                    </span>
-                  </>
-                )}
-                <div>
-                  <button onClick={(event) => sendMail(event)}>Submit</button>
-                </div>
-              </div>
-            </>
-          )}
-          {/* This is the otp container */}
-          {otpFlag && (
-            <>
-              <div className="forgot-password-otp-container">
-                <div className="center-contents forgot-password-spacing">
-                  <h3>Forgot Password</h3>
-                </div>
-                <div className="center-contents">
-                  <span>OTP sent to registered Mail ID</span>
-                </div>
-                <div className="center-contents">
-                  <input
-                    placeholder="Enter the OTP"
-                    value={userOtp}
-                    onChange={(event) => {
-                      if (userOtp.length < 6 || event.target.value.length < 6)
-                        setUserOtp(event.target.value);
-                      setWrongOTPFlag(false);
+    <>
+      <div className="fpass">
+        <div className="fpassMainContainer" style={{ width: 400 }}>
+          <h5 style={{ textAlign: "center" }}>Forgetpassword</h5>
+          {emailContainer && (
+            <div>
+              <Form onSubmit={(e) => isEmailinDatabase(e)}>
+                <Form.Group controlId="formGetEmailID">
+                  <Form.Label>Email id</Form.Label>
+                  <Form.Control
+                    className="mb-3"
+                    type="email"
+                    placeholder="sample@gmail.com"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setInvalidemail(false);
                     }}
-                    type="text"
-                    size={2}
-                  ></input>
+                  />
+                  {invalidemail && (
+                    <Form.Text style={{ color: "red" }}>
+                      Your mailid does not match in our records
+                    </Form.Text>
+                  )}
+                </Form.Group>
+                <div className="centerContents">
+                  <Button variant="outline-primary" type="submit">
+                    Submit
+                  </Button>
                 </div>
-                {wrongOTPFlag && (
-                  <>
-                    <div className="center-contents">
-                      <span className="forget-password-mail-id-error-message">
-                        The OTP is incorrect
-                      </span>
-                    </div>
-                  </>
-                )}
-                <div className="center-contents">
-                  <button onClick={(event) => checkOtp(event)}>
-                    Submit OTP
-                  </button>
-                </div>
-                {timerFlag && (
-                  <div className="center-contents forgot-password-auto-reload">
-                    <span>Auto refresh in {seconds}</span>
+              </Form>
+            </div>
+          )}
+          {otpContainer && (
+            <div>
+              <Form onSubmit={checkOtp}>
+                <Form.Group controlId="OTPContainer">
+                  <Form.Label style={removeMargin} className="centerContents">
+                    Enter the OTP sent to your email
+                  </Form.Label>
+                  <div className="centerContents">
+                    <Otpinput
+                      value={otp}
+                      onChange={(e) => {
+                        setOtp(e);
+                        setWrongOTPFlag(false);
+                      }}
+                      numInputs={6}
+                      renderSeparator={<span>-</span>}
+                      renderInput={(props) => <input {...props} />}
+                      shouldAutoFocus={true}
+                    />
                   </div>
-                )}
-              </div>
-            </>
-          )}
-          {/* This is for updating the password */}
-          {changePassFlag && (
-            <>
-              <div className="forgot-password-password-container">
-                <div className="center-contents forgot-password-spacing">
-                  <h3>Forgot Password</h3>
-                </div>
-                <div>
-                  <label className="center-contents">
-                    Enter the new password
-                  </label>
-                </div>
-                <div className="password-container-div-border">
-                  <input
-                    id="forgot-password-input"
-                    type={showPass ? "text" : "password"}
-                    onChange={(event) => {
-                      setPass(event.target.value);
-                      setWrongPasswordFlag(false);
-                    }}
-                    className="remove-border"
-                    placeholder="Password"
-                  ></input>
-                  <button
-                    onClick={() => changeShowStatus()}
-                    className="remove-border password-visibility-button remove-hover"
-                    id="forgot-password-button"
-                  >
-                    {showPass ? (
-                      <FontAwesomeIcon icon={faEye} />
-                    ) : (
-                      <FontAwesomeIcon icon={faEyeSlash} />
-                    )}
-                  </button>
-                </div>
-                <div className="password-container-div-border forgot-password-password-container">
-                  <input
-                    type={showPass ? "text" : "password"}
-                    onChange={(event) => {
-                      setConfirmPass(event.target.value);
-                      setWrongPasswordFlag(false);
-                    }}
-                    placeholder="Re-enter the password"
-                  ></input>
-                  <button
-                    onClick={() => changeShowStatus()}
-                    className="remove-border password-visibility-button remove-hover"
-                    id="forgot-password-button"
-                  >
-                    {showPass ? (
-                      <FontAwesomeIcon icon={faEye} />
-                    ) : (
-                      <FontAwesomeIcon icon={faEyeSlash} />
-                    )}
-                  </button>
-                </div>
-                {wrongPasswordFlag && (
-                  <>
-                    <div className="center-contents">
-                      <span className="forget-password-mail-id-error-message">
-                        The passwords don't match
-                      </span>
+                  {wrongOTPFlag && (
+                    <div className="centerContents">
+                      <Form.Text style={{ color: "red" }}>
+                        OTP is incorrect
+                      </Form.Text>
                     </div>
-                  </>
-                )}
-                <div className="center-contents">
-                  <button onClick={() => updatePassword()}>
-                    Update Password
-                  </button>
+                  )}
+                </Form.Group>
+                <div className="centerContents" style={{ marginTop: 9 }}>
+                  <Button variant="outline-primary" type="submit">
+                    Submit
+                  </Button>
                 </div>
-              </div>
-            </>
+                <div className="centerContents">
+                  <div style={{ color: "red" }}>
+                    <span>Auto refreh in {count}</span>
+                  </div>
+                </div>
+              </Form>
+            </div>
           )}
-          {updationSucessfull && (
-            <>
-              <div
-                className="center-contents"
-                style={{ fontSize: 20, fontWeight: 550 }}
-              >
-                Password updation sucessfull
+          {enternewPass && (
+            <div>
+              <Form onSubmit={validatePassword}>
+                <Form.Group controlId="formPassword" className="mb-2">
+                  <Form.Label style={removeMargin}>Password</Form.Label>
+                  <Form.Control
+                    type={showpass ? "text" : "password"}
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPassMismatch(false);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formConfirmPasword">
+                  <Form.Label style={removeMargin}>Confirm password</Form.Label>
+                  <Form.Control
+                    type={showpass ? "text" : "password"}
+                    placeholder="Password"
+                    onChange={(e) => {
+                      setConfirmPass(e.target.value);
+                      setPassMismatch(false);
+                    }}
+                    value={confirmPass}
+                  />
+                  {passMismatch && (
+                    <div className="centerContents">
+                      <Form.Text style={{ color: "red" }}>
+                        The passwords doesnot match
+                      </Form.Text>
+                    </div>
+                  )}
+                  <Form.Check
+                    style={{ marginTop: 2 }}
+                    onChange={() => setShowpass(!showpass)}
+                    type="checkbox"
+                    label="Show Password"
+                  />
+                </Form.Group>
+                <div className="centerContents">
+                  <Button
+                    variant="outline-primary"
+                    type="submit"
+                    style={{ marginTop: 2 }}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          )}
+          {navigateToLogin && (
+            <div>
+              <h5 style={{ textAlign: "center" }}>Navigating to Login page</h5>
+              <div className="centerContents">
+                <span style={{ color: "red" }}>Redirecting in {count}</span>
               </div>
-              <div className="center-contents forgot-password-auto-reload">
-                <span>Redirecting to Login page in</span>
-              </div>
-              <div className="center-contents forgot-password-auto-reload">
-                <span>{seconds}</span>
-              </div>
-            </>
+            </div>
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
