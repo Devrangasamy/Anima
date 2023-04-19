@@ -5,8 +5,8 @@
 }
 .search{
     /* background-color: #BFD7EA;; */
-    margin: 5px;
-    padding: 1px;
+    margin: 10px;
+    padding: 12px;
     font-size: 15px;
 } 
 .search select{
@@ -30,13 +30,14 @@
 .search input{
     border: none;
     background-color: #0B3954 ;
-    border-radius: 100px;
+    border-radius: 100px 100px 100px 100px;
     padding: 10px;
     font-size: 17px;
-     color: #BFD7EA;;
+     color: #BFD7EA;
 }
 .search ::placeholder{
-    color: #BFD7EA;;
+    color: #BFD7EA;
+    text-align: center;
 }
 .search button{
     border: none;
@@ -55,3 +56,14 @@
     font-size: 15px;
     color: #0B3954;
 }
+@media screen and (max-width: 1000px) {
+    .doctor-header{
+      display: grid .5s linear;
+    }
+    .search{
+
+        margin: 1px;
+        padding: 9px;
+        font-size: 11px;
+    }
+  }
