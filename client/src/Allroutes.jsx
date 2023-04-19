@@ -14,7 +14,7 @@ import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
 import { Petregisteration } from "./components/Petregistration/petregisteration";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
 import {Signup} from "./components/sign up page/signup";
-import { Login } from "./components/Login/login";
+import { Login } from "./components/Login/Login";
 
 function Allroutes() {
   return (

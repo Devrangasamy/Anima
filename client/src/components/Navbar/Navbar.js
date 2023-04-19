@@ -34,7 +34,7 @@ function Navbar() {
     if (window.innerWidth < 960) {
       setDropdown(false);
     } else {
-      setDropdown(true);
+      setDropdown(false);
     }
   };
   // console.log(dropdown);
@@ -63,7 +63,7 @@ function Navbar() {
             <Link to="/services" className="nav-links">
               Services
             </Link>
-            {/* {<Dropdown />} */}
+           {dropdown && <Dropdown />}
           </li>
 
           <li className="nav-items">
