@@ -18,6 +18,8 @@ export const SignupUsingGoogle = () => {
           console.log(error);
         }}
         text="signup_with"
+        width="300px"
+        size="large"
       />
     </GoogleOAuthProvider>
   );

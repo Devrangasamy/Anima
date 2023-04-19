@@ -6,7 +6,8 @@ function UseFormInp(init) {
         setData('')
     }
     const inputAttribute = {
-        onChange : (event) => setData(event.target.value)
+        onChange : (event) => setData(event.target.value),
+        required : true
     }
     return [data, inputAttribute, reset]
 }
