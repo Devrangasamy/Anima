@@ -49,8 +49,8 @@ function Allroutes() {
               path="signup/getPassword"
               element={<GetPasswordAndUpdate />}
             />
-            <Route path="/products" element={<Product />} />
             <Route path="/sample" element={<Sample />} />
+            <Route path="/products" element={<Product />} />
             <Route path="/doctor" element={<Doctor />} />
             <Route path="/doctor/:id" element={<Doctordetails />} />
           </Routes>
