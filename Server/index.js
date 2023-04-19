@@ -6,6 +6,7 @@ import authRoute from "./routes/authRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
 import feedbackRoute from "./routes/feedbackroute.js";
 import productRoute from "./routes/productRoute.js";
+import petregister from "./routes/petregisterroutes.js";
 import { sendMailUsingNodemailer } from "./node mailer/nodemailer.js";
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/doctor", doctorRoute);
 app.use("/api/feedback", feedbackRoute);
+app.use("/api/petregister", petregister);
 app.post("/sendMail", sendMailUsingNodemailer);
 
 app.use((err, req, res, next) => {

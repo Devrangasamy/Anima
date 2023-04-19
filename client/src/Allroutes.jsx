@@ -13,6 +13,7 @@ import Contactus from "./components/Contactus/Conactus";
 import { Forgetpassword } from "./components/ForgetPassword/Forgetpassword";
 import Login from "./components/Login/Login";
 import { Petregisteration } from "./components/Petregistration/petregisteration";
+import Petdetails from "./Pages/Petdetails/Petdetails";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
 import Signup from "./components/sign up page/signup";
 
@@ -34,15 +35,9 @@ function Allroutes() {
             <Route path="/contactus" element={<Contactus />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup></Signup>} />
-            <Route
-              path="/profile"
-              element={
-                <RequiredAuth>
-                  <Profile />
-                </RequiredAuth>
-              }
-            />
-            <Route path="/petregisteration" element={<Petregisteration />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/petregister" element={<Petregisteration />} />
+            <Route path="/petdetail" element={<Petdetails />} />
             <Route path="/forgetpassword" element={<Forgetpassword />} />
             <Route
               path="signup/getPassword"
