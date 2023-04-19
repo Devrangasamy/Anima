@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import pet1 from "../../Assets/pet1.jpg";
 import pet2 from "../../Assets/pet2.jpg";
@@ -9,7 +9,31 @@ import next from "../../Assets/next.jpg";
 import slide2image from "../../Assets/Slide2home.jpg";
 import Navbar from '../../components/Navbar/Navbar'
 import Footers from "../../components/Footer/Footers";
+import { Link } from "react-router-dom";
+import axios from "axios"
 export const Home = () => {
+  const [List,setList]=useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/product')
+    .then((response) => 
+     {
+
+      setList([...response.data.slice(response.data.length-4,response.data.length)])})
+    .catch((error) => console.log(error))    
+},[]
+)
+// console.log(List[0].photos)
+const displayAllData = List.map((x, index) => 
+<div key = {index} className='col-sm-3 col-md pro-con'>
+    <img className='convert-imgs' src = {x.photos} alt = {""}></img><br></br>
+    <div id='product-page-data-container'>
+        <div id='product-name'>{x.productname}</div>
+        <h4 id='price-container'>MRP₹-{x.cost}</h4>
+    </div>
+</div>
+)
+
+
   return (
     <div className="home">
       <Navbar></Navbar>
@@ -99,6 +123,19 @@ export const Home = () => {
          </div>
          </div>
       </div>
+      <br></br>
+      <br></br>
+      <div className="d-flex justify-content-between px-5">
+        <h3 class="trending-pro">New Products</h3>
+       <h6><Link to="/products" className="all-pro">Show all new Products</Link></h6> 
+      </div>
+      <div>
+      <div class="row p-5 m-5 new-products gap-5" >
+        {displayAllData}
+        <Link to="/products" className="all-pro" style={{textAlign:"center",color:"black"}}>See More...</Link>
+      </div>
+
+    </div>
       <Footers></Footers>
     </div>
   );
