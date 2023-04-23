@@ -2,6 +2,8 @@ import React from "react";
 import medicare from "../../Assets/medicare.jpg";
 import products from "../../Assets/products.jpg";
 import petstore from "../../Assets/petstore.jpg";
+import { Link } from "react-router-dom";
+import Footers from "../Footer/Footers";
 const Allservices = () => {
   return (
     <div className="d-flex gap-5 mt-5 pb-3">
@@ -17,7 +19,7 @@ const Allservices = () => {
             with a veterinarian can help prevent and treat illnesses, while
             vaccinations can protect them from infectious diseases.
           </p>
-          <button className="btn btn-primary">Medicare</button>
+          <Link to="/medicare" className="btn btn-primary">Medicare</Link>
         </div>
       </div>
       <div className="col">
@@ -33,7 +35,7 @@ const Allservices = () => {
             grooming supplies, wide variety of products available to meet the
             needs of our pets.
           </p>
-          <button className="btn btn-primary">Products</button>
+          <Link to="/products" className="btn btn-primary">Products</Link>
         </div>
       </div>
       <div className="col">
