@@ -14,7 +14,7 @@ const ProfileInformationEditPopup = (props) => {
   const [updatename, setupdatename] = CustomHooksForm(username);
   const [updateemail, setupdateemail] = CustomHooksForm(useremail);
   const [updatecontact, setupdatecontact] = CustomHooksForm(usercontact);
-  const [updateimg, setupdateimg] = useState([]);
+  const [updateimg, setupdateimg] = useState();
 
   React.useEffect(() => {
     if (handleShow) {
@@ -28,38 +28,34 @@ const ProfileInformationEditPopup = (props) => {
   };
 
   function convertToBase64(e) {
-    console.log(e);
-    var reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      console.log(reader.result);
-      setupdateimg(reader.result);
-    };
-    reader.onerror = (error) => {
-      console.log("Error: ", error);
-    };
+    setupdateimg(e.target.files[0]);
   }
   const submit = (e) => {
     e.preventDefault();
     handleClose();
-    // console.log(updateimg);
+    const formData = new FormData();
+    console.log(updatename);
+    formData.append("username", updatename);
+    formData.append("email", updateemail);
+    formData.append("contact", updatecontact);
+    formData.append("image", updateimg);
     axios
       .put(
         `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
-        {
-          username: updatename,
-          email: updateemail,
-          contact: updatecontact,
-          image: updateimg,
-        }
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
       )
       .then((data) => {
         localStorage.setItem("username", updatename);
         console.log("data upadted successfully");
         update();
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        if (err.response) {
+          alert(err.response.data.message);
+        } else {
+          alert(err.message);
+        }
       });
   };
 
@@ -75,7 +71,7 @@ const ProfileInformationEditPopup = (props) => {
               <div className="mb-3">
                 <label className="form-label">Profile Image</label>
                 <input
-                  accepts="image/*"
+                  accept="image/*"
                   type="file"
                   onChange={convertToBase64}
                   className="form-control"

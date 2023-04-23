@@ -26,8 +26,8 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",
-    "upper-case": "^2.0.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@aws-sdk/s3-request-presigner": "^3.317.0"
   },
   "scripts": {
     "start": "react-scripts start",

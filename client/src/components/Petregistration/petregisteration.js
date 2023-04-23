@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 // Components
 import "./Petregisteration.css";
 import CustomHooks from "./CustomHooks";
 import Navbar from "../Navbar/Navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const Petregisteration = () => {
   const [name, setName] = CustomHooks("");
@@ -13,10 +15,30 @@ export const Petregisteration = () => {
   const [weight, setWeight] = CustomHooks("");
   const [age, setAge] = CustomHooks("");
   const [gender, setGender] = CustomHooks("");
+  const [medicalConditions, setMedicalConditions] = CustomHooks("");
+  const [allergies, setAllergies] = CustomHooks("");
+  const [medications, setMedications] = CustomHooks("");
+  const [dietaryNeeds, setDietaryNeeds] = CustomHooks("");
+  const [regularVet, setRegularVet] = CustomHooks("");
+  const [vaccinations, setVaccinations] = useState([{ name: "", date: "" }]);
 
+  const handleVaccinationChange = (event, index) => {
+    const { name, value } = event.target;
+    const newVaccinations = [...vaccinations];
+    newVaccinations[index][name] = value;
+    setVaccinations(newVaccinations);
+  };
+
+  const handleAddVaccination = () => {
+    setVaccinations([...vaccinations, { name: "", date: "" }]);
+  };
+
+  const handleRemoveVaccination = (index) => {
+    setVaccinations(vaccinations.filter((_, i) => i !== index));
+  };
   const submit = (e) => {
     e.preventDefault();
-    console.log(name, species, weight, age, gender, color, breed);
+
     axios
       .post("http://127.0.0.1:8000/api/petregister", {
         username: localStorage.getItem("username"),
@@ -27,6 +49,12 @@ export const Petregisteration = () => {
         gender,
         color,
         breed,
+        medicalConditions,
+        allergies,
+        medications,
+        dietaryNeeds,
+        regularVet,
+        vaccinations,
       })
       .then((res) => {
         console.log(res);
@@ -52,6 +80,7 @@ export const Petregisteration = () => {
                 name="name"
                 value={name}
                 onChange={setName}
+                required
               />
             </div>
             <div className="mb-3">
@@ -127,6 +156,110 @@ export const Petregisteration = () => {
                 <option value="female">Female</option>
               </select>
             </div>
+
+            <div className="mb-3">
+              <label>Medical Conditions:</label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Enter Medical Conditions"
+                value={medicalConditions}
+                onChange={setMedicalConditions}
+              />
+            </div>
+            <div className="mb-3">
+              <label>Allergies:</label>
+              <input
+                className="form-control"
+                type="text"
+                value={allergies}
+                placeholder="Enter Allergies"
+                onChange={setAllergies}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="">Medications:</label>
+              <input
+                className="form-control"
+                type="text"
+                value={medications}
+                placeholder="Enter Medications"
+                onChange={setMedications}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="">Dietary Needs:</label>
+              <input
+                className="form-control"
+                type="text"
+                value={dietaryNeeds}
+                placeholder="Enter Dietary Need"
+                onChange={setDietaryNeeds}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-check-label">Regular Veterinarian:</label>
+              <input
+                className="form-control"
+                type="text"
+                value={regularVet}
+                placeholder="Enter Regular Veterinarian"
+                onChange={setRegularVet}
+              />
+            </div>
+
+            <div className="mb-3">
+              <h3 className="mb-2">Vaccination details</h3>
+              {vaccinations.map((vaccination, index) => (
+                <div key={index} className="row align-items-center">
+                  <div className="mb-3 col-6">
+                    <label className="">Vaccination Name:</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="name"
+                      placeholder="Vaccination Name"
+                      value={vaccination.name}
+                      onChange={(event) =>
+                        handleVaccinationChange(event, index)
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="mb-3 col-5">
+                    <label className="">Date:</label>
+                    <input
+                      className="form-control"
+                      type="date"
+                      name="date"
+                      placeholder="Vaccination Date"
+                      value={vaccination.date}
+                      onChange={(event) =>
+                        handleVaccinationChange(event, index)
+                      }
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    className="col-1 btn btn-primary"
+                    onClick={() => handleRemoveVaccination(index)}
+                    style={{ height: "40px" }}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={handleAddVaccination}
+                className="btn btn-primary"
+              >
+                Add Vaccination
+              </button>
+            </div>
+
             <div className="form-check mb-3">
               <label className="form-check-label">
                 <input
@@ -137,7 +270,6 @@ export const Petregisteration = () => {
                 Remember me
               </label>
             </div>
-
             <button type="submit" className="btn btn-primary" onClick={submit}>
               Submit
             </button>

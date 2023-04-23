@@ -8,7 +8,6 @@ import "./petdetails.css";
 const Petdetails = () => {
   const location = useLocation();
   const { petID } = location.state;
-  console.log(petID);
   return (
     <div>
       <Navbar></Navbar>

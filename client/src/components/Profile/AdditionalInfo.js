@@ -28,8 +28,7 @@ const AdditionalInfo = (props) => {
       )
       .then((data) => {
         setTimeout(() => {
-          setUserdata(data.data[0]);
-          //   setprofileupdatealert(false);
+          setUserdata(data.data);
         }, 2000);
       })
       .catch((error) => {
