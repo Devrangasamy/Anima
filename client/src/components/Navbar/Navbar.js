@@ -115,6 +115,7 @@ function Navbar() {
                     </Link>
                     <Link
                       onClick={logoutuser}
+                      to="/"
                       className="text-decoration-none text-center p-3 te1"
                     >
                       Logout

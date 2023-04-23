@@ -17,6 +17,7 @@ import { Petregisteration } from "./components/Petregistration/petregisteration"
 import Petdetails from "./Pages/Petdetails/Petdetails";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
 import { Signup } from "./components/sign up page/signup";
+import Medicare from "./components/Medicare/Medicare";
 
 function Allroutes() {
   return (
@@ -39,6 +40,7 @@ function Allroutes() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/petregister" element={<Petregisteration />} />
             <Route path="/petdetail" element={<Petdetails />} />
+            <Route path="/medicare" element={<Medicare />} />
             <Route path="/forgetpassword" element={<Forgetpassword />} />
             <Route
               path="signup/getPassword"
