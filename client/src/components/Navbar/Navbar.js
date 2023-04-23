@@ -85,11 +85,9 @@ function Navbar() {
               className="nav-items"
               onMouseEnter={() => {
                 setShowProfileDrop(true);
-                console.log(showProfileDrop);
               }}
               onMouseLeave={() => {
                 setShowProfileDrop(false);
-                console.log(showProfileDrop);
               }}
             >
               <Link
