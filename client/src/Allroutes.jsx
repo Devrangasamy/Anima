@@ -16,6 +16,7 @@ import { Login } from "./components/Login/Login";
 import { Petregisteration } from "./components/Petregistration/petregisteration";
 import { GetPasswordAndUpdate } from "./components/sign up page/GetPasswordAndUpdate";
 import { Signup } from "./components/sign up page/signup";
+import { ProductPage } from "./Pages/product page/productpage";
 
 function Allroutes() {
   return (
@@ -50,7 +51,10 @@ function Allroutes() {
               element={<GetPasswordAndUpdate />}
             />
             <Route path="/sample" element={<Sample />} />
+
+            {/* Routes for the products page */}
             <Route path="/products" element={<Product />} />
+            <Route path = "/products/:id" element = {<ProductPage/>} />
             <Route path="/doctor" element={<Doctor />} />
             <Route path="/doctor/:id" element={<Doctordetails />} />
           </Routes>

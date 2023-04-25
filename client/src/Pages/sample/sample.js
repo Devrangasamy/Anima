@@ -1,11 +1,10 @@
-import React from "react";
-import Dropdown from "../../components/Navbar/Dropdown";
-
+import React from 'react'
+import { UploadProductData } from '../product page/uploadProductData'
 
 export const Sample = () => {
   return (
     <div>
-      <Dropdown></Dropdown>
+      <UploadProductData/>
     </div>
-  );
-};
+  )
+}
