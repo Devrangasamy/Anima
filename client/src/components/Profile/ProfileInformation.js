@@ -37,7 +37,7 @@ export const ProfileInformation = (props) => {
       )
       .then((data) => {
         setTimeout(() => {
-          setUserdata(data.data[0]);
+          setUserdata(data.data);
           setprofileupdatealert(false);
         }, 2000);
       })
@@ -50,7 +50,7 @@ export const ProfileInformation = (props) => {
       {userdata.image === "" || userdata.image == null ? (
         <img src={userprofile} className="card-img-top" alt="..." />
       ) : (
-        <img src={userdata.image} className="card-img-top" alt="..." />
+        <img src={userdata.imageurl} className="card-img-top" alt="..." />
       )}
       <div className="card-body">
         <div className="d-flex justify-content-between mb-2">

@@ -28,8 +28,7 @@ const AdditionalInfo = (props) => {
       )
       .then((data) => {
         setTimeout(() => {
-          setUserdata(data.data[0]);
-          //   setprofileupdatealert(false);
+          setUserdata(data.data);
         }, 2000);
       })
       .catch((error) => {
@@ -38,10 +37,10 @@ const AdditionalInfo = (props) => {
   };
 
   return (
-    <div className="additional-details-conatiner my-5">
-      <div>
+    <div className="additional-details-conatiner">
+      {/* <div>
         <button className="btn btn-light">Additional details</button>
-      </div>
+      </div> */}
       <div className="additional-details my-4 p-3 rounded">
         <div className="d-flex justify-content-between mb-4">
           <h1 className="card-title card-body-title">Additional Information</h1>
