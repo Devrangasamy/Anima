@@ -22,14 +22,15 @@ export const Userprofile = () => {
         )}`
       )
       .then((data) => {
-        console.log(data + "data");
-        setUserdata(data.data[0]);
+        // console.log(data);
+        // console.log(data + "data");
+        setUserdata(data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log(userdata);
+  // console.log(userdata);
 
   const setPage = (e) => {
     const value = e.target.value;
@@ -82,7 +83,7 @@ export const Userprofile = () => {
       {additionaldetails && (
         <AdditionalInfo userdata={userdata} setUserdata={setUserdata} />
       )}
-      {petdetails && <Petdetails></Petdetails>}
+      {petdetails && <Petdetails id={userdata._id}></Petdetails>}
     </div>
   );
 };

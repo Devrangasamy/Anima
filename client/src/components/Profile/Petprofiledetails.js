@@ -3,16 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import pet from "../../Assets/pet1.jpg";
 
-const Petdetails = () => {
+const Petdetails = ({ id }) => {
   const [petdatas, setPetData] = useState([]);
 
   React.useEffect(() => {
     axios
-      .get(
-        `http://127.0.0.1:8000/api/petregister/all/${localStorage.getItem(
-          "username"
-        )}`
-      )
+      .get(`http://127.0.0.1:8000/api/petregister/all/${id}`)
       .then((data) => {
         setPetData(data.data);
       })

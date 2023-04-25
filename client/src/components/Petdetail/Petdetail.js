@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { upperCase } from "upper-case";
+// import { upperCase } from "upper-case";
 import axios from "axios";
 import pet from "../../Assets/pet1.jpg";
 const Petdetail = ({ petID }) => {

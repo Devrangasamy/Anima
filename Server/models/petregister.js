@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const petSchema = mongoose.Schema({
-  username: {
+  userId: {
     type: String,
   },
   name: {
@@ -31,6 +31,32 @@ const petSchema = mongoose.Schema({
     type: String,
     // required: true,
   },
+  medicalConditions: {
+    type: String,
+    // required: true,
+  },
+  allergies: {
+    type: String,
+    // required: true,
+  },
+  medications: {
+    type: String,
+    // required: true,
+  },
+  dietaryNeeds: {
+    type: String,
+    // required: true,
+  },
+  regularVet: {
+    type: String,
+    // required: true,
+  },
+  vaccinations: [
+    {
+      name: String,
+      date: Date,
+    },
+  ],
 });
 
 export default mongoose.model("pets", petSchema);

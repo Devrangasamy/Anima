@@ -1,9 +1,9 @@
 import petModel from "../models/petregister.js";
-
+import User from "../models/User.js";
 export const getPet = (req, res, next) => {
   try {
     petModel
-      .find({ username: req.params.username })
+      .find({ userId: req.params.userId })
       .then((data) => {
         res.send(data);
       })
@@ -16,10 +16,16 @@ export const getPet = (req, res, next) => {
 };
 
 export const register = async (req, res, next) => {
+  console.log(req.body.username);
   try {
-    const newPet = new petModel(req.body);
+    const id = await User.find({ username: req.body.username }, { _id: 1 });
+    console.log(id[0]._id.toHexString());
+    const newPet = new petModel({
+      ...req.body,
+      userId: id[0]._id.toHexString(),
+    });
     await newPet.save();
-    res.send({ newPet });
+    res.send(newPet);
   } catch {
     res.send("catch");
   }
