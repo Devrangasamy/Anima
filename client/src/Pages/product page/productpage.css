@@ -1,0 +1,73 @@
+/* To make the image and the details container in the flex */
+.product-page-main-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+
+.product-page-image-container {
+  border: solid 1px rgb(224, 215, 215);
+}
+.product-page-image-container {
+  width: 40%;
+  padding: 50px;
+  height: 80%;
+  margin: 10px 30px 0px 10px;
+}
+.product-page-image {
+  height: 400px;
+  width: auto;
+}
+.product-page-button {
+  height: 50px;
+  width: 150px;
+}
+
+/* Second container in the product page to display the price and the other details in it */
+.product-page-another-container {
+  min-height: 100vh;
+  width: 900px;
+}
+.product-page-rating-container {
+  display: flex;
+}
+
+/* This is for the things that is displayed in the specification container */
+.product-page-highlight-description-container {
+  border: solid 1px grey;
+  padding: 5px 0px 0px 10px;
+  margin-left: 5px;
+  width: 800px;
+  background-color: rgb(241, 241, 241);
+  margin-bottom: 5px;
+}
+
+
+/* Always use this at last of the file else it wont work in the file */
+.productPageRating{
+  height: 20px;
+  width: 125px;
+}
+@media only screen and (min-width: 300px) and (max-width : 1000px){
+  .product-page-main-container{
+    flex-direction: column;
+  }
+  .product-page-image-container{
+    width: 400px;
+  }
+  .product-page-image{
+    width: 300px;
+    height: auto;
+  }
+  .product-page-button{
+    width: 120px;
+  }
+  .product-page-highlight-description-container{
+    width: 400px;
+  }
+  .product-page-specification-container{
+    width: 400px;
+    margin-left: 10px;
+  }
+}
