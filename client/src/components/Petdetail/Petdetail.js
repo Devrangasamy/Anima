@@ -13,8 +13,11 @@ const Petdetail = ({ petID }) => {
       .catch((err) => {
         console.error(err);
       });
-  });
+  },[]);
+  console.log(data,data.vaccinations)
   return (
+    <div>
+
     <div className="row gap-4">
       <div className="col-md-5">
         <img src={pet} alt="petimage" className="img-fluid rounded" />
@@ -37,6 +40,50 @@ const Petdetail = ({ petID }) => {
           <strong>Weight:</strong> {data.weight}
         </p>
       </div>
+    </div>
+    <div className="my-5">
+    <h1 className="mb-3">Health Concerns</h1>
+    <table class="table table-striped">
+    <tbody>
+      
+      <tr>
+        <td>Allergies</td>
+        <td>{data.allergies}</td>
+      </tr>
+      <tr>
+        <td>DietaryNeeds</td>
+        <td>{data.dietaryNeeds}</td>
+      </tr>
+      <tr>
+        <td>MedicalConditions</td>
+        <td>{data.medicalConditions}</td>
+      </tr>
+      <tr>
+        <td>Medications</td>
+        <td>{data.medications}</td>
+      </tr>
+      <tr>
+        <td>RegularVet</td>
+        <td>{data.regularVet}</td>
+      </tr>
+      <tr>
+        <td>Vaccinations</td>
+        {/* <table>
+        <tbody>
+          {data.vaccinations.map((vaccination) => (
+            <tr key={vaccination._id}>
+              <td className="d-grid">
+                <p>{vaccination.name}</p>
+                <p>{vaccination.date.split("T")[0]}</p>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+        </table> */}
+      </tr>
+    </tbody>
+  </table>
+    </div>
     </div>
   );
 };
