@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Dropdown from "./Dropdown";
+
 import "./Navbar.css";
+import placeholder from "../../Assets/profile-picture-placeholder.png";
 
 function Navbar() {
   const navigates = useNavigate();
@@ -36,7 +36,7 @@ function Navbar() {
   const [showProfileDrop, setShowProfileDrop] = useState(false);
   return (
     <>
-      <nav className="navbars">
+      {/* <nav className="navbars">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           <h3 className="logo-brand">Anima</h3>
         </Link>
@@ -131,7 +131,7 @@ function Navbar() {
               </Link>
             </li>
           )}
-          {/* <Profile trigger={buttonPopup} setTrigger={setButtonPopup}></Profile> */}
+
           {!localStorage.getItem("username") && (
             <li className="nav-items">
               <Link to="/signup" className="nav-links">
@@ -140,7 +140,113 @@ function Navbar() {
             </li>
           )}
         </ul>
-        {/* <Button /> */}
+      </nav> */}
+
+      <nav class="navbar navbar-expand-sm navbar-dark px-5">
+        <div class="container-fluid">
+          <Link class="navbar-brand" to="/">
+            Anima
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="collapsibleNavbar"
+          >
+            <ul class="navbar-nav gap-md-4">
+              <li class="nav-item">
+                <Link class="nav-link" to="/">
+                  Home
+                </Link>
+              </li>
+
+              <li class="nav-item dropdown">
+                <Link
+                  class="nav-link dropdown-toggle"
+                  to="/"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Services
+                </Link>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Link class="dropdown-item" to="/doctor">
+                      Doctor
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to="/products">
+                      Products
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" to="/accessories">
+                  Accessories
+                </Link>
+              </li>
+              {/* Login Signup */}
+              {!localStorage.getItem("username") && (
+                <li class="nav-item">
+                  <Link class="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+              )}
+
+              {!localStorage.getItem("username") && (
+                <li class="nav-item">
+                  <Link class="nav-link" to="/signup">
+                    Sign Up
+                  </Link>
+                </li>
+              )}
+
+              {/*Profile  */}
+              {localStorage.getItem("username") && (
+                <li className="d-flex gap-1">
+                  <img
+                    src={placeholder}
+                    className="profile-Placeholder-img"
+                    alt="placeHolder"
+                  />
+                  <li class="nav-item dropdown">
+                    <Link
+                      class="nav-link dropdown-toggle"
+                      to="/"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                    >
+                      {localStorage.getItem("username")}
+                    </Link>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <Link class="dropdown-item" to="/profile">
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" onClick={logoutuser}>
+                          Logout
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
       </nav>
     </>
   );

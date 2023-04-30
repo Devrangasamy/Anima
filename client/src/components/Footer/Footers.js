@@ -7,7 +7,7 @@ import {
   FooterLink,
   Heading,
 } from "./FooterStyles";
-  
+
 const Footers = () => {
   return (
     <Box>
@@ -37,28 +37,28 @@ const Footers = () => {
             <Heading>Social Media</Heading>
             <FooterLink href="#">
               <i className="fab fa-facebook-f">
-                <span style={{ marginLeft: "10px" ,padding:"10px"}}>
+                <span style={{ marginLeft: "10px", padding: "10px" }}>
                   Facebook
                 </span>
               </i>
             </FooterLink>
             <FooterLink href="#">
               <i className="fab fa-instagram">
-                <span style={{ marginLeft: "10px" ,padding:"10px"}}>
+                <span style={{ marginLeft: "10px", padding: "10px" }}>
                   Instagram
                 </span>
               </i>
             </FooterLink>
             <FooterLink href="#">
               <i className="fab fa-twitter">
-                <span style={{ marginLeft: "10px",padding:"10px" }}>
+                <span style={{ marginLeft: "10px", padding: "10px" }}>
                   Twitter
                 </span>
               </i>
             </FooterLink>
             <FooterLink href="#">
               <i className="fab fa-youtube">
-                <span style={{ marginLeft: "10px" ,padding:"10px"}}>
+                <span style={{ marginLeft: "10px", padding: "10px" }}>
                   Youtube
                 </span>
               </i>

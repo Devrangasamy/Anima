@@ -1,93 +1,19 @@
-.navbars {
-  /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
+.navbar {
   background-color: #012a4a;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  /* position: fixed;
-  z-index: 1; */
+  color: #fff !important;
 }
 
-.navbar-logo {
-  justify-self: start;
-  /* margin-left: 20px; */
-  cursor: pointer;
-  text-decoration: none;
+.navbar-dark {
+  color: #fff !important;
 }
 
-/* .navbar-logo img {
-  width: 55px;
-  height: 55px;
-} */
-.navbar-services-popup{
-  position: absolute;
-  right: 10px;
+.profile-Placeholder-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
-.fa-firstdraft {
-  margin-left: 0.5rem;
-  font-size: 1.6rem;
-}
-
-.nav-menus {
-  display: grid;
-  grid-template-columns: repeat(6, auto);
-  grid-gap: 10px;
-  list-style: none;
-  text-align: center;
-  width: 85vw;
-  justify-content: end;
-  margin-right: 2rem;
-  background-color: #012a4a;
-}
-
-.nav-items {
-  display: flex;
-  align-items: center;
-  height: 60px;
-}
-
-.nav-links {
-  display: inline-block;
-  color: white;
-  font-size: 18px;
-  font-weight: 500;
-  /* padding: 12px; */
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-
-.nav-links:hover {
-  background-color: #0b3954;
-  /* padding: 12px; */
-  color: #bfd7ea;
-  border-radius: 50px;
-  transition: all 0.2s ease-out;
-}
-
-.fa-bars {
-  color: #0b3954;
-}
-
-.nav-links-mobile {
-  display: none;
-}
-
-.menu-icon {
-  display: none;
-}
-
-.logo-brand {
-  color: white;
-  text-decoration: none;
-  font-family: "Dancing Script", cursive;
-  font-size: 2rem;
-  font-weight: 1000;
-  /* text-shadow: black 0.1em 0.1em 0.2em */
-}
-.popup-profile {
+/* .popup-profile {
   background-color: #fff;
   color: black;
   width: 12%;
@@ -96,7 +22,7 @@
   position: absolute;
   top: 60px;
   z-index: 100 !important;
-}
+} */
 /* .popup-content {
   display: grid;
   grid-template-columns: 1fr;
@@ -104,7 +30,7 @@
   text-align: center;
   text-decoration: none;
 } */
-.te1:hover{
+/* .te1:hover {
   background-color: #0b3954;
   color: white;
-}
+} */

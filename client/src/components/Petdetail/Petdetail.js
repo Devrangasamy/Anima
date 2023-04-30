@@ -13,77 +13,75 @@ const Petdetail = ({ petID }) => {
       .catch((err) => {
         console.error(err);
       });
-  },[]);
-  console.log(data,data.vaccinations)
+  }, []);
+  console.log(data.vaccinations);
+  console.log(data);
   return (
     <div>
-
-    <div className="row gap-4">
-      <div className="col-md-5">
-        <img src={pet} alt="petimage" className="img-fluid rounded" />
+      <div className="row gap-4">
+        <div className="col-md-5">
+          <img src={pet} alt="petimage" className="img-fluid rounded" />
+        </div>
+        <div className="col-md-6">
+          <h2 className="mb-4">{data.name}</h2>
+          <p>
+            <strong>Species:</strong> {data.species}
+          </p>
+          <p>
+            <strong>Breed:</strong> {data.breed}
+          </p>
+          <p>
+            <strong>Age:</strong> {data.age}
+          </p>
+          <p>
+            <strong>Color:</strong> {data.color}
+          </p>
+          <p>
+            <strong>Weight:</strong> {data.weight}
+          </p>
+        </div>
       </div>
-      <div className="col-md-6">
-        <h2 className="mb-4">{data.name}</h2>
-        <p>
-          <strong>Species:</strong> {data.species}
-        </p>
-        <p>
-          <strong>Breed:</strong> {data.breed}
-        </p>
-        <p>
-          <strong>Age:</strong> {data.age}
-        </p>
-        <p>
-          <strong>Color:</strong> {data.color}
-        </p>
-        <p>
-          <strong>Weight:</strong> {data.weight}
-        </p>
-      </div>
-    </div>
-    <div className="my-5">
-    <h1 className="mb-3">Health Concerns</h1>
-    <table class="table table-striped">
-    <tbody>
-      
-      <tr>
-        <td>Allergies</td>
-        <td>{data.allergies}</td>
-      </tr>
-      <tr>
-        <td>DietaryNeeds</td>
-        <td>{data.dietaryNeeds}</td>
-      </tr>
-      <tr>
-        <td>MedicalConditions</td>
-        <td>{data.medicalConditions}</td>
-      </tr>
-      <tr>
-        <td>Medications</td>
-        <td>{data.medications}</td>
-      </tr>
-      <tr>
-        <td>RegularVet</td>
-        <td>{data.regularVet}</td>
-      </tr>
-      <tr>
-        <td>Vaccinations</td>
-        {/* <table>
-        <tbody>
-          {data.vaccinations.map((vaccination) => (
-            <tr key={vaccination._id}>
-              <td className="d-grid">
-                <p>{vaccination.name}</p>
-                <p>{vaccination.date.split("T")[0]}</p>
-              </td>
+      <div className="my-5">
+        <h1 className="mb-3">Health Concerns</h1>
+        <table className="table table-striped">
+          <tbody>
+            <tr>
+              <td>Allergies</td>
+              <td>{data.allergies}</td>
             </tr>
-          ))}
-        </tbody>
-        </table> */}
-      </tr>
-    </tbody>
-  </table>
-    </div>
+            <tr>
+              <td>DietaryNeeds</td>
+              <td>{data.dietaryNeeds}</td>
+            </tr>
+            <tr>
+              <td>MedicalConditions</td>
+              <td>{data.medicalConditions}</td>
+            </tr>
+            <tr>
+              <td>Medications</td>
+              <td>{data.medications}</td>
+            </tr>
+            <tr>
+              <td>RegularVet</td>
+              <td>{data.regularVet}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Immunization Histroy</h3>
+        <table className="table table-striped">
+          <tbody>
+            {data.vaccinations &&
+              data.vaccinations.map((vaccination) => (
+                <tr key={vaccination._id}>
+                  <td>{vaccination.name}</td>
+                  <td>{vaccination.date.split("T")[0]}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // Components
 import "./Petregisteration.css";
 import CustomHooks from "./CustomHooks";
@@ -8,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const Petregisteration = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = CustomHooks("");
   const [species, setSpecies] = CustomHooks("");
   const [breed, setBreed] = CustomHooks("");
@@ -57,10 +60,11 @@ export const Petregisteration = () => {
         vaccinations,
       })
       .then((res) => {
-        console.log(res);
+        alert("Your pet registered Successfully");
+        setTimeout(() => navigate("/profile"), 1000);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 // Components
 import userprofilebanner from "../../Assets/profile_banner.jpg";
 import "./Userprofile.css";
@@ -9,6 +9,7 @@ import AdditionalInfo from "./AdditionalInfo";
 import Petdetails from "./Petprofiledetails";
 
 export const Userprofile = () => {
+  const navigate = useNavigate();
   const [userdata, setUserdata] = useState([]);
   const [profileupdatealert, setprofileupdatealert] = useState(false);
 
@@ -77,6 +78,12 @@ export const Userprofile = () => {
         </button>
         <button className="btn btn-light" value="petdetails" onClick={setPage}>
           petdetails
+        </button>
+        <button
+          className="btn btn-success"
+          onClick={() => navigate("/petregister")}
+        >
+          petregister
         </button>
       </div>
 
