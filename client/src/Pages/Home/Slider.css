@@ -257,3 +257,17 @@ Variables
   article.nextSlide {
     transform: translateX(100%);
   }
+  @media screen and (max-width: 452px) {
+    .new-products{
+      /* padding: px; */
+      margin: 8px;
+      margin-left: 15px;
+    }
+  }
+  @media screen and (max-width: 412px) {
+    .new-products{
+      /* padding: px; */
+      margin: 10px;
+      margin-left: 20px;
+    }
+  }

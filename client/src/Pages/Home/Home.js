@@ -65,7 +65,7 @@ const displayAllData = List.map((x, index) =>
       <br></br>  <br></br> <br></br> <br></br>
       
     
-      <div className="" >
+      <div className="tot-container" >
         <div>
           <h1 className="kind-service d-flex justify-content-center" >The Kind of service we provide.</h1>
         </div>

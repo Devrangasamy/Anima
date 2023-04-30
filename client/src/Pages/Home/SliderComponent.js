@@ -19,7 +19,7 @@ function SliderContent() {
   },[]
   )
 
-  console.log(List);
+  // console.log(List);
 //   const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
 
