@@ -120,7 +120,7 @@
 }
 .new-products{
     background-color: #8d99ae;
-    height: 480px;
+    min-height: 48px;
     border-radius: 10px;
 }
 .pro-con{
@@ -135,7 +135,7 @@
     position: relative;
     /* height: 300px; */
     padding: 10px;
-    height: 320px;
+    min-height: 320px;
 }
 .pro-con:hover{
     transform: scale(1.05);

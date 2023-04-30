@@ -11,14 +11,16 @@ import Navbar from '../../components/Navbar/Navbar'
 import Footers from "../../components/Footer/Footers";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import SliderComponent from "./SliderComponent";
 export const Home = () => {
   const [List,setList]=useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8000/api/product')
+    axios.get('https://rich-gray-macaw-sock.cyclic.app/api/product')
     .then((response) => 
      {
-
-      setList([...response.data.slice(response.data.length-4,response.data.length)])})
+      setList(response.data)
+     })
+      // setList([...response.data.slice(response.data.length-4,response.data.length)])})
     .catch((error) => console.log(error))    
 },[]
 )
@@ -130,12 +132,13 @@ const displayAllData = List.map((x, index) =>
        <h6><Link to="/products" className="all-pro">Show all new Products</Link></h6> 
       </div>
       <div>
-      <div class="row p-5 m-5 new-products gap-5" >
+      {/* <div class="row p-5 m-5 new-products gap-5" >
         {displayAllData}
         <Link to="/products" className="all-pro" style={{textAlign:"center",color:"black"}}>See More...</Link>
-      </div>
+      </div> */}
 
     </div>
+      <SliderComponent></SliderComponent>
       <Footers></Footers>
     </div>
   );
