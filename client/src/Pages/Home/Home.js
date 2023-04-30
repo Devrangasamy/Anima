@@ -11,30 +11,26 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footers from "../../components/Footer/Footers";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import SliderComponent from "./SliderComponent";
 export const Home = () => {
   const [List, setList] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/product")
-      .then((response) => {
-        setList([
-          ...response.data.slice(
-            response.data.length - 4,
-            response.data.length
-          ),
-        ]);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-  // console.log(List[0].photos)
-  const displayAllData = List.map((x, index) => (
-    <div key={index} className="col-sm-3 col-md pro-con">
-      <img className="convert-imgs" src={x.photos} alt={""}></img>
-      <br></br>
-      <div id="product-page-data-container">
-        <div id="product-name">{x.productname}</div>
-        <h4 id="price-container">MRP₹-{x.cost}</h4>
-      </div>
+    axios.get('https://rich-gray-macaw-sock.cyclic.app/api/product')
+    .then((response) => 
+     {
+      setList(response.data)
+     })
+      // setList([...response.data.slice(response.data.length-4,response.data.length)])})
+    .catch((error) => console.log(error))    
+},[]
+)
+// console.log(List[0].photos)
+const displayAllData = List.map((x, index) => 
+<div key = {index} className='col-sm-3 col-md pro-con'>
+    <img className='convert-imgs' src = {x.photos} alt = {""}></img><br></br>
+    <div id='product-page-data-container'>
+        <div id='product-name'>{x.productname}</div>
+        <h4 id='price-container'>MRP₹-{x.cost}</h4>
     </div>
   ));
 
@@ -66,8 +62,10 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <br></br> <br></br> <br></br> <br></br>
-      <div className="">
+      <br></br>  <br></br> <br></br> <br></br>
+      
+    
+      <div className="tot-container" >
         <div>
           <h1 className="kind-service d-flex justify-content-center">
             The Kind of service we provide.
@@ -155,17 +153,13 @@ export const Home = () => {
         </h6>
       </div>
       <div>
-        <div class="row p-5 m-5 new-products gap-5">
-          {displayAllData}
-          <Link
-            to="/products"
-            className="all-pro"
-            style={{ textAlign: "center", color: "black" }}
-          >
-            See More...
-          </Link>
-        </div>
-      </div>
+      {/* <div class="row p-5 m-5 new-products gap-5" >
+        {displayAllData}
+        <Link to="/products" className="all-pro" style={{textAlign:"center",color:"black"}}>See More...</Link>
+      </div> */}
+
+    </div>
+      <SliderComponent></SliderComponent>
       <Footers></Footers>
     </div>
   );

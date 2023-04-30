@@ -20,7 +20,7 @@ export default function Conactus() {
         console.log(message);
         e.preventDefault();
     
-    const response = await fetch("http://localhost:8000/api/feedback", {
+    const response = await fetch("https://rich-gray-macaw-sock.cyclic.app/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(

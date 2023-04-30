@@ -72,7 +72,7 @@ export const Userprofile = () => {
   //   e.preventDefault();
   //   axios
   //     .put(
-  //       `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
+  //       `https://rich-gray-macaw-sock.cyclic.app/api/auth/${localStorage.getItem("username")}`,
   //       { username: updatename, email: updateemail, contact: updatecontact }
   //     )
   //     .then((data) => {

@@ -37,9 +37,7 @@ const Footers = () => {
             <Heading>Social Media</Heading>
             <FooterLink href="#">
               <i className="fab fa-facebook-f">
-                <span style={{ marginLeft: "10px", padding: "10px" }}>
-                  Facebook
-                </span>
+                <span style={{ padding: "10px" }}>Facebook</span>
               </i>
             </FooterLink>
             <FooterLink href="#">

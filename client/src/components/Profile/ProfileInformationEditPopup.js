@@ -41,7 +41,7 @@ const ProfileInformationEditPopup = (props) => {
     formData.append("image", updateimg);
     axios
       .put(
-        `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
+        `https://rich-gray-macaw-sock.cyclic.app/api/auth/${localStorage.getItem("username")}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       )

@@ -44,7 +44,7 @@ export const Forgetpassword = () => {
     e.preventDefault();
     console.log("Submitted the data");
     axios
-      .get(`http://localhost:8000/api/auth/:${email}`)
+      .get(`https://rich-gray-macaw-sock.cyclic.app/api/auth/:${email}`)
       .then((res) => {
         if (res.data.length < 1) {
           setInvalidemail(true);
@@ -69,7 +69,7 @@ export const Forgetpassword = () => {
     setGeneratedOTP(OTP);
     // This sends the OTP via the email
     axios
-      .post("http://localhost:8000/sendMail", {
+      .post("https://rich-gray-macaw-sock.cyclic.app/sendMail", {
         to_address: email,
         subject: "Anima Password reset",
         message: `The otp to change your password is ${OTP}`,
@@ -126,7 +126,7 @@ export const Forgetpassword = () => {
       setNavigateToLogin(true);
       setEnternewPass(false);
       await axios
-        .post("http://localhost:8000/api/auth/updatePassword", {
+        .post("https://rich-gray-macaw-sock.cyclic.app/api/auth/updatePassword", {
           email: email,
           newpassword: password,
           confirmpassword: confirmPass,
