@@ -17,7 +17,7 @@ export const Home = () => {
       <Navbar></Navbar>
       <div className="container">
         <div className="row my-3">
-          <div className="col-sm-12 col-lg-6 my-lg-5 py-lg-5">
+          <div className="col-sm-12 col-lg-6 my-lg-3 py-lg-3">
             <h1 className="quotes">Loving sitters take care of your pet</h1>
             <p className="care">
               Our facility provides professional care-giving in a clean safe and
@@ -32,7 +32,7 @@ export const Home = () => {
               <img src={pet3} alt="pet3"></img>
               <img src={pet4} alt="pet4"></img>
               <img src={pet5} alt="pet5"></img>
-              <img className="next" src={next} alt="pet5"></img>
+              <img className="nextbtn" src={next} alt="pet5"></img>
             </div>
           </div>
           <div className="col-sm-12 col-lg-6">

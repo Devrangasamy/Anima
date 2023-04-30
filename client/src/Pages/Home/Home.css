@@ -34,8 +34,8 @@
   font-weight: bold;
 }
 
-.next {
-  opacity: 0.1;
+.nextbtn {
+  opacity: 0.3;
   color: red;
   fill: black;
 }
@@ -54,7 +54,7 @@
 .pets img:last-child {
   margin-right: 0;
 }
-.next:hover {
+.nextbtn:hover {
   opacity: 0.8;
 }
 
