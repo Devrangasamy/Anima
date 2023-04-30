@@ -18,7 +18,7 @@ export const Userprofile = () => {
   useEffect(() => {
     axios
       .get(
-        `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
+        `https://rich-gray-macaw-sock.cyclic.app/api/auth/name/${localStorage.getItem(
           "username"
         )}`
       )

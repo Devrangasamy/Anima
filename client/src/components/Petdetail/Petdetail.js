@@ -6,7 +6,7 @@ const Petdetail = ({ petID }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/petregister/${petID}`)
+      .get(`https://rich-gray-macaw-sock.cyclic.app/api/petregister/${petID}`)
       .then((data) => {
         setData(data.data);
       })

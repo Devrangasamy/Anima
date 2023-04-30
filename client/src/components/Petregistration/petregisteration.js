@@ -43,7 +43,7 @@ export const Petregisteration = () => {
     e.preventDefault();
 
     axios
-      .post("http://127.0.0.1:8000/api/petregister", {
+      .post("https://rich-gray-macaw-sock.cyclic.app/api/petregister", {
         username: localStorage.getItem("username"),
         name,
         species,
