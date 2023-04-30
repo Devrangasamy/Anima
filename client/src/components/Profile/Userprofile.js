@@ -23,15 +23,12 @@ export const Userprofile = () => {
         )}`
       )
       .then((data) => {
-        // console.log(data);
-        // console.log(data + "data");
         setUserdata(data.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  // console.log(userdata);
 
   const setPage = (e) => {
     const value = e.target.value;
@@ -48,14 +45,14 @@ export const Userprofile = () => {
   return (
     <div className="my-3 p-4 profile-container container">
       <div className="user-profile-inner-container">
-        {profileupdatealert && (
+        {/* {profileupdatealert && (
           <div
             className="alert alert-success profileupdatealert text-light"
             role="alert"
           >
             Data is updating please wait!!!
           </div>
-        )}
+        )} */}
         <img
           src={userprofilebanner}
           className="user-profile-banner rounded img-fluid"
@@ -68,6 +65,7 @@ export const Userprofile = () => {
           setprofileupdatealert={setprofileupdatealert}
         ></ProfileInformation>
       </div>
+
       <div className="additional-details-conatiner my-4 d-flex gap-4">
         <button
           className="btn btn-light"

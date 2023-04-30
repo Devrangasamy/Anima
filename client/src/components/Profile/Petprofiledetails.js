@@ -20,20 +20,21 @@ const Petdetails = ({ id }) => {
     <div className="additional-details-conatiner">
       {petdatas.map((petdata, index) => {
         return (
-          <div className="d-flex gap-4 bg-light my-3" key={index}>
-            <div>
+          <div
+            className="row gap-1 bg-light my-3 pet-deatils-profile-container"
+            key={index}
+          >
+            <div className="col-md-7 col-xl-7 d-flex justify-content-center">
               <Link to="/petdetail" state={{ petID: petdata._id }}>
                 <img
                   src={pet}
                   alt="petimage"
-                  height="330px"
-                  width="400px"
-                  className="rounded img-fluid"
+                  className="rounded img-fluid petimage"
                 ></img>
               </Link>
             </div>
-            <div className="flex-grow-1 p-3">
-              <p>
+            <div className="col-xl-4 text-start px-3 d-flex flex-column justify-content-center">
+              <p className="display-5 pb-3">
                 <span>{petdata.name}</span>
               </p>
               <p>Species : {petdata.species}</p>

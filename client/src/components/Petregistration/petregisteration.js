@@ -216,8 +216,8 @@ export const Petregisteration = () => {
               <h3 className="mb-2">Vaccination details</h3>
               {vaccinations.map((vaccination, index) => (
                 <div key={index} className="row align-items-center">
-                  <div className="mb-3 col-6">
-                    <label className="">Vaccination Name:</label>
+                  <div className="mb-3 col-8 col-sm-6">
+                    <label className="">Vaccine Name:</label>
                     <input
                       className="form-control"
                       type="text"
@@ -230,7 +230,7 @@ export const Petregisteration = () => {
                       required
                     />
                   </div>
-                  <div className="mb-3 col-5">
+                  <div className="mb-3 col-8 col-sm-5">
                     <label className="">Date:</label>
                     <input
                       className="form-control"
@@ -247,7 +247,7 @@ export const Petregisteration = () => {
 
                   <button
                     type="button"
-                    className="col-1 btn btn-primary"
+                    className="col btn btn-primary"
                     onClick={() => handleRemoveVaccination(index)}
                     style={{ height: "40px" }}
                   >
