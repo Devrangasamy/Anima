@@ -12,7 +12,7 @@ const Doctordetails = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/doctor/")
+      .get("https://rich-gray-macaw-sock.cyclic.app/api/doctor/")
       .then((response) => {
         setDatalist(response.data);
       })

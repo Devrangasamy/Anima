@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 // Components
 import userprofilebanner from "../../Assets/profile_banner.jpg";
 import "./Userprofile.css";
@@ -9,6 +9,7 @@ import AdditionalInfo from "./AdditionalInfo";
 import Petdetails from "./Petprofiledetails";
 
 export const Userprofile = () => {
+  const navigate = useNavigate();
   const [userdata, setUserdata] = useState([]);
   const [profileupdatealert, setprofileupdatealert] = useState(false);
 
@@ -18,13 +19,11 @@ export const Userprofile = () => {
     console.log("vhjk");
     axios
       .get(
-        `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
+        `https://rich-gray-macaw-sock.cyclic.app/api/auth/name/${localStorage.getItem(
           "username"
         )}`
       )
       .then((data) => {
-        // console.log(data);
-        console.log(data + "data");
         setUserdata(data.data);
       })
       .catch((error) => {
@@ -32,7 +31,6 @@ export const Userprofile = () => {
         console.log(error);
       });
   }, []);
-  // console.log(userdata);
 
   const setPage = (e) => {
     const value = e.target.value;
@@ -49,14 +47,14 @@ export const Userprofile = () => {
   return (
     <div className="my-3 p-4 profile-container container">
       <div className="user-profile-inner-container">
-        {profileupdatealert && (
+        {/* {profileupdatealert && (
           <div
             className="alert alert-success profileupdatealert text-light"
             role="alert"
           >
             Data is updating please wait!!!
           </div>
-        )}
+        )} */}
         <img
           src={userprofilebanner}
           className="user-profile-banner rounded img-fluid"
@@ -69,6 +67,7 @@ export const Userprofile = () => {
           setprofileupdatealert={setprofileupdatealert}
         ></ProfileInformation>
       </div>
+
       <div className="additional-details-conatiner my-4 d-flex gap-4">
         <button
           className="btn btn-light"
@@ -79,6 +78,12 @@ export const Userprofile = () => {
         </button>
         <button className="btn btn-light" value="petdetails" onClick={setPage}>
           petdetails
+        </button>
+        <button
+          className="btn btn-success"
+          onClick={() => navigate("/petregister")}
+        >
+          petregister
         </button>
       </div>
 

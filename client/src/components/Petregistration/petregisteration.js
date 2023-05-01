@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // Components
 import "./Petregisteration.css";
 import CustomHooks from "./CustomHooks";
@@ -8,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const Petregisteration = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = CustomHooks("");
   const [species, setSpecies] = CustomHooks("");
   const [breed, setBreed] = CustomHooks("");
@@ -40,7 +43,7 @@ export const Petregisteration = () => {
     e.preventDefault();
 
     axios
-      .post("http://127.0.0.1:8000/api/petregister", {
+      .post("https://rich-gray-macaw-sock.cyclic.app/api/petregister", {
         username: localStorage.getItem("username"),
         name,
         species,
@@ -57,10 +60,11 @@ export const Petregisteration = () => {
         vaccinations,
       })
       .then((res) => {
-        console.log(res);
+        alert("Your pet registered Successfully");
+        setTimeout(() => navigate("/profile"), 1000);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -212,8 +216,8 @@ export const Petregisteration = () => {
               <h3 className="mb-2">Vaccination details</h3>
               {vaccinations.map((vaccination, index) => (
                 <div key={index} className="row align-items-center">
-                  <div className="mb-3 col-6">
-                    <label className="">Vaccination Name:</label>
+                  <div className="mb-3 col-8 col-sm-6">
+                    <label className="">Vaccine Name:</label>
                     <input
                       className="form-control"
                       type="text"
@@ -226,7 +230,7 @@ export const Petregisteration = () => {
                       required
                     />
                   </div>
-                  <div className="mb-3 col-5">
+                  <div className="mb-3 col-8 col-sm-5">
                     <label className="">Date:</label>
                     <input
                       className="form-control"
@@ -243,7 +247,7 @@ export const Petregisteration = () => {
 
                   <button
                     type="button"
-                    className="col-1 btn btn-primary"
+                    className="col btn btn-primary"
                     onClick={() => handleRemoveVaccination(index)}
                     style={{ height: "40px" }}
                   >

@@ -21,7 +21,7 @@ export const ProductPage = () => {
   useEffect(() => {
     console.log(parameter);
     axios
-      .get(`http://localhost:8000/api/product/${parameter.id}`)
+      .get(`https://rich-gray-macaw-sock.cyclic.app/api/product/${parameter.id}`)
       .then((res) => {
         res = res.data;
         console.log(res);

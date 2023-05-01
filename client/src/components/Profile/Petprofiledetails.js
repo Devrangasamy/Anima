@@ -8,7 +8,7 @@ const Petdetails = ({ id }) => {
 
   React.useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/petregister/all/${id}`)
+      .get(`https://rich-gray-macaw-sock.cyclic.app/api/petregister/all/${id}`)
       .then((data) => {
         setPetData(data.data);
       })
@@ -20,18 +20,21 @@ const Petdetails = ({ id }) => {
     <div className="additional-details-conatiner">
       {petdatas.map((petdata, index) => {
         return (
-          <div className="d-flex gap-4 bg-light" key={index}>
-            <div>
-              <img
-                src={pet}
-                alt="petimage"
-                height="330px"
-                width="400px"
-                className="rounded img-fluid"
-              ></img>
+          <div
+            className="row gap-1 bg-light my-3 pet-deatils-profile-container"
+            key={index}
+          >
+            <div className="col-md-7 col-xl-7 d-flex justify-content-center">
+              <Link to="/petdetail" state={{ petID: petdata._id }}>
+                <img
+                  src={pet}
+                  alt="petimage"
+                  className="rounded img-fluid petimage"
+                ></img>
+              </Link>
             </div>
-            <div className="flex-grow-1 p-3">
-              <p>
+            <div className="col-xl-4 text-start px-3 d-flex flex-column justify-content-center">
+              <p className="display-5 pb-3">
                 <span>{petdata.name}</span>
               </p>
               <p>Species : {petdata.species}</p>
@@ -39,11 +42,7 @@ const Petdetails = ({ id }) => {
               <p>Age : {petdata.age}</p>
               <p>Color : {petdata.color}</p>
               <p>Weight : {petdata.weight}</p>
-              <div className="text-end">
-                <Link to="/petdetail" state={{ petID: petdata._id }}>
-                  details
-                </Link>
-              </div>
+              {/* <div className="text-end">details</div> */}
             </div>
           </div>
         );
