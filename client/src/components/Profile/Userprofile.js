@@ -15,6 +15,7 @@ export const Userprofile = () => {
   const [additionaldetails, setadditionaldetails] = useState(true);
   const [petdetails, setpetdeatils] = useState(false);
   useEffect(() => {
+    console.log("vhjk");
     axios
       .get(
         `http://127.0.0.1:8000/api/auth/name/${localStorage.getItem(
@@ -23,10 +24,11 @@ export const Userprofile = () => {
       )
       .then((data) => {
         // console.log(data);
-        // console.log(data + "data");
+        console.log(data + "data");
         setUserdata(data.data);
       })
       .catch((error) => {
+        console.log("fghjk");
         console.log(error);
       });
   }, []);

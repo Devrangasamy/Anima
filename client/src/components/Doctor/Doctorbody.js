@@ -18,9 +18,7 @@ export const Doctorbody = () => {
         console.log(error);
       });
   },[]);
-
-  // console.log(datalist);
-
+  
   const lists = datalist.map((list) => {
     if (list.name.toLowerCase().indexOf(name.toLowerCase())!==-1 && 
     list.clinic_address.toLowerCase().indexOf(location.toLowerCase())!==-1 && 
@@ -109,7 +107,7 @@ export const Doctorbody = () => {
   </div>
   <div className="search">
     <input
-      type="number"
+      type="text"
       placeholder="Years Of Experience"
       onChange={(e) => setexperience(e.target.value)}
     ></input>
