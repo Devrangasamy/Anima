@@ -10,7 +10,7 @@
 }
 
 .container-doctor-profile-left {
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 20px 20px 20px 20px;
   background-color: aliceblue;
 }
 .clinic-name {
@@ -32,7 +32,7 @@
   grid-template-columns: 1fr 2fr;
   color: #0B3954;
   margin: 10px;
-  gap: 20px;
+
 }
 .personaldetails-container1 {
   color: #0B3954;
@@ -44,7 +44,7 @@
   justify-content: center;
   flex-direction: column;
   color: #0B3954;
-  border-radius: 0px 20px 20px 0px;
+  border-radius: 20px 20px 20px 20px;
 }
 .img-container > img {
   height: 100%;
@@ -58,4 +58,13 @@
   color: #0B3954;
   border-radius: 10px;
   /* width: 600px; */
+}
+@media(max-width: 1200px){
+  .container-doctor-profile {
+    display: grid;
+    grid-template-columns:1fr;
+    margin: 50px;
+    color: #BFD7EA;
+  }
+  
 }
