@@ -1,26 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-// import { FiMail } from "react-icons/fa";
+import { NavLink} from "react-router-dom";
 import "./Doctorbody.css";
+
 export const Doctorbody = () => {
   const [datalist, setDatalist] = useState([]);
-
+  const [location, setlocation] = useState("");
+  const [name, setname] = useState("");
+  const [experience, setexperience] = useState(0);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/doctor/")
+      .get("https://rich-gray-macaw-sock.cyclic.app/api/doctor/")
       .then((response) => {
         setDatalist(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  // console.log(datalist);
-
-  const lists = datalist.map((list) => (
-    <NavLink to={`${list.id}`} style={{ textDecoration: "none" }}>
+  },[]);
+  
+  const lists = datalist.map((list) => {
+    if (list.name.toLowerCase().indexOf(name.toLowerCase())!==-1 && 
+    list.clinic_address.toLowerCase().indexOf(location.toLowerCase())!==-1 && 
+    (parseInt(experience)<=parseInt(list.years_of_experience)||experience==='')) {
+      return (
+    <NavLink to={list.id} style={{ textDecoration: "none" }}>
       <div key={list.id} className="doctor-container">
         <div>
           <div className="doctor-details-container">
@@ -82,7 +86,32 @@ export const Doctorbody = () => {
         </div>
       </div>
     </NavLink>
-  ));
+    );
+  }
+});
 
-  return <div>{lists}</div>;
+  return <div><div className="doctor-header">
+  <div className="search">
+  <input
+      type="text"
+      placeholder="name"
+      onChange={(e) => setname(e.target.value)}
+    ></input>
+  </div>
+  <div className="search">
+  <input
+      type="text"
+      placeholder="location"
+      onChange={(e) => setlocation(e.target.value)}
+    ></input>
+  </div>
+  <div className="search">
+    <input
+      type="text"
+      placeholder="Years Of Experience"
+      onChange={(e) => setexperience(e.target.value)}
+    ></input>
+  </div>
+</div>
+    {lists}</div>;
 };

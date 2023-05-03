@@ -26,7 +26,7 @@ export const LoginUsingGoogle = () => {
                 setLoading(true);
                 let data = jwt_decode(response.credential);
                 const res = await fetch(
-                  "http://localhost:8000/api/auth/loginUsingGoogle",
+                  "https://rich-gray-macaw-sock.cyclic.app/api/auth/loginUsingGoogle",
                   {
                     method: "POST",
                     headers: { "Content-Type": "Application/json" },

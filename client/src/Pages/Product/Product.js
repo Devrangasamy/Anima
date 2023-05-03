@@ -19,7 +19,7 @@ export const Product = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:8000/api/product")
+      .get("https://rich-gray-macaw-sock.cyclic.app/api/product")
       .then((response) => {
         setDataList(response.data);
         setLoading(false);
@@ -68,7 +68,7 @@ export const Product = () => {
     let search = searchText.toLowerCase();
     if (prev_size > search.length) {
       axios
-        .get("http://localhost:8000/api/product")
+        .get("https://rich-gray-macaw-sock.cyclic.app/api/product")
         .then((response) => setDataList(response.data))
         .catch((error) => console.log(error));
     }

@@ -28,7 +28,9 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "spinners-react": "^1.0.7",
+    "react-slick": "^0.29.0",
     "styled-components": "^5.3.9",
+    "swiper": "^9.2.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

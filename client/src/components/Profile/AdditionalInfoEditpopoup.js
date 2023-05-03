@@ -29,7 +29,7 @@ const AdditionalInfoEditpopoup = (props) => {
     handleClose();
     axios
       .put(
-        `http://localhost:8000/api/auth/${localStorage.getItem("username")}`,
+        `https://rich-gray-macaw-sock.cyclic.app/api/auth/${localStorage.getItem("username")}`,
         {
           birthday: String(updatebirthday),
           gender: updategender,

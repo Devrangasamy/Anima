@@ -30,7 +30,7 @@ export const GetPasswordAndUpdate = () => {
     let responseFromAxios;
     let dataa = jwt_decode(googleAuth.credential);
     axios
-      .get(`http://localhost:8000/api/auth/:${dataa.email}`)
+      .get(`https://rich-gray-macaw-sock.cyclic.app/api/auth/:${dataa.email}`)
       .then((response) => {
         setData(response);
         if (response.data.length > 0) {
@@ -76,7 +76,7 @@ export const GetPasswordAndUpdate = () => {
           mobile_number: mobileNumber,
         };
         axios
-          .post("http://localhost:8000/api/auth/register", json)
+          .post("https://rich-gray-macaw-sock.cyclic.app/api/auth/register", json)
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
         console.log(json);
