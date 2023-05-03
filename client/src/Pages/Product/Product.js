@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import { Loading } from "../../components/loading/Loading";
 import { useCartAuth } from "./Cart";
 import "./Product.css";
 var prev_size = 0;
@@ -11,24 +12,32 @@ export const Product = () => {
   const [, setSortingOption] = useState("Alphabetical");
   const [dataList, setDataList] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   //   To route the page
   const navigate = useNavigate();
   useEffect(() => {
+    setLoading(true);
     axios
       .get("http://localhost:8000/api/product")
-      .then((response) => setDataList(response.data))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        setDataList(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
   const addToCart = (event) => {
     const id = event.target.value;
     console.log(id);
-    if (cartAuth.findOccur(id) === true) {
-      cartAuth.updateCount(id);
-    } else {
-      cartAuth.updateCartList(id);
-    }
-    console.log(cartAuth.printCartList());
+    axios
+      .get("http://localhost:8000/api/product/getCartItems", {
+        id: id,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
   const buyNow = (event) => {
     console.log(event.target.value);
@@ -78,16 +87,14 @@ export const Product = () => {
   };
 
   const displayAllData = dataList.map((x, index) => (
-    <div
-      key={x._id}
-      className="product-container"
-      onClick={() => divContainerClick(x._id)}
-    >
-      <img className="convert-image" src={x.photos} alt={""}></img>
-      <br></br>
-      <div id="product-page-data-container">
-        <div id="product-container-product-name">{x.productname}</div>
-        <div id="product-container-price-container">MRP₹-{x.cost}</div>
+    <div key={x._id} className="product-container">
+      <div onClick={() => divContainerClick(x._id)}>
+        <img className="convert-image" src={x.photos} alt={""}></img>
+        <br></br>
+        <div id="product-page-data-container">
+          <div id="product-container-product-name">{x.productname}</div>
+          <div id="product-container-price-container">MRP₹-{x.cost}</div>
+        </div>
       </div>
       <button value={x._id} onClick={(event) => addToCart(event)}>
         Add to Cart
@@ -99,40 +106,48 @@ export const Product = () => {
   ));
 
   return (
-    <div>
-      <div>
-        <Navbar></Navbar>{" "}
-      </div>
-      <div id="product-page-all-container">
-        <div id="product-page-nav-container">
-            <div id="product-page-nav-total-data-container">
-              <span>Showing {dataList.length} items</span>
-            </div>
-            <div id="product-page-nav-serach-container">
-              <span>Search</span>
-              <input
-                onChange={(event) => {
-                  setSearchText(event.target.value);
-                  searchThisItem();
-                }}
-                value={searchText}
-              ></input>
-            </div>
-            <div id="product-page-nav-sort-container">
-              <span>Sort by :</span>
-              <select onChange={(event) => optionChange(event)}>
-                <option value={"none"}>None</option>
-                <option value={"alphabetical"}>Alphabetical</option>
-                <option value={"low to high"}>Low to High</option>
-                <option value={"high to low"}>High to Low</option>
-              </select>
-            </div>
+    <>
+      {isLoading ? (
+        <div className="loadingContainer">
+          <Loading />
         </div>
-        <div className="grid-container">
-          {/* This is using the index as the keyprops and the value for the buttons */}
-          {displayAllData}
-        </div>
-      </div>
-    </div>
+      ) : (
+        <>
+          <div>
+            <Navbar></Navbar>{" "}
+          </div>
+          <div id="product-page-all-container">
+            <div id="product-page-nav-container">
+              <div id="product-page-nav-total-data-container">
+                <span>Showing {dataList.length} items</span>
+              </div>
+              <div id="product-page-nav-serach-container">
+                <span>Search</span>
+                <input
+                  onChange={(event) => {
+                    setSearchText(event.target.value);
+                    searchThisItem();
+                  }}
+                  value={searchText}
+                ></input>
+              </div>
+              <div id="product-page-nav-sort-container">
+                <span>Sort by :</span>
+                <select onChange={(event) => optionChange(event)}>
+                  <option value={"none"}>None</option>
+                  <option value={"alphabetical"}>Alphabetical</option>
+                  <option value={"low to high"}>Low to High</option>
+                  <option value={"high to low"}>High to Low</option>
+                </select>
+              </div>
+            </div>
+            <div className="grid-container">
+              {/* This is using the index as the keyprops and the value for the buttons */}
+              {displayAllData}
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };

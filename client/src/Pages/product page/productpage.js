@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import { Loading } from "../../components/loading/Loading";
+import { useCartAuth } from "../Product/Cart";
 import { Cell, Heading } from "./product-page-styled-component";
 import "./productpage.css";
 
@@ -17,8 +19,14 @@ export const ProductPage = () => {
   const [cost, setCost] = useState("");
   const parameter = useParams();
 
+  // To update the number of things ordered by the person
+  const cartAuth = useCartAuth();
+  // This is for the loading container
+  const [isLoading, setLoading] = useState(false);
+
   // This is to get the data from server and then display the details in the product page
   useEffect(() => {
+    setLoading(true);
     console.log(parameter);
     axios
       .get(`http://localhost:8000/api/product/${parameter.id}`)
@@ -92,44 +100,67 @@ export const ProductPage = () => {
             ))}
           </>
         );
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  const addToCart = (event) => {
+    const id = event.target.value;
+    console.log(id);
+    if (cartAuth.findOccur(id) === true) {
+      cartAuth.updateCount(id);
+    } else {
+      cartAuth.updateCartList(id);
+    }
+    console.log(cartAuth.printCartList());
+  };
+  const buyNow = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
-      <div className="product-page-main-container">
-        <div className="product-page-image-container">{imageContainer}</div>
-        <div className="product-page-another-container">
-          <Heading>{heading}</Heading>
-          <div className="product-page-rating-container">
-            <div className="productPageRating">
-              <Rating
-                value={rating}
-                onChange={setRating}
-                readOnly
-                className="productPageRating"
-              />
-            </div>
-            <div className="centerContents productPageRatingValue">
-              <span>{rating} Rating</span>
-            </div>
-          </div>
-          <div className="product-page-price-container">
-            <span style={{ color: "green" }}>Special price</span>
-            <h2>₹{cost}</h2>
-            <div className="product-page-highlight-container">
-              {descriptionDisplay}
-            </div>
-          </div>
-          <div className="product-page-specification-container">
-            {specificationDisplay}
-          </div>
+      {isLoading ? (
+        <div className="loadingContainer">
+          <Loading />
         </div>
-      </div>
+      ) : (
+        <>
+          <div>
+            <Navbar />
+          </div>
+          <div className="product-page-main-container">
+            <div className="product-page-image-container">{imageContainer}</div>
+            <div className="product-page-another-container">
+              <Heading>{heading}</Heading>
+              <div className="product-page-rating-container">
+                <div className="productPageRating">
+                  <Rating
+                    value={rating}
+                    onChange={setRating}
+                    readOnly
+                    className="productPageRating"
+                  />
+                </div>
+                <div className="centerContents productPageRatingValue">
+                  <span>{rating} Rating</span>
+                </div>
+              </div>
+              <div className="product-page-price-container">
+                <span style={{ color: "green" }}>Special price</span>
+                <h2>₹{cost}</h2>
+                <div className="product-page-highlight-container">
+                  {descriptionDisplay}
+                </div>
+              </div>
+              <div className="product-page-specification-container">
+                {specificationDisplay}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -2,12 +2,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+// To display the speed of the backend
+import morgan from "morgan";
+import { sendMailUsingNodemailer } from "./node mailer/nodemailer.js";
 import authRoute from "./routes/authRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
 import feedbackRoute from "./routes/feedbackroute.js";
-import productRoute from "./routes/productRoute.js";
 import petregister from "./routes/petregisterroutes.js";
-import { sendMailUsingNodemailer } from "./node mailer/nodemailer.js";
+import productRoute from "./routes/productRoute.js";
 
 dotenv.config();
 const app = express();
@@ -31,6 +33,7 @@ mongoose.connection.on("disconnected", () => {
   console.log("Mongodb disconnected!");
 });
 app.use(express.json());
+app.use(morgan("tiny"));
 app.use("/api/auth", authRoute);
 app.use("/api/product", productRoute);
 app.use("/api/doctor", doctorRoute);

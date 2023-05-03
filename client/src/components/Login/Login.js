@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utilis/Authentication";
 import Navbar from "../Navbar/Navbar";
+import { Loading } from "../loading/Loading";
 import { LoginUsingGoogle } from "./LoginUsingGoogle";
 
 export const Login = () => {
@@ -19,12 +21,19 @@ export const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // For the loading
+  const [isLoading, setLoading] = useState(false);
+  
+  useEffect(() => {
+    console.log("re rendering the component")
+  });
   const removeMargin = {
     marginBottom: 0,
   };
 
   const submit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const response = await fetch("http://localhost:8000/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,11 +43,14 @@ export const Login = () => {
       }),
     });
     const json = await response.json();
+    await setLoading(false);
     console.log(json);
     if (json.status === "Success") {
+      setLoading(true)
       auth.login(json.data[0].username);
       localStorage.setItem("username", json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
+      // setLoading(false)
       setPassword("");
       setemail("");
     } else {
@@ -51,69 +63,81 @@ export const Login = () => {
   };
   return (
     <>
-      <Navbar />
-      <div className="loginMainContainter">
-        <div className="loginFormContainer">
-          <h5 style={{ textAlign: "center", marginBottom: 10 }}>Anima login</h5>
-          <Form onSubmit={submit}>
-            <Form.Group controlId="login-form-name" className="mb-3">
-              <Form.Label style={removeMargin}>Username or email</Form.Label>
-              <Form.Control
-                type="text"
-                value={email}
-                onChange={(e) => {
-                  setemail(e.target.value);
-                  setNoMatch(false);
-                }}
-                autoComplete="off"
-                placeholder="Username or Email"
-              />
-            </Form.Group>
-            <Form.Group controlId="login-form-password">
-              <Form.Label style={removeMargin}>Password</Form.Label>
-              <Form.Control
-                type={showpass ? "text" : "password"}
-                value={password}
-                autoComplete="off"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setNoMatch(false);
-                }}
-                placeholder="Password"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="Show password"
-                onChange={() => setShowpass(!showpass)}
-              />
-              {noMatch && (
-                <div className="centerContents">
-                  <Form.Text style={{ color: "red" }}>
-                    username and password mismatches
-                  </Form.Text>
-                </div>
-              )}
-            </Form.Group>
-            <div className="centerContents mb-3">
-              <LoginUsingGoogle />
-            </div>
-            <div className="loginButtonContainer">
-              <Button
-                variant="outline-primary"
-                type="button"
-                onClick={() => forgotPassword()}
-              >
-                Forgot password
-              </Button>
-              <Button variant="outline-primary" type="submit">
-                Login
-              </Button>
-            </div>
-          </Form>
+      {isLoading ? (
+        <div className="loadingContainer">
+          <Loading />
         </div>
-      </div>
+      ) : (
+        <>
+          <Navbar />
+          <div className="loginMainContainter">
+            <div className="loginFormContainer">
+              <h5 style={{ textAlign: "center", marginBottom: 10 }}>
+                Anima login
+              </h5>
+              <Form onSubmit={submit}>
+                <Form.Group controlId="login-form-name" className="mb-3">
+                  <Form.Label style={removeMargin}>
+                    Username or email
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={email}
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                      setNoMatch(false);
+                    }}
+                    autoComplete="off"
+                    placeholder="Username or Email"
+                  />
+                </Form.Group>
+                <Form.Group controlId="login-form-password">
+                  <Form.Label style={removeMargin}>Password</Form.Label>
+                  <Form.Control
+                    type={showpass ? "text" : "password"}
+                    value={password}
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setNoMatch(false);
+                    }}
+                    placeholder="Password"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                  <Form.Check
+                    type="checkbox"
+                    label="Show password"
+                    onChange={() => setShowpass(!showpass)}
+                  />
+                  {noMatch && (
+                    <div className="centerContents">
+                      <Form.Text style={{ color: "red" }}>
+                        username and password mismatches
+                      </Form.Text>
+                    </div>
+                  )}
+                </Form.Group>
+                <div className="centerContents mb-3">
+                  <LoginUsingGoogle />
+                </div>
+                <div className="loginButtonContainer">
+                  <Button
+                    variant="outline-primary"
+                    type="button"
+                    onClick={() => forgotPassword()}
+                  >
+                    Forgot password
+                  </Button>
+                  <Button variant="outline-primary" type="submit" disabled = {isLoading} >
+                    Login
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
