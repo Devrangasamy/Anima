@@ -24,6 +24,7 @@ body {
   border: solid 2px rgb(229, 214, 214);
   border-radius: 20px;
   text-align: center;
+  margin: 10px;
 }
 .product-container button {
   height: var(--height);
@@ -120,9 +121,14 @@ body {
     grid-template-columns: auto auto auto;
   }
 }
+/* @media screen and (min-width : 500px) and (max-width : 700px){
+  .grid-container{
+    grid-template-columns: auto auto ;
+  }
+} */
 @media only screen and (min-width : 300px) and (max-width : 700px){
   .grid-container{
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
   #product-page-nav-container{
     flex-direction: column;
@@ -132,6 +138,6 @@ body {
     margin: 10px 0px 10px 0px;
   }
   .product-container{
-    margin: 0px 2px 0px 2px;
+    margin:10px;
   }
 }
