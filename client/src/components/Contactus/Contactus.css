@@ -19,7 +19,7 @@
     max-width: 820px;
     background-color: white;
     border-radius:20px;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, .4);
+    box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .2);
     grid-template-columns: repeat(2,1fr);
     display: grid;
     z-index: 1000;
@@ -131,6 +131,7 @@ textarea.input{
     resize: none;
     min-height: 150px;
     overflow: auto;
+    margin-top: 5px;
 }
 .contact-button{
     position:relative;

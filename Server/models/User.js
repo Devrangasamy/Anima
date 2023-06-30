@@ -1,3 +1,4 @@
+import { json } from "express";
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
@@ -7,9 +8,6 @@ const UserSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-    },
-    image: {
-      type: String,
     },
     email: {
       type: String,
@@ -43,6 +41,14 @@ const UserSchema = new Schema(
     gender: {
       type: String,
       default: "----------",
+    },
+    cartProducts: {
+      type: Object,
+      default: {},
+    },
+    wishList: {
+      type: Array,
+      default: [],
     },
   },
   { timestamps: true }

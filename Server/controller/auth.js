@@ -3,18 +3,18 @@ import User from "../models/User.js";
 
 // Aws
 import {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
   DeleteObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
 } from "@aws-sdk/client-s3";
 
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
-import dotenv from "dotenv";
-dotenv.config();
-import sharp from "sharp";
 import crypto from "crypto";
+import dotenv from "dotenv";
+import sharp from "sharp";
+dotenv.config();
 
 const bucketname = process.env.BUCKET_NAME;
 const bucketregion = process.env.BUCKET_REGION;
@@ -87,6 +87,7 @@ export const getusers = async (req, res, next) => {
   }
 };
 export const findMailId = async (req, res, next) => {
+  console.log("Find mail");
   try {
     const email = req.params.emailID.slice(1);
     const user = await User.find({ email: email });
@@ -109,8 +110,6 @@ export const deleteEmailID = async (req, res, next) => {
 export const updatepassword = async (req, res, next) => {
   const filter = { email: req.body.email };
   try {
-    const user = await User.find(filter);
-    console.log(user[0]._id);
     const updation = await User.findOneAndUpdate(
       filter,
       { $set: req.body },
@@ -124,8 +123,8 @@ export const updatepassword = async (req, res, next) => {
 };
 
 // get user information
-
 export const getuser = async (req, res, next) => {
+  console.log("Insidde the get user");
   try {
     const user = await User.find({ username: req.params.username });
     const userObject = user[0].toObject();
@@ -205,5 +204,32 @@ export const updateuser = async function updateuser(req, res, next) {
         .json({ message: "An error occurred while creating the user." });
     }
     console.log(res);
+  }
+};
+
+export const updateCart = async (req, res, next) => {
+  const filter = { _id: req.body.id };
+  try {
+    const user = await User.find(filter);
+    console.log(user[0].cartProducts);
+    const updation = await User.findOneAndUpdate(
+      filter,
+      { $set: req.body },
+      { new: true }
+    );
+    console.log(updation);
+    res.status(200).json(updation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const getCartItems = async (req, res, next) => {
+  try {
+    const user = await User.find({ _id: req.body.id });
+    console.log(user);
+    res.status(200).json(user[0].cartProducts);
+  } catch (err) {
+    res.status(500).json({ status: "failed" });
   }
 };

@@ -16,6 +16,7 @@ export const Userprofile = () => {
   const [additionaldetails, setadditionaldetails] = useState(true);
   const [petdetails, setpetdeatils] = useState(false);
   useEffect(() => {
+    console.log("vhjk");
     axios
       .get(
         `https://rich-gray-macaw-sock.cyclic.app/api/auth/name/${localStorage.getItem(

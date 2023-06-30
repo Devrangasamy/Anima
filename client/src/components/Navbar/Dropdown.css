@@ -4,6 +4,7 @@
   border-radius: 10px;
   background-color: #012a4a;
   position: absolute;
+  z-index: 10;
   /* left: 43%; */
 }
 .dropdown-menubar{
