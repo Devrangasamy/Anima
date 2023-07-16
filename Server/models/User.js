@@ -43,8 +43,8 @@ const UserSchema = new Schema(
       default: "----------",
     },
     cartProducts: {
-      type: Object,
-      default: {},
+      type: Array,
+      default: [],
     },
     wishList: {
       type: Array,

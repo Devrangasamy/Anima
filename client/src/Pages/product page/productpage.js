@@ -3,9 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../Utilis/Authentication";
 import Navbar from "../../components/Navbar/Navbar";
 import { Loading } from "../../components/loading/Loading";
-import { useCartAuth } from "../Product/Cart";
+import config from "../../config.json";
+import { Redirect, Sample } from "../Redirect/Redirect";
 import { Cell, Heading } from "./product-page-styled-component";
 import "./productpage.css";
 
@@ -18,21 +20,22 @@ export const ProductPage = () => {
   const [rating, setRating] = useState("");
   const [cost, setCost] = useState("");
   const parameter = useParams();
+  const [redirectFlag, setRedirectFlag] = useState(false);
 
-  // To update the number of things ordered by the person
-  const cartAuth = useCartAuth();
   // This is for the loading container
   const [isLoading, setLoading] = useState(false);
+
+  const auth = useAuth();
 
   // This is to get the data from server and then display the details in the product page
   useEffect(() => {
     setLoading(true);
-    console.log(parameter);
     axios
-      .get(`https://rich-gray-macaw-sock.cyclic.app/api/product/${parameter.id}`)
+      .get(
+        `https://rich-gray-macaw-sock.cyclic.app/api/product/${parameter.id}`
+      )
       .then((res) => {
         res = res.data;
-        console.log(res);
         setImageContainer(
           <>
             <div>
@@ -45,15 +48,17 @@ export const ProductPage = () => {
                 <Button
                   variant="primary"
                   className="product-page-button"
+                  value={res._id}
                   style={{ marginRight: 50 }}
-                  onClick={() => console.log("Primary")}
+                  onClick={(e) => addToCart(e)}
                 >
                   Add to cart
                 </Button>
                 <Button
                   variant="outline-primary"
+                  value={res._id}
                   className="product-page-button"
-                  onClick={() => console.log("Primary")}
+                  onClick={(e) => buyNow(e)}
                 >
                   Buy now
                 </Button>
@@ -105,19 +110,21 @@ export const ProductPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const addToCart = (event) => {
-    const id = event.target.value;
-    console.log(id);
-    if (cartAuth.findOccur(id) === true) {
-      cartAuth.updateCount(id);
-    } else {
-      cartAuth.updateCartList(id);
+  const addToCart = async (event) => {
+    if (!auth.user) {
+      setRedirectFlag(true);
     }
-    console.log(cartAuth.printCartList());
+    setLoading(true);
+    await axios
+      .put(config.UPDATE_USER_CART, {
+        id: auth.id,
+        productId: event.target.value,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    setLoading(false);
   };
-  const buyNow = (event) => {
-    console.log(event.target.value);
-  };
+  const buyNow = (event) => {};
 
   return (
     <>
@@ -127,38 +134,51 @@ export const ProductPage = () => {
         </div>
       ) : (
         <>
-          <div>
-            <Navbar />
-          </div>
-          <div className="product-page-main-container">
-            <div className="product-page-image-container">{imageContainer}</div>
-            <div className="product-page-another-container">
-              <Heading>{heading}</Heading>
-              <div className="product-page-rating-container">
-                <div className="productPageRating">
-                  <Rating
-                    value={rating}
-                    onChange={setRating}
-                    readOnly
-                    className="productPageRating"
-                  />
+          {redirectFlag ? (
+            <>
+              <Redirect
+                to_address="login"
+                message="Please login to add products to cart"
+              />
+            </>
+          ) : (
+            <>
+              <div>
+                <Navbar />
+              </div>
+              <div className="product-page-main-container">
+                <div className="product-page-image-container">
+                  {imageContainer}
                 </div>
-                <div className="centerContents productPageRatingValue">
-                  <span>{rating} Rating</span>
+                <div className="product-page-another-container">
+                  <Heading>{heading}</Heading>
+                  <div className="product-page-rating-container">
+                    <div className="productPageRating">
+                      <Rating
+                        value={rating}
+                        onChange={setRating}
+                        readOnly
+                        className="productPageRating"
+                      />
+                    </div>
+                    <div className="centerContents productPageRatingValue">
+                      <span>{rating} Rating</span>
+                    </div>
+                  </div>
+                  <div className="product-page-price-container">
+                    <span style={{ color: "green" }}>Special price</span>
+                    <h2>₹{cost}</h2>
+                    <div className="product-page-highlight-container">
+                      {descriptionDisplay}
+                    </div>
+                  </div>
+                  <div className="product-page-specification-container">
+                    {specificationDisplay}
+                  </div>
                 </div>
               </div>
-              <div className="product-page-price-container">
-                <span style={{ color: "green" }}>Special price</span>
-                <h2>₹{cost}</h2>
-                <div className="product-page-highlight-container">
-                  {descriptionDisplay}
-                </div>
-              </div>
-              <div className="product-page-specification-container">
-                {specificationDisplay}
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </>
       )}
     </>

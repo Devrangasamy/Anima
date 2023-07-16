@@ -209,27 +209,66 @@ export const updateuser = async function updateuser(req, res, next) {
 
 export const updateCart = async (req, res, next) => {
   const filter = { _id: req.body.id };
+  const sign = req.body.sign;
+  const remove_flag = req.body.removeall;
+  const productId = req.body.productId;
   try {
-    const user = await User.find(filter);
-    console.log(user[0].cartProducts);
-    const updation = await User.findOneAndUpdate(
-      filter,
-      { $set: req.body },
-      { new: true }
-    );
-    console.log(updation);
-    res.status(200).json(updation);
+    const data = await User.find(filter);
+    if (data[0].cartProducts.length === 0 && !remove_flag && !sign === "-") {
+      const a = await User.findOneAndUpdate(filter, {
+        cartProducts: { id: productId, count: 1 },
+      });
+      res.status(200).json({ status: "sucess", data: a });
+    } else {
+      let cartProducts_data = data[0].cartProducts;
+      let flag = false;
+      for (let i = 0; i < cartProducts_data.length; i++) {
+        if (cartProducts_data[i] === null) {
+          continue;
+        }
+        else if (cartProducts_data[i].id === productId && remove_flag === true) {
+          cartProducts_data.splice(i, 1);
+          flag = true;
+          console.log(cartProducts_data)
+          break;
+        } else if (cartProducts_data[i].id === productId && sign === "+") {         
+          cartProducts_data[i].count += 1;
+          flag = true;
+          break;
+        } else if (cartProducts_data[i].id === productId && sign === "-") {
+          if (cartProducts_data[i].count === 1) {
+            cartProducts_data.splice(i);
+            flag = true;
+            console.log(cartProducts_data);
+            break;
+          } else {
+            cartProducts_data[i].count -= 1;
+            flag = true;
+            break;
+          }
+        }
+      }
+      console.log(cartProducts_data);
+      if (!flag) {
+        cartProducts_data.push({ id: productId, count: 1 });
+      }
+      const a = await User.findOneAndUpdate(filter, {
+        cartProducts: cartProducts_data,
+      });
+      res.status(200).json({ status: "sucess", data: a });
+    }
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err);
+    res.status(404).json({ status: "failed", data: err });
   }
 };
 
 export const getCartItems = async (req, res, next) => {
   try {
-    const user = await User.find({ _id: req.body.id });
-    console.log(user);
-    res.status(200).json(user[0].cartProducts);
+    const param = req.query;
+    const data = await User.findById(param.id);
+    res.status(200).json({ status: true, data: data.cartProducts });
   } catch (err) {
-    res.status(500).json({ status: "failed" });
+    res.status(400).json({ status: false, data: err });
   }
 };

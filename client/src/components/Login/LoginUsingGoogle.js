@@ -37,7 +37,7 @@ export const LoginUsingGoogle = () => {
                 );
                 const json = await res.json();
                 if (json.status === "Sucess") {
-                  auth.login(json.data[0].username);
+                  auth.login(json.data[0].username, json.data[0]._id);
                   localStorage.setItem("username", json.data[0].username);
                   navigate(location.state ? location.state.path : "/", {
                     replace: true,

@@ -1,25 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Utilis/Authentication";
 import Navbar from "../../components/Navbar/Navbar";
 import { Loading } from "../../components/loading/Loading";
-import { useCartAuth } from "./Cart";
+import config from "../../config.json";
+import { Redirect } from "../Redirect/Redirect";
 import "./Product.css";
 var prev_size = 0;
 
 export const Product = () => {
-  const cartAuth = useCartAuth();
   const [, setSortingOption] = useState("Alphabetical");
   const [dataList, setDataList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [redirectFlag, setRedirectFlag] = useState(false);
+
+  const auth = useAuth();
 
   //   To route the page
   const navigate = useNavigate();
   useEffect(() => {
+    console.log(auth.user);
     setLoading(true);
     axios
-      .get("https://rich-gray-macaw-sock.cyclic.app/api/product")
+      .get("http://localhost:8000/api/product")
       .then((response) => {
         setDataList(response.data);
         setLoading(false);
@@ -29,18 +34,25 @@ export const Product = () => {
         setLoading(false);
       });
   }, []);
-  const addToCart = (event) => {
-    const id = event.target.value;
-    console.log(id);
-    axios
-      .get("http://localhost:8000/api/product/getCartItems", {
-        id: id,
+  const addToCart = async (event) => {
+    if (!auth.user) {
+      setRedirectFlag(true);
+    }
+    setLoading(true);
+    await axios
+      .put(config.UPDATE_USER_CART, {
+        id: auth.id,
+        productId: event.target.value,
+        sign: "+",
+        removeall: false,
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+    setLoading(false);
   };
   const buyNow = (event) => {
     console.log(event.target.value);
+    navigate("/products/showCart");
   };
   // This function will invoke when there is a change in the sort and updateds the data in the page
   const optionChange = (event) => {
@@ -68,7 +80,7 @@ export const Product = () => {
     let search = searchText.toLowerCase();
     if (prev_size > search.length) {
       axios
-        .get("https://rich-gray-macaw-sock.cyclic.app/api/product")
+        .get("http:localhost:8000/api/product")
         .then((response) => setDataList(response.data))
         .catch((error) => console.log(error));
     }
@@ -113,39 +125,50 @@ export const Product = () => {
         </div>
       ) : (
         <>
-          <div>
-            <Navbar></Navbar>{" "}
-          </div>
-          <div id="product-page-all-container">
-            <div id="product-page-nav-container">
-              <div id="product-page-nav-total-data-container">
-                <span>Showing {dataList.length} items</span>
+          {redirectFlag ? (
+            <>
+              <Redirect
+                to_address="login"
+                message="Please login to add products to cart"
+              />
+            </>
+          ) : (
+            <>
+              <div>
+                <Navbar></Navbar>{" "}
               </div>
-              <div id="product-page-nav-serach-container">
-                <span>Search</span>
-                <input
-                  onChange={(event) => {
-                    setSearchText(event.target.value);
-                    searchThisItem();
-                  }}
-                  value={searchText}
-                ></input>
+              <div id="product-page-all-container">
+                <div id="product-page-nav-container">
+                  <div id="product-page-nav-total-data-container">
+                    <span>Showing {dataList.length} items</span>
+                  </div>
+                  <div id="product-page-nav-serach-container">
+                    <span>Search</span>
+                    <input
+                      onChange={(event) => {
+                        setSearchText(event.target.value);
+                        searchThisItem();
+                      }}
+                      value={searchText}
+                    ></input>
+                  </div>
+                  <div id="product-page-nav-sort-container">
+                    <span>Sort by :</span>
+                    <select onChange={(event) => optionChange(event)}>
+                      <option value={"none"}>None</option>
+                      <option value={"alphabetical"}>Alphabetical</option>
+                      <option value={"low to high"}>Low to High</option>
+                      <option value={"high to low"}>High to Low</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="grid-container">
+                  {/* This is using the index as the keyprops and the value for the buttons */}
+                  {displayAllData}
+                </div>
               </div>
-              <div id="product-page-nav-sort-container">
-                <span>Sort by :</span>
-                <select onChange={(event) => optionChange(event)}>
-                  <option value={"none"}>None</option>
-                  <option value={"alphabetical"}>Alphabetical</option>
-                  <option value={"low to high"}>Low to High</option>
-                  <option value={"high to low"}>High to Low</option>
-                </select>
-              </div>
-            </div>
-            <div className="grid-container">
-              {/* This is using the index as the keyprops and the value for the buttons */}
-              {displayAllData}
-            </div>
-          </div>
+            </>
+          )}
         </>
       )}
     </>

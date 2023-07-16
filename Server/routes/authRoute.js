@@ -21,7 +21,8 @@ import multer from "multer";
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.put("/:username", upload.single("image"), updateuser);
+// This has to be updated since it conflicts with other code.
+// router.put("/:username", upload.single("image"), updateuser);
 
 router.post("/register", register);
 router.post("/login", login);
@@ -29,19 +30,18 @@ router.post("/login", login);
 router.post("/loginUsingGoogle", loginUsingGoogle);
 router.get("/", getusers);
 // find if the mail id is in the database
-router.get("/getCartItems",  getCartItems);
+router.get("/getCartItems",  getCartItems); 
 
 // This should be updated else the forgot password wont work
 router.get("/:emailID", findMailId);
 
-
 // update the password in the database
 router.post("/updatePassword", updatepassword);
+router.put("/updateCart", updateCart);
 router.delete("/:id", deleteEmailID);
 router.get("/name/:username", getuser);
 
 // To update the items in the cart
-router.post("/updateCart", updateCart);
 // To get the items in the cart
 
 

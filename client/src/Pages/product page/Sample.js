@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export const Sam = (init) => {
-  const [name, setName] = useState(init)
-  const updateName = (event) => {
-    setName(event.target.value)
-  }
-  return [name, updateName]
+export const Sample = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }

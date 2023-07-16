@@ -9,6 +9,7 @@ router.post("/",createProduct);
 router.put("/:id",updateProduct);
 router.delete("/:id",deleteProduct);
 router.get("/:id",getProduct);
+// router.put("/")
 // router.get("/:productname", asyncHandler(async (req, res) => {
 //     const pageSize = 12;
 //     const page = Number(req.query.pageNumber) || 1;

@@ -1,17 +1,18 @@
 import React from "react";
-import "./Home.css";
+import { Link, useNavigate } from "react-router-dom";
+import slide2image from "../../Assets/Slide2home.jpg";
+import next from "../../Assets/next.jpg";
 import pet1 from "../../Assets/pet1.jpg";
 import pet2 from "../../Assets/pet2.jpg";
 import pet3 from "../../Assets/pet3.jpg";
 import pet4 from "../../Assets/pet4.jpg";
 import pet5 from "../../Assets/pet5.jpg";
-import next from "../../Assets/next.jpg";
-import slide2image from "../../Assets/Slide2home.jpg";
-import Navbar from "../../components/Navbar/Navbar";
 import Footers from "../../components/Footer/Footers";
-import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import "./Home.css";
 import SliderComponent from "./SliderComponent";
 export const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="home">
       <Navbar></Navbar>

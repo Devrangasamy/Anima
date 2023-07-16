@@ -23,9 +23,9 @@ export const Login = () => {
 
   // For the loading
   const [isLoading, setLoading] = useState(false);
-  
+
   useEffect(() => {
-    console.log("re rendering the component")
+    console.log("re rendering the component");
   });
   const removeMargin = {
     marginBottom: 0,
@@ -33,20 +33,22 @@ export const Login = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://rich-gray-macaw-sock.cyclic.app/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        newpassword: password,
-      }),
-    });
+    const response = await fetch(
+      "https://rich-gray-macaw-sock.cyclic.app/api/auth/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          newpassword: password,
+        }),
+      }
+    );
     const json = await response.json();
     await setLoading(false);
-    console.log(json);
     if (json.status === "Success") {
-      setLoading(true)
-      auth.login(json.data[0].username);
+      setLoading(true);
+      auth.login(json.data[0].username, json.data[0]._id);
       localStorage.setItem("username", json.data[0].username);
       navigate(location.state ? location.state.path : "/", { replace: true });
       // setLoading(false)
@@ -128,7 +130,11 @@ export const Login = () => {
                   >
                     Forgot password
                   </Button>
-                  <Button variant="outline-primary" type="submit" disabled = {isLoading} >
+                  <Button
+                    variant="outline-primary"
+                    type="submit"
+                    disabled={isLoading}
+                  >
                     Login
                   </Button>
                 </div>
