@@ -27,7 +27,6 @@ export const Userprofile = () => {
         setUserdata(data.data);
       })
       .catch((error) => {
-        console.log("fghjk");
         console.log(error);
       });
   }, []);
